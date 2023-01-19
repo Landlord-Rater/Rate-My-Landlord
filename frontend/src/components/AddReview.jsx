@@ -2,12 +2,12 @@
 //if not logged in, prompt user in some way to log in/disallow entry of a new review
 
 import React, { useState } from 'react'
-import Container from '../css/Container.jsx';
-import Submit from '../css/form/Submit.jsx';
-import Title from '../css/form/Title.jsx';
-import FormInput from '../css/form/FormInput.jsx';
+import Container from './Container.jsx';
+import FormSubmit from './FormSubmit.jsx';
+import FormTitle from './FormTitle.jsx';
+import FormInput from './FormInput.jsx';
 const AddReview = ({ landlord }) => {
-    
+
     const [id, setId] = useState(landlord._id)
     const [rating, setRating] = useState('') //should be out of 5 (don't accept a value higher in submit, so throw error)
     const [would_rent_again, setRentAgain] = useState('') //should be yes/no boolean
@@ -80,12 +80,12 @@ const AddReview = ({ landlord }) => {
           />
           <Submit value="Submit" />
         {error && <div className="error">{error}</div>}
-        {submitted && <h3>Submission success!</h3>}  
-        </form> 
+        {submitted && <h3>Submission success!</h3>}
+        </form>
 
             </Container>
             {error && <div className="error">{error}</div>}
-        </div> 
+        </div>
     )
 }
 
