@@ -41,9 +41,16 @@ CREATE TABLE "users" (
   OIDS=FALSE
 );
 
+
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_user_id_foreign" FOREIGN KEY ("user_id") REFERENCES "users" ("_id");
 
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
+
+
+ALTER TABLE "reviews" ADD CONSTRAINT "reviews_user_id_foreign" FOREIGN KEY ("user_id") REFERENCES "users" ("_id");
+
+ALTER TABLE "reviews" ADD CONSTRAINT "reviews_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
+
 
 ALTER TABLE "properties" ADD CONSTRAINT "properties_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
 
@@ -51,4 +58,8 @@ INSERT INTO landlords VALUES (1, 'Dummy Landlord1','somewhere1')
 INSERT INTO landlords VALUES (2, 'Dummy Landlord2','somewhere2')
 INSERT INTO landlords VALUES (3, 'Dummy Landlord3','somewhere3')
 INSERT INTO landlords VALUES (4, 'Dummy Landlord4','somewhere4')
+
 INSERT INTO landlords VALUES (5, 'Dummy Landlord5','somewhere5')
+
+INSERT INTO landlords VALUES (5, 'Dummy Landlord5','somewhere5')
+
