@@ -46,12 +46,6 @@ ALTER TABLE "reviews" ADD CONSTRAINT "reviews_user_id_foreign" FOREIGN KEY ("use
 
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
 
-
-ALTER TABLE "reviews" ADD CONSTRAINT "reviews_user_id_foreign" FOREIGN KEY ("user_id") REFERENCES "users" ("_id");
-
-ALTER TABLE "reviews" ADD CONSTRAINT "reviews_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
-
-
 ALTER TABLE "properties" ADD CONSTRAINT "properties_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
 
 INSERT INTO landlords VALUES (1, 'Dummy Landlord1','somewhere1')
