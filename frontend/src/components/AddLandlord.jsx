@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Container from '../css/Container.jsx';
-import Submit from '../css/form/Submit.jsx';
-import Title from '../css/form/Title.jsx';
-import FormInput from '../css/form/FormInput.jsx';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Container from "../css/Container.jsx";
+import Submit from "../css/form/Submit.jsx";
+import Title from "../css/form/Title.jsx";
+import FormInput from "../css/form/FormInput.jsx";
 
 export default function AddLandlord() {
-  const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
 
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -17,11 +17,11 @@ export default function AddLandlord() {
 
     const landlord = { name, location };
 
-    const response = await fetch('api/createlandlord', {
-      method: 'POST',
+    const response = await fetch("api/createlandlord", {
+      method: "POST",
       body: JSON.stringify(landlord), // { location: str, name: str }
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     const json = await response.json();
@@ -30,10 +30,10 @@ export default function AddLandlord() {
       setError(json.error);
     }
     if (response.ok) {
-      setName('');
-      setLocation('');
+      setName("");
+      setLocation("");
       setError(null);
-      navigate('/landlord',{state:{landlord: json, from: 'AddLandlord'}});
+      navigate("/landlord", { state: { landlord: json, from: "AddLandlord" } });
     }
   };
 
@@ -44,7 +44,7 @@ export default function AddLandlord() {
 
         <form
           onSubmit={handleSubmit}
-          className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
+          className={" bg-white drop-shadow rounded p-6 space-y-6 w-80"}
         >
           <Title>Add New Landlord</Title>
           <FormInput
