@@ -37,6 +37,7 @@ const App = () => {
           />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/addlandlord" element={<AddLandlord />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
     </div>
