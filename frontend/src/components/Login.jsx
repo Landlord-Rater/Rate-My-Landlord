@@ -60,7 +60,7 @@ export default function Login({updateLoginStatus}) {
           onSubmit={handleSubmit}
           className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
         >
-          <Title>Sign in</Title>
+          <FormTitle>Sign in</FormTitle>
           <FormInput
             value={email}
             onChange={handleChange}
@@ -76,7 +76,7 @@ export default function Login({updateLoginStatus}) {
             name="password"
             type="password"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         </form>
 
         <button

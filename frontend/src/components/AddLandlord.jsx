@@ -46,7 +46,7 @@ export default function AddLandlord() {
           onSubmit={handleSubmit}
           className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
         >
-          <Title>Add New Landlord</Title>
+          <FormTitle>Add New Landlord</FormTitle>
           <FormInput
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -62,7 +62,7 @@ export default function AddLandlord() {
             name="location"
             type="text"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         </form>
       </Container>
       {error && <div className="error">{error}</div>}

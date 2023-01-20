@@ -54,7 +54,7 @@ const AddReview = ({ landlord }) => {
                 onSubmit={handleSubmit}
                 className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
             >
-          <Title>Add Review</Title>
+          <FormTitle>Add Review</FormTitle>
           <FormInput
             value={rating}
             onChange={(e) => setRating(e.target.value)}
@@ -78,7 +78,7 @@ const AddReview = ({ landlord }) => {
             name="Comments"
             type="Text"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         {error && <div className="error">{error}</div>}
         {submitted && <h3>Submission success!</h3>}
         </form>

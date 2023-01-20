@@ -60,7 +60,7 @@ export default function Login() {
           onSubmit={handleSubmit}
           className={'dark:bg-secondary bg-white drop-shadow rounded p-6 space-y-6 w-80'}
         >
-          <Title>Sign up</Title>
+          <FormTitle>Sign up</FormTitle>
           <FormInput
             value={username}
             onChange={handleChange}
@@ -83,7 +83,7 @@ export default function Login() {
             placeholder="********"
             name="password"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         </form>
       </Container>
     </div>
