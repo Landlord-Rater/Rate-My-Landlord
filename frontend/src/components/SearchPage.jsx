@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LandlordCard from './LandlordCard.jsx';
 import AddLandlord from './AddLandlord.jsx';
-import Container from '../css/Container.jsx';
+import Container from './Container.jsx';
 
 class SearchPage extends Component {
   constructor(props) {

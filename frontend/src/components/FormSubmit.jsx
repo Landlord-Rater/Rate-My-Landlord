@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Submit({ value, onClick }) {
+export default function FormSubmit({ value, onClick }) {
   return (
     <button
       type="submit"

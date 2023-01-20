@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Container from '../css/Container.jsx';
-import Submit from '../css/form/Submit.jsx';
-import Title from '../css/form/Title.jsx';
-import FormInput from '../css/form/FormInput.jsx';
+import Container from './Container.jsx';
+import FormSubmit from './FormSubmit.jsx';
+import FormTitle from './FormTitle.jsx';
+import FormInput from './FormInput.jsx';
 
 export default function AddLandlord() {
   const [name, setName] = useState('');
@@ -46,7 +46,7 @@ export default function AddLandlord() {
           onSubmit={handleSubmit}
           className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
         >
-          <Title>Add New Landlord</Title>
+          <FormTitle>Add New Landlord</FormTitle>
           <FormInput
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -62,7 +62,7 @@ export default function AddLandlord() {
             name="location"
             type="text"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         </form>
       </Container>
       {error && <div className="error">{error}</div>}
