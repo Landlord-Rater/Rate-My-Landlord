@@ -8,6 +8,7 @@ import Logout from './src/components/Logout.jsx';
 import Signup from './src/components/Signup.jsx';
 import AddLandlord from './src/components/AddLandlord.jsx';
 import ProfilePage from './src/components/ProfilePage.jsx';
+import PageNotFound from './src/components/PageNotFound.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +44,8 @@ class App extends Component {
             />
             <Route exact path='/signup' element={<Signup />} />
             <Route exact path='/addlandlord' element={<AddLandlord />} />
+
+            <Route path='*' element={<PageNotFound />} />
           </Routes>
         </main>
       </div>
