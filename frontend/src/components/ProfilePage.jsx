@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const ProfilePage = () => {
   //   const { landlord, from } = location.state;
 
   //const [data, setData] = useState({ landlord: {}, reviews: [] }); // data.landlord, data.reviews
-  const data = ['hello', 'another rating'];
+  const data = ["hello", "another rating"];
   //   useEffect(() => {
   //     if (from === 'LandlordCard') {
   //       fetch('/api/getlandlord/' + landlord._id)
@@ -17,8 +17,8 @@ const ProfilePage = () => {
   //   }, []);
 
   return (
-    <div className='flex flex-col items-center py-2'>
-      <h3 className='py-4'>
+    <div className="flex flex-col items-center py-2">
+      <h3 className="py-4">
         <strong>Profile</strong>
       </h3>
       <p>
