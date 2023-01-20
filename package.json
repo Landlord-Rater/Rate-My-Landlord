@@ -12,6 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.5",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "browserify": "^17.0.0",
@@ -23,8 +27,8 @@
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.5.1",
     "prop-types": "^15.6.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1",
     "sweetalert2": "^11.6.15",
     "webpack": "^5.57.1"

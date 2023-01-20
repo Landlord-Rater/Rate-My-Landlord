@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Container from '../css/Container.jsx';
-import Submit from '../css/form/Submit.jsx';
-import Title from '../css/form/Title.jsx';
-import FormInput from '../css/form/FormInput.jsx';
+import Container from './Container.jsx';
+import FormSubmit from './FormSubmit.jsx';
+import FormTitle from './FormTitle.jsx';
+import FormInput from './FormInput.jsx';
 import { useLocation } from 'react-router-dom';
 
 async function loginUser(credentials, navigate, updateLoginStatus, from) {
@@ -60,7 +60,7 @@ export default function Login({updateLoginStatus}) {
           onSubmit={handleSubmit}
           className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
         >
-          <Title>Sign in</Title>
+          <FormTitle>Sign in</FormTitle>
           <FormInput
             value={email}
             onChange={handleChange}
@@ -76,7 +76,7 @@ export default function Login({updateLoginStatus}) {
             name="password"
             type="password"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         </form>
 
         <button
