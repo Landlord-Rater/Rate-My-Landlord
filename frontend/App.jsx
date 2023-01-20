@@ -7,6 +7,7 @@ import Login from './src/components/Login.jsx';
 import Logout from './src/components/Logout.jsx'
 import Signup from './src/components/Signup.jsx';
 import AddLandlord from './src/components/AddLandlord.jsx';
+import PageNotFound from './src/components/PageNotFound.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class App extends Component {
         isLoggedIn: false,
     };
   }
-  
+
   updateLoginStatus = (isLoggedIn) => {
     this.setState({isLoggedIn})};
 
@@ -24,7 +25,7 @@ class App extends Component {
     return (
       <div className="router">
         <main>
-           <Navbar isLoggedIn={this.state.isLoggedIn}/> 
+           <Navbar isLoggedIn={this.state.isLoggedIn}/>
            <Routes>
             <Route
               exact
@@ -52,6 +53,8 @@ class App extends Component {
               element={<Signup/>}
             />
             <Route exact path="/addlandlord" element={<AddLandlord />} />
+
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
        </main>
       </div>
