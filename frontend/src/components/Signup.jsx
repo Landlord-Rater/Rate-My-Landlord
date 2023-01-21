@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Container from '../css/Container.jsx';
-import Submit from '../css/form/Submit.jsx';
-import Title from '../css/form/Title.jsx';
-import FormInput from '../css/form/FormInput.jsx';
+import Container from './Container.jsx';
+import FormSubmit from './FormSubmit.jsx';
+import FormTitle from './FormTitle.jsx';
+import FormInput from './FormInput.jsx';
 
 async function signUp(credentials, navigate) {
   return fetch('api/signup', {
@@ -60,7 +60,7 @@ export default function Login() {
           onSubmit={handleSubmit}
           className={'dark:bg-secondary bg-white drop-shadow rounded p-6 space-y-6 w-80'}
         >
-          <Title>Sign up</Title>
+          <FormTitle>Sign up</FormTitle>
           <FormInput
             value={username}
             onChange={handleChange}
@@ -83,7 +83,7 @@ export default function Login() {
             placeholder="********"
             name="password"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         </form>
       </Container>
     </div>

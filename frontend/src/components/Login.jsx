@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Container from '../css/Container.jsx';
-import Submit from '../css/form/Submit.jsx';
-import Title from '../css/form/Title.jsx';
-import FormInput from '../css/form/FormInput.jsx';
+import Container from './Container.jsx';
+import FormSubmit from './FormSubmit.jsx';
+import FormTitle from './FormTitle.jsx';
+import FormInput from './FormInput.jsx';
 import { useLocation } from 'react-router-dom';
 
 async function loginUser(credentials, navigate, updateLoginStatus, from) {
@@ -58,9 +58,9 @@ export default function Login({updateLoginStatus}) {
 
         <form
           onSubmit={handleSubmit}
-          className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
+          className={'loginCard p-4 rounded-md bg-primary text-white'}
         >
-          <Title>Sign in</Title>
+          <FormTitle>Sign in</FormTitle>
           <FormInput
             value={email}
             onChange={handleChange}
@@ -76,12 +76,12 @@ export default function Login({updateLoginStatus}) {
             name="password"
             type="password"
           />
-          <Submit value="Submit" />
+          <FormSubmit value="Submit" />
         </form>
 
         <button
           type="submit"
-          className="w-full bg-white rounded text-gray-600 hover:bg-opacity-90 hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
+          className="w-full bg-primary rounded text-gray-600 hover:bg-opacity-90 hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
         >
           <Link to="/signup">
             <p>Sign up</p>
