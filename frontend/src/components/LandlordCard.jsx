@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import House from '../assets/rundown house.jpeg'
 
 const LandlordCard = ({ landlord }) => {
+
   return (
-    <div className="landlordCards p-4 rounded-md bg-slate-800 text-white grid grid-cols-3 gap-10">
+    <div className="landlordCards p-4 rounded-md bg-primary text-white grid grid-cols-3 gap-10">
       <img className="house object-fill col-span-1" src={House} alt="Logo" width="180"></img>
       <div className="landlordInfo col-span-2">
       <h4 className="font-bold text-xl">{landlord.name}</h4>

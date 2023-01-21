@@ -52,10 +52,10 @@ const SearchPage = () => {
         </div>
         {/* <AddLandlord /> */}
         <div className="flex flex-col items-center ">
-          <Link to="/addlandlord" className="text-gray-800 text-lg   ">
+          <Link to="/addlandlord" className="text-primary text-lg   ">
             <button
               type="button"
-              className="w-full rounded bg-secondary p-3 px-6 text-gray-600 hover:text-dark-purple"
+              className="w-full rounded bg-secondary p-3 px-6 text-primary hover:text-dark-purple"
             >
               Add New Landlord
             </button>

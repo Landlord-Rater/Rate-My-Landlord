@@ -13,7 +13,7 @@ const Navbar = ({ isLoggedIn }) => {
 
   return (
     <header>
-      <div className="bg-slate-800">
+      <div className="bg-primary">
         <div className="max-w-screen-xl mx-auto p-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center sm:space-x-10 space-x-2">
@@ -45,7 +45,7 @@ const Navbar = ({ isLoggedIn }) => {
               >
                 <button
                   type="button"
-                  className=" bg-primary p-2 rounded sm:text-1xl"
+                  className=" bg-secondary text-primary p-2 rounded sm:text-1xl  hover:text-dark-purple font-semibold"
                 >{`${authBtnProps.text}`}</button>
               </Link>
             </div>
