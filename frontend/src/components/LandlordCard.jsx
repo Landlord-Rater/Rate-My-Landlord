@@ -8,32 +8,39 @@ const LandlordCard = ({ landlord }) => {
 
   return (
     <div className="landlordCards p-4 rounded-md bg-primary text-white grid grid-cols-3 gap-10">
-      <img className="house object-fill col-span-1" src={House} alt="Logo" width="180"></img>
-      <div className="landlordInfo col-span-2">
-      <h4 className="font-bold text-xl">{landlord.name}</h4>
-        <div className="location">
-          <div className="font-medium">Location: </div>
-          <p> {landlord.location}</p>
+
+      <img className="house object-fill col-span-1" src={House} alt="Logo" width="180" />
+
+      <div className="landlord-info col-span-2">
+
+        <h2 className="landlord-name font-bold text-xl">{landlord.name}</h2>
+
+        <div className="landlord-location">
+          <div className="label font-medium">Location: </div>
+          <div className="info"> {landlord.location}</div>
+        </div>
+
+        <div className="landlord-rating">
+          <div className="label font-medium mr-1">Rating: </div>
+          <div className="info font-medium mr-1">
+          {landlord.averageRating ? landlord.averageRating : 'N/A'}
+          </div>
         </div>
         
-        <div className="rating">
-          <div className="font-medium mr-1">Rating: </div>
-          {landlord.averageRating ? landlord.averageRating : 'N/A'}
-        </div>
       </div>
 
       {/* <strong className="font-medium">Would Rent Again: </strong>
         {landlord.would_rent_again} */}
 
-      <div className="flex justify-center col-span-2">
+      <div className="landlord-reviews-link-container flex justify-center col-span-2">
         <Link
           to="/landlord"
           state={{ landlord: landlord, from: 'LandlordCard' }}
-          className="text-gray-800 text-md "
+          className="landlord-reviews-link text-gray-800 text-md "
         >
           <button
             type="button"
-            className="cursor-pointer w-full py-2 text-white hover:text-dark-purple "
+            className="landlord-reviews-link-button cursor-pointer w-full py-2 text-white hover:text-dark-purple "
           >
             See Landlord Reviews
           </button>

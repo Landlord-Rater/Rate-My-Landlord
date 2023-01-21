@@ -8,7 +8,7 @@ const LandlordPage = () => {
   const { landlord, from } = location.state;
 
   const [data, setData] = useState({ landlord: {}, reviews: [] }); // data.landlord, data.reviews
-  
+
   useEffect(() => {
     if (from === 'LandlordCard') {
       fetch('/api/getlandlord/' + landlord._id)
@@ -21,21 +21,22 @@ const LandlordPage = () => {
 
   return (
     <div className="flex flex-col items-center py-2">
-      <h3 className="py-4">
-        <strong>{data.landlord.name}</strong>
-      </h3>
-      <h2>
-        <strong>Main City: </strong>
+    
+      <h2 className="page-title py-4">{data.landlord.name}</h2>
+
+      <p className="label"> Main City:
         {data.landlord.location}
-      </h2>
-      <p>
-        <strong>Rating: </strong>
+      </p>
+
+      <p className="label">Rating:
         {data.landlord.rating ? data.landlord.rating : 'N/A'}
       </p>
-      <p className="mb-2">
-        <strong>Would Rent Again: </strong>
+
+      <p className="label label-rent-again mb-2">
+        Would Rent Again:
         {data.landlord.would_rent_again ? data.landlord.would_rent_again : 'N/A'}
       </p>
+
       <div className="reviews">
         {data.reviews &&
           data.reviews.map((review) => (
@@ -43,6 +44,7 @@ const LandlordPage = () => {
           ))}
         <AddReview landlord={data.landlord}/>
       </div>
+
     </div>
   );
 };
