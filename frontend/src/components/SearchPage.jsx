@@ -36,13 +36,13 @@ const SearchPage = () => {
   return (
     <section>
       <Container>
-        <div className="flex items-center justify-center relative p-10 space-x-10  ">
-          <div className="text-gray-800">Search</div>
+        <div className="flex flex-row items-center justify-center mt-4">
           <input
             type="text"
             onChange={(e) => setSearchBar(e.target.value)}
             value={searchBar}
-            className="bg-transparent rounded border-2 dark:border-dark-subtle border-light-subtle focus:border-dark-purple w-full text-lg outline-none p-1 dark:text-white peer transition"
+            className="bg-transparent rounded border-2 border-black border-light-subtle focus:border-dark-purple w-full text-lg outline-none p-1 dark:text-black peer transition basis-1/2"
+            placeholder="Search"
           />
         </div>
         <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-5 p-5">
