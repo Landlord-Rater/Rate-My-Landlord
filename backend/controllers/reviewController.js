@@ -43,7 +43,6 @@ reviewController.postReviews = async (req, res, next) => {
     const queryText =
       'INSERT INTO reviews (landlord_id, text, rating, would_rent_again, date, user_id) values($1,$2,$3,$4,$5,$6)';
     const value = [landlord_id, text, rating, would_rent_again, date, userID];
-    console.log(value);
     const review = await db.query(queryText, value);
 
     res.locals.rating = review;
@@ -59,7 +58,33 @@ reviewController.postReviews = async (req, res, next) => {
   }
 };
 
+//  'SELECT AVG(rating) FROM reviews where landlord_id = $1;';
+
 //make another getReview function specific to user
+reviewController.getUserReviews = (req, res, next) => {
+  const user = req.params.id;
+  console.log(user);
+  const text =
+    // 'SELECT reviews.*, users.username AS user FROM reviews INNER JOIN users ON reviews.user_id = users._id';
+    'SELECT reviews.* FROM reviews INNER JOIN users ON reviews.user_id = users._id AND reviews.user_id = $1';
+
+  // const value = [res.locals.user._id];
+  const value = [user];
+
+  db.query(text, value)
+    .then((data) => {
+      console.log(data.rows);
+      res.locals.reviews = data.rows;
+      next();
+    })
+    .catch((err) =>
+      next({
+        log: 'error caught in getReviews middleware!',
+        status: 400,
+        message: { err: err },
+      })
+    );
+};
 
 reviewController.getReviews = (req, res, next) => {
   const text =

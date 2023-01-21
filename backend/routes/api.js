@@ -22,11 +22,13 @@ router.get(
 );
 
 //create route here
-router.get('/getuser/success', reviewController.getReviews, (req, res) => {
-  res.status(200).json({
-    reviews: res.locals.reviews,
-  });
-});
+router.get(
+  '/getuser/reviews/:id',
+  reviewController.getUserReviews,
+  (req, res) => {
+    res.status(200).json(res.locals.reviews);
+  }
+);
 
 router.get(
   '/getuser',

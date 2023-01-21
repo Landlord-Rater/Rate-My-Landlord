@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import UserReviewDetails from './UserReviewDetails.jsx';
 
 const ProfilePage = () => {
   const [reviews, setReviews] = useState([]);
+  const userID = localStorage.getItem('userID');
+
   //   const [data, setData] = useState({ user: {}, reviews: [] }); // data.landlord, data.reviews
   useEffect(() => {
-    fetch('/api/getuser/success')
+    fetch('/api/getuser/reviews/' + userID)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
-        // console.log(data);
+        console.log(data);
       });
     // console.log(users).then(console.log('data in fetch', users));
   }, []);
@@ -31,6 +34,12 @@ const ProfilePage = () => {
       <p>
         <strong>Reviews: </strong>
       </p>
+      <div className='reviews'>
+        {reviews &&
+          reviews.map((review) => (
+            <UserReviewDetails key={review._id} review={review} />
+          ))}
+      </div>
     </div>
   );
 };
