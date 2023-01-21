@@ -5,6 +5,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import { BrowserRouter } from "react-router-dom";
 //IMPORT REACT COMPONENTS
 import LandlordCard from "../frontend/src/components/LandlordCard.jsx";
+import House from "../assets/rundown house.jpeg";
 describe("Unit testing React components", () => {
   describe("LandlordCard", () => {
     describe("LandlordCard with average rating value", () => {

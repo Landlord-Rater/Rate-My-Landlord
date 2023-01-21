@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 import Person2Icon from "@mui/icons-material/Person2";
 
+
 const Navbar = ({ isLoggedIn }) => {
   const authBtnProps = {
     text: isLoggedIn ? "Log Out" : "Log In",
@@ -12,16 +13,19 @@ const Navbar = ({ isLoggedIn }) => {
 
   return (
     <header>
-      <div className="bg-secondary">
+      <div className="bg-primary">
         <div className="max-w-screen-xl mx-auto p-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center sm:space-x-10 space-x-2">
-              <img className="h-12" src={Logo} alt="Logo"></img>
+
+              <img className="h-12" src={Logo} alt="Logo" />
+
               <Link to="/">
-                <h1 className="text-gray-600 py-2 hover:text-dark-purple font-semibold">
+                <h1 className="site-title text-white py-2 hover:text-dark-purple font-semibold">
                   Rate My Landlord
                 </h1>
               </Link>
+              
             </div>
             <div className="flex items-center sm:space-x-10 space-x-2">
               {isLoggedIn ? (
@@ -34,9 +38,9 @@ const Navbar = ({ isLoggedIn }) => {
                 ""
               )}
               <Link to="/">
-                <h3 className="text-gray-600 py-2 hover:text-dark-purple font-semibold">
+                <div className="nav-link text-white py-2 hover:text-dark-purple font-semibold">
                   Home
-                </h3>
+                </div>
               </Link>
               <Link
                 to={`${authBtnProps.route}`}
@@ -44,7 +48,7 @@ const Navbar = ({ isLoggedIn }) => {
               >
                 <button
                   type="button"
-                  className=" bg-primary p-2 rounded sm:text-1xl"
+                  className=" bg-secondary text-primary p-2 rounded sm:text-1xl  hover:text-dark-purple font-semibold"
                 >{`${authBtnProps.text}`}</button>
               </Link>
             </div>

@@ -36,26 +36,26 @@ const SearchPage = () => {
   return (
     <section>
       <Container>
-        <div className="flex items-center justify-center relative p-10 space-x-10  ">
-          <div className="text-gray-800">Search</div>
+        <div className="flex flex-row items-center justify-center mt-4">
           <input
             type="text"
             onChange={(e) => setSearchBar(e.target.value)}
             value={searchBar}
-            className="bg-transparent rounded border-2 dark:border-dark-subtle border-light-subtle focus:border-dark-purple w-full text-lg outline-none p-1 dark:text-white peer transition"
+            className="bg-transparent rounded border-2 border-slate-300 focus:border-dark-purple w-full text-lg outline-none p-1 dark:text-black peer transition basis-1/2"
+            placeholder="Search"
           />
         </div>
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-5 p-5">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
           {landlordsToRender.map((landlord) => (
             <LandlordCard key={landlord.id} landlord={landlord} />
           ))}
         </div>
         {/* <AddLandlord /> */}
         <div className="flex flex-col items-center ">
-          <Link to="/addlandlord" className="text-gray-800 text-lg   ">
+          <Link to="/addlandlord" className="text-primary text-lg   ">
             <button
               type="button"
-              className="w-full rounded bg-secondary p-3 px-6 text-gray-600 hover:text-dark-purple"
+              className="w-full rounded bg-secondary p-3 px-6 text-primary hover:text-dark-purple"
             >
               Add New Landlord
             </button>

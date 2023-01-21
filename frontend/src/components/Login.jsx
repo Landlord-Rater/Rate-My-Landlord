@@ -58,7 +58,7 @@ export default function Login({updateLoginStatus}) {
 
         <form
           onSubmit={handleSubmit}
-          className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
+          className={'loginCard p-4 rounded-md bg-primary text-white'}
         >
           <FormTitle>Sign in</FormTitle>
           <FormInput
@@ -81,7 +81,7 @@ export default function Login({updateLoginStatus}) {
 
         <button
           type="submit"
-          className="w-full bg-white rounded text-gray-600 hover:bg-opacity-90 hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
+          className="w-full bg-primary rounded text-gray-600 hover:bg-opacity-90 hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
         >
           <Link to="/signup">
             <p>Sign up</p>
