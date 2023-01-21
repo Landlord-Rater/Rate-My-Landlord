@@ -1,7 +1,7 @@
 //renders multiple of these upon search in home page if they fit search criteria
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const LandlordCard = ({ landlord }) => {
   return (
@@ -12,10 +12,10 @@ const LandlordCard = ({ landlord }) => {
           <div className="font-medium">Location: </div>
           <p> {landlord.location}</p>
         </div>
-        
+
         <div className="flex ">
           <div className="font-medium mr-1">Rating: </div>
-          {landlord.averageRating ? landlord.averageRating : 'N/A'}
+          {landlord.averageRating ? landlord.averageRating : "N/A"}
         </div>
       </td>
 
@@ -25,7 +25,7 @@ const LandlordCard = ({ landlord }) => {
       <div className="flex flex-col items-end">
         <Link
           to="/landlord"
-          state={{ landlord: landlord, from: 'LandlordCard' }}
+          state={{ landlord: landlord, from: "LandlordCard" }}
           className="text-gray-800 text-md "
         >
           <button
