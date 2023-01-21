@@ -33,7 +33,7 @@ app.get(
 app.get(
   "/api/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/protected",
+    successRedirect: "http://localhost:8080/",
     failureRedirect: "/auth/google/failure",
   })
 );
