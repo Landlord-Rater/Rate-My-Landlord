@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const ProfilePage = () => {
-  //   const { landlord, from } = location.state;
-
-  //const [data, setData] = useState({ landlord: {}, reviews: [] }); // data.landlord, data.reviews
-  const data = ['hello', 'another rating'];
-  //   useEffect(() => {
-  //     if (from === 'LandlordCard') {
-  //       fetch('/api/getlandlord/' + landlord._id)
-  //         .then((res) => res.json())
-  //         .then((data) => setData(data))
-  //         .then(console.log('data in fetch', data));
-  //     } else {
-  //       setData({ landlord });
-  //     }
-  //   }, []);
+  const [reviews, setReviews] = useState([]);
+  //   const [data, setData] = useState({ user: {}, reviews: [] }); // data.landlord, data.reviews
+  useEffect(() => {
+    fetch('/api/getuser/success')
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
+        // console.log(data);
+      });
+    // console.log(users).then(console.log('data in fetch', users));
+  }, []);
 
   return (
     <div className='flex flex-col items-center py-2'>
@@ -22,45 +20,17 @@ const ProfilePage = () => {
         <strong>Profile</strong>
       </h3>
       <p>
-        <strong>First Name: </strong>
-      </p>
-      <p>
-        <strong>Last Name: </strong>
+        <strong>Username: {localStorage.getItem('user')}</strong>
       </p>
       <p>
         <strong>City: </strong>
       </p>
       <p>
-        <strong>Email: </strong>
+        <strong>Email: {localStorage.getItem('email')} </strong>
       </p>
       <p>
         <strong>Reviews: </strong>
       </p>
-      {/* <div className='reviews'>Hello</div> */}
-      {/* <h3 className='py-4'>
-        <strong>{data.landlord.name}</strong>
-      </h3>
-      <h2>
-        <strong>Main City: </strong>
-        {data.landlord.location}
-      </h2>
-      <p>
-        <strong>Rating: </strong>
-        {data.landlord.rating ? data.landlord.rating : 'N/A'}
-      </p>
-      <p className='mb-2'>
-        <strong>Would Rent Again: </strong>
-        {data.landlord.would_rent_again
-          ? data.landlord.would_rent_again
-          : 'N/A'}
-      </p>
-      <div className='reviews'>
-        {data.reviews &&
-          data.reviews.map((review) => (
-            <ReviewDetails key={review._id} review={review} />
-          ))}
-        <AddReview landlord={data.landlord} />
-      </div> */}
     </div>
   );
 };

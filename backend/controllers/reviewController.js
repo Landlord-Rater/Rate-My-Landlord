@@ -34,23 +34,32 @@ reviewController.getAll = (req, res, next) => {
     );
 };
 
-reviewController.postReviews = (req, res, next) => {
-  const { userId } = res.locals.user;
-  const { landlord_id, text, rating, would_rent_again, date } = req.body;
-  const queryText =
-    'INSERT INTO reviews (landlord_id, text, rating, would_rent_again, date, user_id) values($1,$2,$3,$4,$5,$6)';
-  const value = [landlord_id, text, rating, would_rent_again, date, userId];
+reviewController.postReviews = async (req, res, next) => {
+  try {
+    // const { userId } = res.locals.user;
 
-  db.query(queryText, value)
-    .then((_) => res.status(200).json('review posted'))
-    .catch((err) =>
-      next({
-        log: 'error caught in postReviews middleware!',
-        status: 400,
-        message: { err: err },
-      })
-    );
+    const { userID, landlord_id, text, rating, would_rent_again, date } =
+      req.body;
+    const queryText =
+      'INSERT INTO reviews (landlord_id, text, rating, would_rent_again, date, user_id) values($1,$2,$3,$4,$5,$6)';
+    const value = [landlord_id, text, rating, would_rent_again, date, userID];
+    console.log(value);
+    const review = await db.query(queryText, value);
+
+    res.locals.rating = review;
+    // console.log(review);
+    return next();
+    // .then((_) => res.status(200).json('review posted'))
+  } catch (err) {
+    next({
+      log: 'error caught in postReviews middleware!',
+      status: 400,
+      message: { err: err + 'ahh' },
+    });
+  }
 };
+
+//make another getReview function specific to user
 
 reviewController.getReviews = (req, res, next) => {
   const text =

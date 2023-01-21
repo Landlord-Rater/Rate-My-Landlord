@@ -49,6 +49,10 @@ userController.getUsers = async (req, res, next) => {
   try {
     if (user && (await bcrypt.compare(password, user.password))) {
       //pass the web token to the next middleware to set it as a cookie for session control
+      console.log(user.username);
+      res.locals.email = email;
+      res.locals.user = user.username;
+      res.locals.userID = user._id;
       res.locals.id = generateToken({ id: user._id, username: user.username });
       next();
     } else {
