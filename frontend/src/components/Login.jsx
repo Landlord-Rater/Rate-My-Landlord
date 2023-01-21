@@ -87,6 +87,7 @@ export default function Login({updateLoginStatus}) {
             <p>Sign up</p>
           </Link>
         </button>
+        <a href="/api/auth/google">Authenticate with Google</a>
       </Container>
     </div>
   );
