@@ -41,11 +41,11 @@ const SearchPage = () => {
             type="text"
             onChange={(e) => setSearchBar(e.target.value)}
             value={searchBar}
-            className="bg-transparent rounded border-2 border-black border-light-subtle focus:border-dark-purple w-full text-lg outline-none p-1 dark:text-black peer transition basis-1/2"
+            className="bg-transparent rounded border-2 border-slate-300 focus:border-dark-purple w-full text-lg outline-none p-1 dark:text-black peer transition basis-1/2"
             placeholder="Search"
           />
         </div>
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-5 p-5">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
           {landlordsToRender.map((landlord) => (
             <LandlordCard key={landlord.id} landlord={landlord} />
           ))}
