@@ -17,7 +17,7 @@ const ProfilePage = () => {
   //   }, []);
 
   return (
-    <div className="flex flex-col items-center py-2">
+    <div className="flex flex-col items-center py-2 bg-primary">
       <h3 className="py-4">
         <strong>Profile</strong>
       </h3>

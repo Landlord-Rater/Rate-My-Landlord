@@ -52,15 +52,15 @@ export default function Login({updateLoginStatus}) {
   };
 
   return (
-    <div className="inset-0  flex justify-center items-center ">
+    <div className="inset-0  flex justify-center items-center mt-5 ">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 
         <form
           onSubmit={handleSubmit}
-          className={'loginCard p-4 rounded-md bg-primary text-white'}
+          className={'loginCard p-6 rounded-md bg-primary space-y-6 text-white w-80'}
         >
-          <FormTitle>Sign in</FormTitle>
+          <FormTitle>Log in</FormTitle>
           <FormInput
             value={email}
             onChange={handleChange}
@@ -81,7 +81,7 @@ export default function Login({updateLoginStatus}) {
 
         <button
           type="submit"
-          className="w-full bg-primary rounded text-gray-600 hover:bg-opacity-90 hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
+          className="w-full bg-primary rounded text-white hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
         >
           <Link to="/signup">
             <p>Sign up</p>
