@@ -17,25 +17,35 @@ const ProfilePage = () => {
   //   }, []);
 
   return (
-    <div className="flex flex-col items-center py-2">
-      <h3 className="py-4">
-        <strong>Profile</strong>
-      </h3>
-      <p>
-        <strong>First Name: </strong>
-      </p>
-      <p>
-        <strong>Last Name: </strong>
-      </p>
-      <p>
-        <strong>City: </strong>
-      </p>
-      <p>
-        <strong>Email: </strong>
-      </p>
-      <p>
-        <strong>Reviews: </strong>
-      </p>
+    <div className="user-profile-container flex flex-col items-center py-2">
+
+      <h2 className="page-title py-4">Profile</h2>
+
+      <div className="label">First Name:</div>
+      <div className="info">
+        default_info
+      </div>
+
+      <div className="label">Last Name: </div>
+      <div className="info">
+        default_info
+      </div>
+
+      <div className="label">City: </div>
+      <div className="info">
+        default_info
+      </div>
+
+      <div className="label">Email: </div>
+      <div className="info">
+        default_info
+      </div>
+
+      <div className="label">Reviews: </div>
+      <div className="info">
+        default_info
+      </div>
+      
       {/* <div className='reviews'>Hello</div> */}
       {/* <h3 className='py-4'>
         <strong>{data.landlord.name}</strong>
@@ -47,13 +57,13 @@ const ProfilePage = () => {
       <p>
         <strong>Rating: </strong>
         {data.landlord.rating ? data.landlord.rating : 'N/A'}
-      </p>
-      <p className='mb-2'>
+      </div>
+      <div className='mb-2'>
         <strong>Would Rent Again: </strong>
         {data.landlord.would_rent_again
           ? data.landlord.would_rent_again
           : 'N/A'}
-      </p>
+      </div>
       <div className='reviews'>
         {data.reviews &&
           data.reviews.map((review) => (
