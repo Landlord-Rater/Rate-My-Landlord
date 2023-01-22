@@ -5,7 +5,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import { BrowserRouter } from "react-router-dom";
 //IMPORT REACT COMPONENTS
 import LandlordCard from "../frontend/src/components/LandlordCard.jsx";
-import House from "../assets/rundown house.jpeg";
+
 describe("Unit testing React components", () => {
   describe("LandlordCard", () => {
     describe("LandlordCard with average rating value", () => {
@@ -42,7 +42,7 @@ describe("Unit testing React components", () => {
           location: "California",
         },
       };
-      beforeAll(() => {
+      beforeEach(() => {
         landlordCard = render(<LandlordCard {...props} />, {
           wrapper: BrowserRouter,
         });
@@ -56,6 +56,13 @@ describe("Unit testing React components", () => {
         expect(landlordCard.getByText("Rating:").nextSibling).toHaveTextContent(
           "N/A"
         );
+      });
+      // CHECK OUT THIS LINK FOR POSSIBLE SOLUTION TO TEST BELOW - https://stackoverflow.com/questions/69878146/how-can-i-test-react-router-with-jest
+      it("Displays AddReview component on click", async () => {
+        expect(screen.queryByText(/Search/)).toBeNull();
+        await userEvent.click(screen.getByText(/about/i));
+        screen.debug();
+        expect(screen.getByText("Would Rent Again:")).toBeInTheDocument();
       });
     });
   });
