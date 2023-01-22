@@ -1,7 +1,7 @@
 CREATE TABLE "landlords" (
   "_id" SERIAL NOT NULL,
   "name" VARCHAR(255) NOT NULL,
-  "location" VARCHAR(255) NOT NULL,
+  "location" VARCHAR(255) NOT NULL, 
   CONSTRAINT "landlords_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
@@ -36,6 +36,7 @@ CREATE TABLE "users" (
   "username" VARCHAR(255) NOT NULL,
   "password" VARCHAR(255) NOT NULL,
   "email" VARCHAR(255) NOT NULL,
+  "city" VARCHAR(255) NOT NULL,
   CONSTRAINT "users_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
@@ -48,6 +49,10 @@ ALTER TABLE "reviews" ADD CONSTRAINT "reviews_landlord_id_foreign" FOREIGN KEY (
 
 ALTER TABLE "properties" ADD CONSTRAINT "properties_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
 
+-- ALTER TABLE "landlords"
+-- ADD COLUMN new_column_name data_type constraint;
+
+
 INSERT INTO landlords VALUES (1, 'Dummy Landlord1','somewhere1')
 INSERT INTO landlords VALUES (2, 'Dummy Landlord2','somewhere2')
 INSERT INTO landlords VALUES (3, 'Dummy Landlord3','somewhere3')
@@ -57,3 +62,4 @@ INSERT INTO landlords VALUES (5, 'Dummy Landlord5','somewhere5')
 
 INSERT INTO landlords VALUES (5, 'Dummy Landlord5','somewhere5')
 
+-- change to location to city in landlords
