@@ -1,16 +1,16 @@
-const express = require('express');
-const reviewController = require('../controllers/reviewController');
-const userController = require('../controllers/userController');
-const cookieController = require('../controllers/cookieController');
-const landlordController = require('../controllers/landlordController');
-const auth = require('../middleware/auth');
-const { ErrorResponse } = require('@remix-run/router');
+const express = require("express");
+const reviewController = require("../controllers/reviewController");
+const userController = require("../controllers/userController");
+const cookieController = require("../controllers/cookieController");
+const landlordController = require("../controllers/landlordController");
+const auth = require("../middleware/auth");
+const { ErrorResponse } = require("@remix-run/router");
 const router = express.Router();
 
-router.get('/getall', reviewController.getAll);
+router.get("/getall", reviewController.getAll);
 
 router.get(
-  '/getlandlord/:id',
+  "/getlandlord/:id",
   landlordController.getLandLord,
   reviewController.getReviews,
   (req, res) => {
@@ -23,7 +23,7 @@ router.get(
 
 //create route here
 router.get(
-  '/getuser/reviews/:id',
+  "/getuser/reviews/:id",
   reviewController.getUserReviews,
   (req, res) => {
     res.status(200).json(res.locals.reviews);
@@ -31,7 +31,7 @@ router.get(
 );
 
 router.get(
-  '/getuser',
+  "/getuser",
   userController.getUsers,
   reviewController.getReviews,
   (req, res) => {
@@ -44,7 +44,7 @@ router.get(
 
 //create route here
 router.get(
-  '/getuser/reviews/:id',
+  "/getuser/reviews/:id",
   reviewController.getUserReviews,
   (req, res) => {
     res.status(200).json(res.locals.reviews);
@@ -52,7 +52,7 @@ router.get(
 );
 
 router.get(
-  '/getuser',
+  "/getuser",
   userController.getUsers,
   reviewController.getReviews,
   (req, res) => {
@@ -63,28 +63,28 @@ router.get(
   }
 );
 
-router.post('/createlandlord', landlordController.createLandlord);
+router.post("/createlandlord", landlordController.createLandlord);
 
 router.post(
-  '/login',
+  "/login",
   userController.getUsers,
   cookieController.setSSIDCookie,
   (req, res) =>
     res.status(200).json({
-      message: 'user authenicated!',
+      message: "user authenicated!",
       user: res.locals.user,
       email: res.locals.email,
       userID: res.locals.userID,
     })
 );
 
-router.post('/logout', (req, res) => {
-  res.clearCookie('ssid');
-  res.status(200).json('logged out!');
+router.post("/logout", (req, res) => {
+  res.clearCookie("ssid");
+  res.status(200).json("logged out!");
 });
-router.post('/signup', userController.createUsers);
+router.post("/signup", userController.createUsers);
 
-router.post('/postReviews', reviewController.postReviews, (req, res) =>
+router.post("/postReviews", reviewController.postReviews, (req, res) =>
   res.status(200).json({
     reviews: res.locals.reviews,
   })
