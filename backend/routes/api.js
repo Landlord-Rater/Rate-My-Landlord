@@ -4,6 +4,7 @@ const userController = require("../controllers/userController");
 const cookieController = require("../controllers/cookieController");
 const landlordController = require("../controllers/landlordController");
 const auth = require("../middleware/auth");
+const { ErrorResponse } = require("@remix-run/router");
 const router = express.Router();
 
 router.get("/getall", reviewController.getAll);
@@ -20,13 +21,61 @@ router.get(
   }
 );
 
+//create route here
+router.get(
+  "/getuser/reviews/:id",
+  reviewController.getUserReviews,
+  (req, res) => {
+    res.status(200).json(res.locals.reviews);
+  }
+);
+
+router.get(
+  "/getuser",
+  userController.getUsers,
+  reviewController.getReviews,
+  (req, res) => {
+    res.status(200).json({
+      user: res.locals.user,
+      reviews: res.locals.reviews,
+    });
+  }
+);
+
+//create route here
+router.get(
+  "/getuser/reviews/:id",
+  reviewController.getUserReviews,
+  (req, res) => {
+    res.status(200).json(res.locals.reviews);
+  }
+);
+
+router.get(
+  "/getuser",
+  userController.getUsers,
+  reviewController.getReviews,
+  (req, res) => {
+    res.status(200).json({
+      user: res.locals.user,
+      reviews: res.locals.reviews,
+    });
+  }
+);
+
 router.post("/createlandlord", landlordController.createLandlord);
 
 router.post(
   "/login",
   userController.getUsers,
   cookieController.setSSIDCookie,
-  (req, res) => res.status(200).json("user authenicated!")
+  (req, res) =>
+    res.status(200).json({
+      message: "user authenicated!",
+      user: res.locals.user,
+      email: res.locals.email,
+      userID: res.locals.userID,
+    })
 );
 
 router.post("/logout", (req, res) => {
@@ -35,7 +84,12 @@ router.post("/logout", (req, res) => {
 });
 router.post("/signup", userController.createUsers);
 
-router.post("/postReviews", reviewController.postReviews);
-router.post("/postReviews", auth.verifyToken, reviewController.postReviews);
+router.post("/postReviews", reviewController.postReviews, (req, res) =>
+  res.status(200).json({
+    reviews: res.locals.reviews,
+  })
+);
+
+// router.post('/postReviews', auth.verifyToken, reviewController.postReviews);
 
 module.exports = router;

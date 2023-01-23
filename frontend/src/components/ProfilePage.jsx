@@ -1,76 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import UserReviewDetails from './UserReviewDetails.jsx';
 
 const ProfilePage = () => {
-  //   const { landlord, from } = location.state;
+  const [reviews, setReviews] = useState([]);
+  const userID = localStorage.getItem('userID');
 
-  //const [data, setData] = useState({ landlord: {}, reviews: [] }); // data.landlord, data.reviews
-  const data = ["hello", "another rating"];
-  //   useEffect(() => {
-  //     if (from === 'LandlordCard') {
-  //       fetch('/api/getlandlord/' + landlord._id)
-  //         .then((res) => res.json())
-  //         .then((data) => setData(data))
-  //         .then(console.log('data in fetch', data));
-  //     } else {
-  //       setData({ landlord });
-  //     }
-  //   }, []);
+  //   const [data, setData] = useState({ user: {}, reviews: [] }); // data.landlord, data.reviews
+  useEffect(() => {
+    fetch('/api/getuser/reviews/' + userID)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
+        console.log(data);
+      });
+    // console.log(users).then(console.log('data in fetch', users));
+  }, []);
 
   return (
-    <div className="user-profile-container flex flex-col items-center py-2">
-
-      <h2 className="page-title py-4">Profile</h2>
-
-      <div className="label">First Name:</div>
-      <div className="info">
-        default_info
-      </div>
-
-      <div className="label">Last Name: </div>
-      <div className="info">
-        default_info
-      </div>
-
-      <div className="label">City: </div>
-      <div className="info">
-        default_info
-      </div>
-
-      <div className="label">Email: </div>
-      <div className="info">
-        default_info
-      </div>
-
-      <div className="label">Reviews: </div>
-      <div className="info">
-        default_info
-      </div>
-      
-      {/* <div className='reviews'>Hello</div> */}
-      {/* <h3 className='py-4'>
-        <strong>{data.landlord.name}</strong>
+    <div className='flex flex-col items-center py-2'>
+      <h3 className='py-4'>
+        <strong>Profile</strong>
       </h3>
-      <h2>
-        <strong>Main City: </strong>
-        {data.landlord.location}
-      </h2>
       <p>
-        <strong>Rating: </strong>
-        {data.landlord.rating ? data.landlord.rating : 'N/A'}
-      </div>
-      <div className='mb-2'>
-        <strong>Would Rent Again: </strong>
-        {data.landlord.would_rent_again
-          ? data.landlord.would_rent_again
-          : 'N/A'}
-      </div>
+        <strong>Username: {localStorage.getItem('user')}</strong>
+      </p>
+      <p>
+        <strong>City: </strong>
+      </p>
+      <p>
+        <strong>Email: {localStorage.getItem('email')} </strong>
+      </p>
+      <p>
+        <strong>Reviews: </strong>
+      </p>
       <div className='reviews'>
-        {data.reviews &&
-          data.reviews.map((review) => (
-            <ReviewDetails key={review._id} review={review} />
+        {reviews &&
+          reviews.map((review) => (
+            <UserReviewDetails key={review._id} review={review} />
           ))}
-        <AddReview landlord={data.landlord} />
-      </div> */}
+      </div>
     </div>
   );
 };
