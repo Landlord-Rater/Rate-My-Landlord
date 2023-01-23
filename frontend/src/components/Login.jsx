@@ -52,7 +52,7 @@ export default function Login({updateLoginStatus}) {
   };
 
   return (
-    <div className="inset-0  flex justify-center items-center mt-5 ">
+    <div className="inset-0 flex justify-center items-center mt-5 ">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 

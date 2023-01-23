@@ -17,25 +17,20 @@ const ProfilePage = () => {
   //   }, []);
 
   return (
-    <div className="flex flex-col items-center py-2 bg-primary">
-      <h3 className="py-4">
-        <strong>Profile</strong>
-      </h3>
-      <p>
-        <strong>First Name: </strong>
-      </p>
-      <p>
-        <strong>Last Name: </strong>
-      </p>
-      <p>
-        <strong>City: </strong>
-      </p>
-      <p>
-        <strong>Email: </strong>
-      </p>
-      <p>
-        <strong>Reviews: </strong>
-      </p>
+    <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-5" >
+      <div className="profileContainer grid grid-cols-2 w-80 bg-primary text-white rounded-md text-l font-semibold ">
+        <h3 className="p-6 space-y-6 col-span-2 text-center text-xl">
+           Profile
+        </h3>
+        <div className="propertyNames p-6">
+          <div>First Name:</div>
+          <div>Last Name:</div>
+          <div>City:</div>
+          <div>Email:</div>
+          <div>Reviews:</div>
+        </div>
+        <div className="properties p-6"></div>
+      </div>
       {/* <div className='reviews'>Hello</div> */}
       {/* <h3 className='py-4'>
         <strong>{data.landlord.name}</strong>
@@ -60,8 +55,7 @@ const ProfilePage = () => {
             <ReviewDetails key={review._id} review={review} />
           ))}
         <AddReview landlord={data.landlord} />
-      </div> */}
-    </div>
+      </div> */}</div>
   );
 };
 
