@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import UserReviewDetails from './UserReviewDetails.jsx';
 
 const ProfilePage = () => {
-  //   const { landlord, from } = location.state;
+  const [reviews, setReviews] = useState([]);
+  const userID = localStorage.getItem('userID');
 
-  //const [data, setData] = useState({ landlord: {}, reviews: [] }); // data.landlord, data.reviews
-  const data = ["hello", "another rating"];
-  //   useEffect(() => {
-  //     if (from === 'LandlordCard') {
-  //       fetch('/api/getlandlord/' + landlord._id)
-  //         .then((res) => res.json())
-  //         .then((data) => setData(data))
-  //         .then(console.log('data in fetch', data));
-  //     } else {
-  //       setData({ landlord });
-  //     }
-  //   }, []);
+  //   const [data, setData] = useState({ user: {}, reviews: [] }); // data.landlord, data.reviews
+  useEffect(() => {
+    fetch('/api/getuser/reviews/' + userID)
+      .then((res) => res.json())
+      .then((data) => {
+        setReviews(data);
+        console.log(data);
+      });
+    // console.log(users).then(console.log('data in fetch', users));
+  }, []);
 
   return (
     <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-5" >
@@ -50,9 +51,9 @@ const ProfilePage = () => {
           : 'N/A'}
       </p>
       <div className='reviews'>
-        {data.reviews &&
-          data.reviews.map((review) => (
-            <ReviewDetails key={review._id} review={review} />
+        {reviews &&
+          reviews.map((review) => (
+            <UserReviewDetails key={review._id} review={review} />
           ))}
         <AddReview landlord={data.landlord} />
       </div> */}</div>

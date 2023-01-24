@@ -1,40 +1,21 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Container from './Container.jsx';
-import FormSubmit from './FormSubmit.jsx';
-import FormTitle from './FormTitle.jsx';
-import FormInput from './FormInput.jsx';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Container from "./Container.jsx";
+import FormSubmit from "./FormSubmit.jsx";
+import FormTitle from "./FormTitle.jsx";
+import FormInput from "./FormInput.jsx";
+import { useLocation } from "react-router-dom";
 
-async function loginUser(credentials, navigate, updateLoginStatus, from) {
-  return fetch('api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data === 'user authenicated!') {
-        updateLoginStatus(true);
-        const destination = from === 'signup' ? '../' : -1;
-        navigate(destination);
-      }
-    });
-}
-
-export default function Login({updateLoginStatus}) {
+export default function Login({ updateLoginStatus, loginUser, navigate }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
   const location = useLocation();
   let from;
   if (location.state) from = location.state.from;
 
   const [userInfo, setUserInfo] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -47,7 +28,9 @@ export default function Login({updateLoginStatus}) {
       {
         ...userInfo,
       },
-      navigate, updateLoginStatus, from
+      navigate,
+      updateLoginStatus,
+      from
     );
   };
 
@@ -58,7 +41,7 @@ export default function Login({updateLoginStatus}) {
 
         <form
           onSubmit={handleSubmit}
-          className={'loginCard p-6 rounded-md bg-primary space-y-6 text-white w-80'}
+          className={"loginCard p-4 rounded-md bg-primary text-white"}
         >
           <FormTitle>Log in</FormTitle>
           <FormInput
@@ -80,6 +63,7 @@ export default function Login({updateLoginStatus}) {
         </form>
 
         <button
+          data-testid="signup-button"
           type="submit"
           className="w-full bg-primary rounded text-white hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
         >

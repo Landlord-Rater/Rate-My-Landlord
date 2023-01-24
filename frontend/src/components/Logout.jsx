@@ -5,34 +5,35 @@ async function logoutUser(navigate, updateLoginStatus) {
   return fetch('api/logout', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       if (data === 'logged out!') {
+        localStorage.clear();
         updateLoginStatus(false);
         navigate('/');
       }
-    })
- }
+    });
+}
 
 let alreadySet = false; // prevents infinite loop
 
-export default function Logout({updateLoginStatus}) {
+export default function Logout({ updateLoginStatus }) {
   const navigate = useNavigate();
 
-  if(!alreadySet){
+  if (!alreadySet) {
     alreadySet = true;
     logoutUser(navigate, updateLoginStatus);
   }
-  
+
   return (
-    <div className="logout-wrapper">
+    <div className='logout-wrapper'>
       <p>Logged out!</p>
-        <Link to='/'>
-          <button type="button">Go to home page</button>
-        </Link>
+      <Link to='/'>
+        <button type='button'>Go to home page</button>
+      </Link>
     </div>
   );
 }
