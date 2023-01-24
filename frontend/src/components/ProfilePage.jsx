@@ -18,12 +18,12 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-5" >
-      <div className="profileContainer grid grid-cols-2 w-80 bg-primary text-white rounded-md text-l font-semibold ">
+    <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-6" >
+      <div className="profileContainer grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
         <h3 className="p-6 space-y-6 col-span-2 text-center text-xl">
            Profile
         </h3>
-        <div className="propertyNames p-6">
+        <div className="propertyNames pl-6 pb-6">
           <div>First Name:</div>
           <div>Last Name:</div>
           <div>City:</div>
