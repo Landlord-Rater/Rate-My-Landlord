@@ -8,6 +8,7 @@ import Logout from "./src/components/Logout.jsx";
 import Signup from "./src/components/Signup.jsx";
 import AddLandlord from "./src/components/AddLandlord.jsx";
 import ProfilePage from "./src/components/ProfilePage.jsx";
+import EditProfile from "./src/components/EditProfile.jsx";
 import PageNotFound from "./src/components/PageNotFound.jsx";
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/" element={<SearchPage />} />
           <Route exact path="/landlord" element={<LandlordPage />} />
           <Route exact path="/profile" element={<ProfilePage />} />
+          <Route exact path="/editprofile" element={<EditProfile />} />
           <Route
             exact
             path="/login"

@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import UserReviewDetails from './UserReviewDetails.jsx';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import UserReviewDetails from "./UserReviewDetails.jsx";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const [reviews, setReviews] = useState([]);
-  const userID = localStorage.getItem('userID');
+  const userID = localStorage.getItem("userID");
 
-  //   const [data, setData] = useState({ user: {}, reviews: [] }); // data.landlord, data.reviews
   useEffect(() => {
-    fetch('/api/getuser/reviews/' + userID)
+    fetch("/api/getuser/reviews/" + userID)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -18,23 +19,31 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <div className='flex flex-col items-center py-2'>
-      <h3 className='py-4'>
+    <div className="flex flex-col items-center py-2">
+      {/* <div class="object-none object-right bg-grey-300 w-24 h-24 "> */}
+      Edit Profile
+      <Link to="/editProfile">
+        <h3 className="text-gray-600 py-2 hover:text-dark-purple font-semibold">
+          <EditIcon />
+        </h3>
+      </Link>
+      <h3 className="py-4">
         <strong>Profile</strong>
       </h3>
       <p>
-        <strong>Username: {localStorage.getItem('user')}</strong>
+        {console.log(localStorage.getItem("city"))}
+        <strong>Username: {localStorage.getItem("user")}</strong>
       </p>
       <p>
-        <strong>City: </strong>
+        <strong>City: {localStorage.getItem("city")}</strong>
       </p>
       <p>
-        <strong>Email: {localStorage.getItem('email')} </strong>
+        <strong>Email: {localStorage.getItem("email")} </strong>
       </p>
       <p>
         <strong>Reviews: </strong>
       </p>
-      <div className='reviews'>
+      <div className="reviews">
         {reviews &&
           reviews.map((review) => (
             <UserReviewDetails key={review._id} review={review} />
