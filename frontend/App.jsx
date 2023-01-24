@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./src/components/Navbar.jsx";
 import SearchPage from "./src/components/SearchPage.jsx"; // characters
 import LandlordPage from "./src/components/LandlordPage.jsx"; // customize character
@@ -13,6 +13,28 @@ import PageNotFound from "./src/components/PageNotFound.jsx";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const loginUser = async (credentials, navigate, updateLoginStatus, from) => {
+    return fetch("api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === "user authenicated!") {
+          updateLoginStatus(true);
+          localStorage.setItem("user", data.user);
+          localStorage.setItem("email", data.email);
+          localStorage.setItem("userID", data.userID);
+
+          const destination = from === "signup" ? "../" : -1;
+          navigate(destination);
+        }
+      });
+  };
 
   const updateLoginStatus = (isLoggedIn) => {
     setIsLoggedIn(isLoggedIn);
@@ -30,7 +52,13 @@ const App = () => {
           <Route
             exact
             path="/login"
-            element={<Login updateLoginStatus={updateLoginStatus} />}
+            element={
+              <Login
+                updateLoginStatus={updateLoginStatus}
+                loginUser={loginUser}
+                navigate={navigate}
+              />
+            }
           />
           <Route
             exact

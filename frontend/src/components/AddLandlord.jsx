@@ -44,21 +44,21 @@ export default function AddLandlord() {
 
         <form
           onSubmit={handleSubmit}
-          className={" bg-white drop-shadow rounded p-6 space-y-6 w-80"}
+          className={" bg-primary drop-shadow rounded p-6 space-y-6 w-80 mt-5"}
         >
           <FormTitle>Add New Landlord</FormTitle>
           <FormInput
             value={name}
             onChange={(e) => setName(e.target.value)}
-            label="Landlord Name"
-            placeholder="_"
+            label="Name"
+            placeholder="Enter Name"
             name="name"
           />
           <FormInput
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             label="Location"
-            placeholder="_"
+            placeholder="Enter Location"
             name="location"
             type="text"
           />

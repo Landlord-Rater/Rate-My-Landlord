@@ -11,11 +11,19 @@ const SearchPage = () => {
   const [searchBar, setSearchBar] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [landlordsToRender, setLandlordsToRender] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/getall")
       .then((res) => res.json())
-      .then((json) => setLandlords(json));
+      .then((json) => setLandlords(json))
+      .then(() => {
+        const loaderElement = document.querySelector(".loader-container");
+        if (loaderElement) {
+          loaderElement.remove();
+          setLoading(!isLoading);
+        }
+      });
   }, []);
 
   useEffect(() => {
@@ -33,6 +41,10 @@ const SearchPage = () => {
 
   /* NEED TO HANDLE IF THERE ARE NO LANDLORDS WITH THAT NAME OR CITY AND ALSO EMPTY SEARCH BAR*/
 
+  // if (isLoading) {
+  //   return null;
+  // }
+
   return (
     <section>
       <Container>
@@ -45,11 +57,19 @@ const SearchPage = () => {
             placeholder="Search"
           />
         </div>
+
+        <div className="loader-container">
+            <div className="loader"></div>
+          </div>
+
         <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
+
           {landlordsToRender.map((landlord) => (
             <LandlordCard key={landlord.id} landlord={landlord} />
           ))}
+
         </div>
+
         {/* <AddLandlord /> */}
         <div className="flex flex-col items-center ">
           <Link to="/addlandlord" className="text-primary text-lg   ">

@@ -51,15 +51,13 @@ export default function Login() {
   };
 
   return (
-    <div className="inset-0 dark:bg-primary bg-white flex justify-center items-center ">
+    <div className="inset-0 bg-white flex justify-center items-center mt-5">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 
         <form
           onSubmit={handleSubmit}
-          className={
-            "dark:bg-secondary bg-white drop-shadow rounded p-6 space-y-6 w-80"
-          }
+          className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}
         >
           <FormTitle>Sign up</FormTitle>
           <FormInput

@@ -19,35 +19,35 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center py-2">
-      {/* <div class="object-none object-right bg-grey-300 w-24 h-24 "> */}
-      Edit Profile
-      <Link to="/editProfile">
-        <h3 className="text-gray-600 py-2 hover:text-dark-purple font-semibold">
-          <EditIcon />
+    <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-5">
+      <div className="profileContainer grid grid-cols-2 w-80 bg-primary text-white rounded-md text-l font-semibold ">
+        <Link to="/editProfile">
+          <h3 className="text-gray-600 py-2 hover:text-dark-purple font-semibold">
+            <EditIcon />
+          </h3>
+        </Link>
+        <h3 className="py-4">
+          <strong>Profile</strong>
         </h3>
-      </Link>
-      <h3 className="py-4">
-        <strong>Profile</strong>
-      </h3>
-      <p>
-        {console.log(localStorage.getItem("city"))}
-        <strong>Username: {localStorage.getItem("user")}</strong>
-      </p>
-      <p>
-        <strong>City: {localStorage.getItem("city")}</strong>
-      </p>
-      <p>
-        <strong>Email: {localStorage.getItem("email")} </strong>
-      </p>
-      <p>
-        <strong>Reviews: </strong>
-      </p>
-      <div className="reviews">
-        {reviews &&
-          reviews.map((review) => (
-            <UserReviewDetails key={review._id} review={review} />
-          ))}
+        <p>
+          {console.log(localStorage.getItem("city"))}
+          <strong>Username: {localStorage.getItem("user")}</strong>
+        </p>
+        <p>
+          <strong>City: {localStorage.getItem("city")}</strong>
+        </p>
+        <p>
+          <strong>Email: {localStorage.getItem("email")} </strong>
+        </p>
+        <p>
+          <strong>Reviews: </strong>
+        </p>
+        <div className="reviews">
+          {reviews &&
+            reviews.map((review) => (
+              <UserReviewDetails key={review._id} review={review} />
+            ))}
+        </div>
       </div>
     </div>
   );

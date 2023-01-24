@@ -59,7 +59,7 @@ export default function Login({ updateLoginStatus }) {
   };
 
   return (
-    <div className="inset-0  flex justify-center items-center ">
+    <div className="inset-0 flex justify-center items-center mt-5 ">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 
@@ -67,7 +67,7 @@ export default function Login({ updateLoginStatus }) {
           onSubmit={handleSubmit}
           className={"loginCard p-4 rounded-md bg-primary text-white"}
         >
-          <FormTitle>Sign in</FormTitle>
+          <FormTitle>Log in</FormTitle>
           <FormInput
             value={email}
             onChange={handleChange}
@@ -87,8 +87,9 @@ export default function Login({ updateLoginStatus }) {
         </form>
 
         <button
+          data-testid="signup-button"
           type="submit"
-          className="w-full bg-primary rounded text-gray-600 hover:bg-opacity-90 hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
+          className="w-full bg-primary rounded text-white hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
         >
           <Link to="/signup">
             <p>Sign up</p>
