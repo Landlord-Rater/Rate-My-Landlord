@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 import Person2Icon from "@mui/icons-material/Person2";
 
-
 const Navbar = ({ isLoggedIn }) => {
   const authBtnProps = {
     text: isLoggedIn ? "Log Out" : "Log In",
@@ -17,7 +16,6 @@ const Navbar = ({ isLoggedIn }) => {
         <div className="max-w-screen-xl mx-auto p-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center sm:space-x-10 space-x-2">
-
               <img className="h-12" src={Logo} alt="Logo" />
 
               <Link to="/">
@@ -25,7 +23,6 @@ const Navbar = ({ isLoggedIn }) => {
                   Rate My Landlord
                 </h1>
               </Link>
-              
             </div>
             <div className="flex items-center sm:space-x-10 space-x-2">
               {isLoggedIn ? (
