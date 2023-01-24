@@ -21,7 +21,6 @@ app.use(cookieParser());
  */
 app.use(express.static(path.resolve(__dirname, "../frontend")));
 
-
 app.get(
   "/api/auth/google", (req,res,next)=>{
     console.log('first authentication');
@@ -37,6 +36,18 @@ app.get(
     failureRedirect: "/auth/google/failure",
   })
 );
+
+app.get('/auth/google/render', (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: 'successful!',
+      user: req.user,
+    });
+  } else {
+    res.sendStatus(401);
+  }
+});
 
 app.get("/protected", (req, res) => {
   res.json(req.user);

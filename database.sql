@@ -34,13 +34,15 @@ CREATE TABLE "reviews" (
 CREATE TABLE "users" (
   "_id" SERIAL NOT NULL,
   "username" VARCHAR(255) NOT NULL,
-  "password" VARCHAR(255) NOT NULL,
+  "password" VARCHAR(255),
   "email" VARCHAR(255) NOT NULL,
-  "city" VARCHAR(255) NOT NULL,
+  "city" VARCHAR(255),
+  "google_id" VARCHAR(255)
   CONSTRAINT "users_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
 );
+
 
 
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_user_id_foreign" FOREIGN KEY ("user_id") REFERENCES "users" ("_id");
