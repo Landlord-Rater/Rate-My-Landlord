@@ -35,13 +35,13 @@ export default function Login({ updateLoginStatus, loginUser, navigate }) {
   };
 
   return (
-    <div className="inset-0 flex justify-center items-center mt-5 ">
+    <div className="inset-0 flex justify-center items-center mt-6 ">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 
         <form
           onSubmit={handleSubmit}
-          className={"loginCard p-4 rounded-md bg-primary text-white"}
+          className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}
         >
           <FormTitle>Log in</FormTitle>
           <FormInput

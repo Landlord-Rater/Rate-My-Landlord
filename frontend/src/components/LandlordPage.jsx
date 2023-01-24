@@ -21,27 +21,34 @@ const LandlordPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center py-2">
-      <h2 className="page-title py-4">{data.landlord.name}</h2>
-
-      <p className="label">
-        {" "}
-        Main City:
-        {data.landlord.location}
-      </p>
-
-      <p className="label">
-        Rating:
-        {data.landlord.rating ? data.landlord.rating : "N/A"}
-      </p>
-
-      <p className="label label-rent-again mb-2">
-        Would Rent Again:
-        {data.landlord.would_rent_again
-          ? data.landlord.would_rent_again
-          : "N/A"}
-      </p>
-
+    <div className="flex flex-col items-center py-2 mt-5">
+      <div className="demoInfogrid grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
+        <h2 className="page-title py-4 col-span-2 text-center text-xl ">
+          {data.landlord.name}
+        </h2>
+        <div className="labelsColumn pl-6 p-6 col-span-1">
+          <div className="label">
+            Main City:
+          </div>
+          <div className="label">
+            Rating:
+          </div>
+          <div className="label label-rent-again mb-2">
+            Would Rent Again:
+          </div>
+        </div>
+        <div className="valuesColumn p-6 col-span-1">
+          <div>{data.landlord.location}</div>
+          <div>
+            {data.landlord.rating ? data.landlord.rating : "N/A"}
+          </div>
+          <div>
+            {data.landlord.would_rent_again
+            ? data.landlord.would_rent_again
+            : "N/A"}
+            </div>
+        </div>
+      </div>
       <div className="reviews">
         {data.reviews &&
           data.reviews.map((review) => (

@@ -58,19 +58,26 @@ const SearchPage = () => {
           />
         </div>
 
-        <div className="loader-container">
+        <div id="search-status">
+
+          <div className="loader-container">
             <div className="loader"></div>
           </div>
 
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
-
-          {landlordsToRender.map((landlord) => (
-            <LandlordCard key={landlord.id} landlord={landlord} />
-          ))}
+          <div className="results-status">
+          { (landlordsToRender.length == 0 && isLoading == false ) ?
+            <h2>Nothing Found!</h2>
+            : null }
+          </div>
 
         </div>
 
-        {/* <AddLandlord /> */}
+        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
+          {landlordsToRender.map((landlord) => (
+            <LandlordCard key={landlord.id} landlord={landlord} />
+          ))}
+        </div>
+
         <div className="flex flex-col items-center ">
           <Link to="/addlandlord" className="text-primary text-lg   ">
             <button
