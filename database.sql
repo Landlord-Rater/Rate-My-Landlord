@@ -10,9 +10,12 @@ CREATE TABLE "landlords" (
 CREATE TABLE "properties" (
   "_id" SERIAL NOT NULL,
   "landlord_id" BIGINT NOT NULL,
-  "address" VARCHAR(255) NOT NULL,
+  "street_number" VARCHAR(255) NOT NULL,
+  "street_name" VARCHAR(255) NOT NULL,
   "city" VARCHAR(255) NOT NULL,
+  "state" VARCHAR(255),
   "zip" INTEGER,
+  "reviews_id" BIGINT
   CONSTRAINT "properties_pk" PRIMARY KEY ("_id")
 ) WITH (
   OIDS=FALSE
@@ -49,6 +52,9 @@ ALTER TABLE "reviews" ADD CONSTRAINT "reviews_user_id_foreign" FOREIGN KEY ("use
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
 
 ALTER TABLE "properties" ADD CONSTRAINT "properties_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");
+
+ALTER TABLE "properties" ADD CONSTRAINT "properties_reviews_id_foreign" FOREIGN KEY ("reviews_id") REFERENCES "reviews" ("_id");
+
 
 -- ALTER TABLE "landlords"
 -- ADD COLUMN new_column_name data_type constraint;

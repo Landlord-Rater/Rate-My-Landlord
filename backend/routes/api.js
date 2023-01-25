@@ -3,6 +3,7 @@ const reviewController = require("../controllers/reviewController");
 const userController = require("../controllers/userController");
 const cookieController = require("../controllers/cookieController");
 const landlordController = require("../controllers/landlordController");
+const propertyController = require("../controllers/propertyController");
 const auth = require("../middleware/auth");
 const { ErrorResponse } = require("@remix-run/router");
 const router = express.Router();
@@ -20,6 +21,12 @@ router.get(
     });
   }
 );
+
+router.get("/getproperty/:id", propertyController.getProperties, (req, res) => {
+  res.status(200).json({
+    property: res.locals.properties,
+  });
+});
 
 //create route here
 router.get(

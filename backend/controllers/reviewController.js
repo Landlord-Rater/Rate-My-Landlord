@@ -36,19 +36,21 @@ reviewController.getAll = (req, res, next) => {
 
 reviewController.postReviews = async (req, res, next) => {
   try {
-    // const { userId } = res.locals.user;
-
-    const { userID, landlord_id, text, rating, would_rent_again, date } =
-      req.body;
+    const { landlord_id, text, rating, would_rent_again, date } = req.body;
     const queryText =
-      "INSERT INTO reviews (landlord_id, text, rating, would_rent_again, date, user_id) values($1,$2,$3,$4,$5,$6)";
-    const value = [landlord_id, text, rating, would_rent_again, date, userID];
-    const review = await db.query(queryText, value);
+      "INSERT INTO reviews (landlord_id, text, rating, would_rent_again, date, user_id) values($1,$2,$3,$4,$5,$6) RETURNING landlord_id, text, rating, would_rent_again, date, user_id";
+    const value = [
+      landlord_id,
+      text,
+      rating,
+      would_rent_again,
+      date,
+      req.user._id,
+    ];
+    const review = (await db.query(queryText, value)).rows[0];
 
-    res.locals.rating = review;
-    // console.log(review);
+    res.locals.reviews = review;
     return next();
-    // .then((_) => res.status(200).json('review posted'))
   } catch (err) {
     next({
       log: "error caught in postReviews middleware!",
