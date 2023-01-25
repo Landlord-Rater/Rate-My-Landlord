@@ -43,11 +43,6 @@ const EditProfile = ({ props }) => {
       .catch((err) => console.log("edit rating"));
   };
 
-  const handleChange = ({ target }) => {
-    const { value, name } = target;
-    setUserInfo({ ...userInfo, [name]: value });
-  };
-
   return (
     <div className="flex flex-col items-center py-2">
       <div className="itemscontainer w-80 bg-primary text-white grid grid-cols-2"> 
