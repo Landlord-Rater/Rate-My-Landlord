@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import FormInput from "./FormInput.jsx";
+import FormTitle from "./FormTitle.jsx";
+import FormSubmit from "./FormSubmit.jsx";
 
 const useInput = (init) => {
   const [value, setValue] = useState(init);
@@ -18,7 +21,7 @@ const EditProfile = ({ props }) => {
   // const [email, emailOnChange] = useInput('')
   const navigate = useNavigate();
 
-  const SaveRating = () => {
+  const EditProfile = () => {
     const body = {
       username,
       city,
@@ -40,28 +43,44 @@ const EditProfile = ({ props }) => {
       .catch((err) => console.log("edit rating"));
   };
 
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
   return (
     <div className="flex flex-col items-center py-2">
-      <br />
-      <label htmlFor="username">Username: </label>
-      <input
-        name="username"
-        value={username}
-        onChange={usernameOnChange}
-      ></input>
-      <br />
-      <label htmlFor="city">City: </label>
-      <input name="city" value={city} onChange={cityOnChange}></input>
-      <br />
-      <label htmlFor="email">Email: </label>
-      <input name="email" value={email} onChange={emailOnChange}></input>
-      <br />
-      <br />
-      <div>{props}</div>
-      <br></br>
-      <button type="button" className="navButtons" onClick={SaveRating}>
+      <div className="itemscontainer w-80 bg-primary text-white grid grid-cols-2"> 
+      <div className="editFields col-span-2">
+        <FormTitle>Edit Profile</FormTitle>
+      </div>
+      <form onSubmit={EditProfile}
+        className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}>
+        <FormInput
+          label="Username"
+          name="Username"        
+          defaultValue={localStorage.getItem("user")}
+          onChange={usernameOnChange}>
+        </FormInput>
+        <FormInput
+          label="City"
+          name="City"   
+          defaultValue={localStorage.getItem("city")}
+          onChange={cityOnChange}>
+        </FormInput>
+        <FormInput
+          label="Email"
+          name="Email"       
+          defaultValue={localStorage.getItem("email")}
+          onChange={emailOnChange}>
+        </FormInput>
+        <FormSubmit value="Save"/>
+      </form>
+      {/* <div>{props}</div>
+      <button type="button" className="navButtons col-span-2" onClick={EditProfile}>
         Save
-      </button>
+      </button> */}
+      </div>
     </div>
   );
 };
