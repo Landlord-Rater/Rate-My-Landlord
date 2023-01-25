@@ -50,6 +50,7 @@ app.get('/auth/google/render', (req, res) => {
 });
 
 app.get("/protected", (req, res) => {
+  console.log('req.user: ', req.user)
   res.json(req.user);
 });
 

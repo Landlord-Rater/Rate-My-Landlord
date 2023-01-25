@@ -56,11 +56,11 @@ passport.use(
 
 passport.serializeUser(function (user, done) {
   console.log("serializing user:", user);
-  done(null, user.id);
+  done(null, user.google_id);
 });
 
 passport.deserializeUser(function (user, done) {
-  // console.log("deserializing user:", user);
+  console.log("deserializing user:", user);
   //another database call with user id
   done(null, user);
 });
