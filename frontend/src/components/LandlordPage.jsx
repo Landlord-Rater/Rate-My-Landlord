@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import AddReview from "./AddReview.jsx";
 import ReviewDetails from "./ReviewDetails.jsx";
+import ModalReview from "./ModalReview.jsx";
+
 
 const LandlordPage = () => {
   const location = useLocation();
@@ -22,6 +24,7 @@ const LandlordPage = () => {
 
   return (
     <div className="flex flex-col items-center py-2 mt-5">
+
       <div className="demoInfogrid grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
         <h2 className="page-title py-4 col-span-2 text-center text-xl ">
           {data.landlord.name}
@@ -54,8 +57,11 @@ const LandlordPage = () => {
           data.reviews.map((review) => (
             <ReviewDetails key={review._id} review={review} />
           ))}
-        <AddReview landlord={data.landlord} />
+        {/* <AddReview landlord={data.landlord} /> */}
       </div>
+
+            <ModalReview />
+
     </div>
   );
 };
