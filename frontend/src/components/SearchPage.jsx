@@ -59,17 +59,15 @@ const SearchPage = () => {
         </div>
 
         <div id="search-status">
-
           <div className="loader-container">
             <div className="loader"></div>
           </div>
 
           <div className="results-status">
-          { (landlordsToRender.length == 0 && isLoading == false ) ?
-            <h2>Nothing Found!</h2>
-            : null }
+            {landlordsToRender.length == 0 && isLoading == false ? (
+              <h2>Nothing Found!</h2>
+            ) : null}
           </div>
-
         </div>
 
         <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
