@@ -1,14 +1,38 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "./Container.jsx";
 import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
 import { useLocation } from "react-router-dom";
 
-export default function Login({ updateLoginStatus, loginUser, navigate }) {
+async function loginUser(credentials, navigate, updateLoginStatus, from) {
+  return fetch("api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.message === "user authenicated!") {
+        updateLoginStatus(true);
+        localStorage.setItem("user", data.user);
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("userID", data.userID);
+        localStorage.setItem("city", data.city);
+
+        const destination = from === "signup" ? "../" : -1;
+        navigate(destination);
+      }
+    });
+}
+
+export default function Login({ updateLoginStatus }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
   const location = useLocation();
   let from;
   if (location.state) from = location.state.from;
