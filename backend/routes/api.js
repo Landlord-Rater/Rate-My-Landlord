@@ -75,6 +75,7 @@ router.post(
       user: res.locals.user,
       email: res.locals.email,
       userID: res.locals.userID,
+      city: res.locals.city,
     })
 );
 
@@ -88,6 +89,10 @@ router.post("/postReviews", reviewController.postReviews, (req, res) =>
   res.status(200).json({
     reviews: res.locals.reviews,
   })
+);
+
+router.put("/editprofile", userController.editProfile, (req, res) =>
+  res.status(200).json(res.locals.rating)
 );
 
 // router.post('/postReviews', auth.verifyToken, reviewController.postReviews);

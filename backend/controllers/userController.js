@@ -7,7 +7,7 @@ require("dotenv").config();
 const userController = {};
 
 userController.createUsers = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, city } = req.body;
 
   db.query(`SELECT * FROM users where email = '${email}'`)
     .then((data) => {
@@ -21,13 +21,12 @@ userController.createUsers = async (req, res, next) => {
         message: { err: err },
       })
     );
-
   const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const text =
+    "INSERT INTO users(username,email,password,city) VALUES ($1,$2,$3,$4)";
 
-  const text = "INSERT INTO users(username,email,password) VALUES ($1,$2,$3)";
-
-  const value = [username, email, hashedPassword];
-
+  const value = [username, email, hashedPassword, city];
+  console.log(value);
   db.query(text, value)
     .then((_) => res.status(200).json("user created"))
     .catch((err) =>
@@ -50,9 +49,13 @@ userController.getUsers = async (req, res, next) => {
     if (user && (await bcrypt.compare(password, user.password))) {
       //pass the web token to the next middleware to set it as a cookie for session control
       console.log(user.username);
+
       res.locals.email = email;
       res.locals.user = user.username;
       res.locals.userID = user._id;
+      res.locals.city = user.city;
+      console.log(res.locals.city);
+
       res.locals.id = generateToken({ id: user._id, username: user.username });
       next();
     } else {
@@ -63,6 +66,28 @@ userController.getUsers = async (req, res, next) => {
       log: "error caught in getUsers middleware!",
       status: 400,
       message: { err: err },
+    });
+  }
+};
+
+userController.editProfile = async (req, res, next) => {
+  try {
+    const { username, city, email, userID } = req.body;
+    // const queryString = 'SELECT vendors.name, ratings.rating, ratings.reviewername, ratings.date, ratings.reviewtext from Ratings INNER JOIN Vendors ON  Vendors.vendorID=Ratings.vendor_id'
+    const queryString =
+      "UPDATE USERS SET username = $1, city = $2, email = $3 WHERE _id = $4";
+    const values = [username, city, email, userID];
+    console.log(values);
+    const query = await db.query(queryString, values);
+    res.locals.profile = query.rows;
+    console.log(query.rows);
+    next();
+  } catch (err) {
+    next({
+      log: "error on userController editProfile middleware function",
+      message: {
+        err: "userController.editProfile: ERROR: Check server logs for details",
+      },
     });
   }
 };
