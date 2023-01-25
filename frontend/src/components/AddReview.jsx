@@ -64,36 +64,41 @@ const AddReview = () => {
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
         <form
           onSubmit={handleSubmit}
-          className={' bg-white drop-shadow rounded p-6 space-y-6 w-80'}
+          className={' bg-primary text-white drop-shadow rounded p-6 space-y-6 w-80'}
         >
           <FormTitle>Add Review</FormTitle>
           <FormInput
             value={date}
             onChange={(e) => setDate(e.target.value)}
             label='Date:'
-            placeholder='_'
+            placeholder='Date'
             name='date'
           />
           <FormInput
             value={rating}
             onChange={(e) => setRating(e.target.value)}
             label='Rating:'
-            placeholder='_'
+            placeholder='Rating'
             name='rating'
           />
-          <FormInput
-            value={would_rent_again}
-            onClick={(e) => setRentAgain(1)}
-            label='Rent Again'
-            placeholder='_'
-            name='RentAgain'
-            type='checkbox'
-          />
+          <div className="mt-5">
+            <label className>
+              <input
+                value={would_rent_again}
+                onClick={(e) => setRentAgain(1)}
+                label='Would Rent Again'
+                placeholder='_'
+                name='RentAgain'
+                type='checkbox'
+              />
+              Would Rent Again
+            </label>
+          </div>
           <FormInput
             value={text}
             onChange={(e) => setText(e.target.value)}
             label='Comments'
-            placeholder='_'
+            placeholder='Tell us what you think'
             name='Comments'
             type='Text'
           />

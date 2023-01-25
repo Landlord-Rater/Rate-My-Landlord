@@ -19,35 +19,37 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-5">
-      <div className="profileContainer grid grid-cols-2 w-80 bg-primary text-white rounded-md text-l font-semibold ">
-        <Link to="/editProfile">
-          <h3 className="text-gray-600 py-2 hover:text-dark-purple font-semibold">
+    <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-6 w-160">
+      <div className="profileContainer grid grid-cols-2 bg-primary text-white rounded text-l font-semibold w-160">
+        <Link to="/editProfile" className="col-span-2">
+          <h3 className="text-gray-600 py-2 hover:text-dark-purple font-semibold text-right">
             <EditIcon />
           </h3>
         </Link>
-        <h3 className="py-4">
-          <strong>Profile</strong>
+        <h3 className="p-6 space-y-6 col-span-2 text-center text-xl">
+          Profile
         </h3>
-        <p>
-          {console.log(localStorage.getItem("city"))}
-          <strong>Username: {localStorage.getItem("user")}</strong>
-        </p>
-        <p>
-          <strong>City: {localStorage.getItem("city")}</strong>
-        </p>
-        <p>
-          <strong>Email: {localStorage.getItem("email")} </strong>
-        </p>
-        <p>
-          <strong>Reviews: </strong>
-        </p>
-        <div className="reviews">
-          {reviews &&
-            reviews.map((review) => (
-              <UserReviewDetails key={review._id} review={review} />
-            ))}
+        <div className="propertyNames pl-6 pb-6">
+          <div>User:</div>
+          <div>City:</div>
+          <div>Email:</div>
         </div>
+        <div className="properties pr-6 pb-6">
+          <div>{localStorage.getItem("user")}</div>
+          <div>
+            {localStorage.getItem("city")
+              ? localStorage.getItem("city")
+              : "None"}
+          </div>
+          <div>{localStorage.getItem("email")} </div>
+        </div>
+        <div className="col-span-2 text-xl text-center">Reviews</div>
+      </div>
+      <div className="reviews">
+        {reviews &&
+          reviews.map((review) => (
+            <UserReviewDetails key={review._id} review={review} />
+          ))}
       </div>
     </div>
   );
