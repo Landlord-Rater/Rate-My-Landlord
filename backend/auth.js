@@ -20,33 +20,47 @@ passport.use(
       const queryString = 'SELECT google_id, email, username FROM users WHERE google_id = $1'
       const values = [profile.id]
       const user = await db.query(queryString, values);
-
+      console.log('user: ', user)
       let providerData = profile._json;
       providerData.accessToken = accessToken;
       providerData.refreshToken = refreshToken;
       
       //SCENARIO 1: GOOGLE ID EXISTS
       if (user.rows.length > 0) {
-        console.log("Existing User: ", user);
-        console.log("Existing user row 0: ", user.rows[0]);
+        console.log("SCENARIO 1: Existing user row 0: ", user.rows[0]);
         done(null, user.rows[0]);
       } 
 
+      // const emailqueryString =
+      //   "SELECT google_id, email, username FROM users WHERE email = $1";
+      // const emailvalues = [profile.email]
+      // const emailuser = await db.query(emailqueryString, emailvalues);
+      // console.log("emailuser: ", emailuser);
+      // console.log("profile.email: ", profile.email);
+      // console.log('emailuser.email: ', emailuser.rows[0].email)
+      // console.log('emailuser google id: ', emailuser.rows[0].google_id)
+      
       //SCENARIO 2: GOOGLE ID DOES NOT EXIST BUT EMAIL EXISTS
-        // const newqueryString = 'UPDATE user SET google_id '
-      else if (true) {
-        //UPDATE mytable
-        //SET google_id = 'new_value'
-        //WHERE google_id IS NULL;
-      }
+
+      // if (emailuser.email && !emailuser.google_id) {
+      //   const newqueryString =
+      //     "UPDATE users SET google_id = $1 WHERE email = $2 RETURNING google_id, email, username";
+      //   const newValues = [profile.id, profile.email];
+      //   //UPDATE mytable
+      //   //SET google_id = 'new_value'
+      //   //WHERE google_id IS NULL;
+      //   const newUser = await db.query(newqueryString, newValues);
+      //   console.log("SCENARIO 2: newUser row 0: ", newUser.rows[0]);
+      //   done(null, newUser.rows[0]);
+      // }
 
       //SCENARIO 3: BOTH DOES NOT EXIST
       else {
-        const newqueryString = 'INSERT INTO users (google_id, email, username) VALUES ($1,$2,$3) RETURNING google_id, email, username'
-        const newValues = [profile.id, profile.email, profile.given_name]
+        const newqueryString =
+          "INSERT INTO users (google_id, email, username) VALUES ($1,$2,$3) RETURNING google_id, email, username";
+        const newValues = [profile.id, profile.email, profile.given_name];
         const newUser = await db.query(newqueryString, newValues);
-        console.log("newUser: ", newUser);
-        console.log('newUser row 0: ', newUser.rows[0])
+        console.log("SCENARIO 3: newUser row 0: ", newUser.rows[0]);
         done(null, newUser.rows[0]);
       }
     console.log('profile: ', profile)
@@ -59,8 +73,11 @@ passport.serializeUser(function (user, done) {
   done(null, user.google_id);
 });
 
-passport.deserializeUser(function (user, done) {
-  console.log("deserializing user:", user);
+passport.deserializeUser(async function (userid, done) {
+  console.log("deserializing user id:", userid);
   //another database call with user id
-  done(null, user);
+  const desqueryString = 'SELECT _id, google_id, email, username FROM users WHERE google_id = $1';
+  const desvalues = [userid];
+  const desuser = await db.query(desqueryString, desvalues);
+  done(null, desuser.rows[0]);
 });

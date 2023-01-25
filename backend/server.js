@@ -8,7 +8,14 @@ require("./auth");
 const app = express();
 const apiRouter = require("./routes/api");
 //need for parsing the body of the request data
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: "cats",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24, secure: false },
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -49,7 +56,7 @@ app.get('/auth/google/render', (req, res) => {
   }
 });
 
-app.get("/protected", (req, res) => {
+app.get("/api/protected", (req, res) => {
   console.log('req.user: ', req.user)
   res.json(req.user);
 });
