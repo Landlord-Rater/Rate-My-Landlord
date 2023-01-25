@@ -64,4 +64,9 @@ INSERT INTO landlords VALUES (5, 'Dummy Landlord5','somewhere5')
 
 INSERT INTO landlords VALUES (5, 'Dummy Landlord5','somewhere5')
 
+-- INSERT INTO users (username,email,password, city) VALUES ('michelle', 'testing@gmail.com', '12345', 'Los Angeles')
+
+ALTER TABLE users
+ADD google_id VARCHAR(255) DEFAULT NULL;
+
 -- change to location to city in landlords

@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Container from './Container.jsx';
-import FormSubmit from './FormSubmit.jsx';
-import FormTitle from './FormTitle.jsx';
-import FormInput from './FormInput.jsx';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Container from "./Container.jsx";
+import FormSubmit from "./FormSubmit.jsx";
+import FormTitle from "./FormTitle.jsx";
+import FormInput from "./FormInput.jsx";
 
 async function signUp(credentials, navigate) {
-  return fetch('api/signup', {
-    method: 'POST',
+  return fetch("api/signup", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(credentials),
   })
     .then((res) => res.json())
     .then((data) => {
-      if (data === 'user created') return navigate('/login',{state:{from:'signup'}});
-      Swal.fire(
-        'Sign Up Failed!',
-        'email already in use',
-        'error'
-      )
-    })
- }
+      if (data === "user created")
+        return navigate("/login", { state: { from: "signup" } });
+      Swal.fire("Sign Up Failed!", "email already in use", "error");
+    });
+}
 
 export default function Login() {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [city, setCity] = useState();
 
   const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
+    city: "",
   });
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -52,13 +51,13 @@ export default function Login() {
   };
 
   return (
-    <div className="inset-0 dark:bg-primary bg-white flex justify-center items-center ">
+    <div className="inset-0 bg-white flex justify-center items-center mt-6">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 
         <form
           onSubmit={handleSubmit}
-          className={'dark:bg-secondary bg-white drop-shadow rounded p-6 space-y-6 w-80'}
+          className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}
         >
           <FormTitle>Sign up</FormTitle>
           <FormInput
@@ -82,6 +81,13 @@ export default function Login() {
             label="Password"
             placeholder="********"
             name="password"
+          />
+          <FormInput
+            value={city}
+            onChange={handleChange}
+            label="City"
+            placeholder="New York City"
+            name="city"
           />
           <FormSubmit value="Submit" />
         </form>
