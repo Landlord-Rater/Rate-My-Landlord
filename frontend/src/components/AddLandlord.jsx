@@ -17,7 +17,7 @@ export default function AddLandlord() {
 
     const landlord = { name, location };
 
-    const response = await fetch("api/createlandlord", {
+    const response = await fetch("/landlords/", {
       method: "POST",
       body: JSON.stringify(landlord), // { location: str, name: str }
       headers: {

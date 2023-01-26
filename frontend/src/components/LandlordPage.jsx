@@ -32,7 +32,7 @@ const LandlordPage = () => {
 
   useEffect(() => {
     if (from === "LandlordCard") {
-      fetch("/api/getlandlord/" + landlord._id)
+      fetch("/landlords/" + landlord._id)
         .then((res) => res.json())
         .then((data) => setData(data));
       // .then(console.log("data in fetch", data));

@@ -4,7 +4,11 @@ const PORT = process.env.PORT || 3000;
 const cookieParser = require("cookie-parser");
 
 const app = express();
-const apiRouter = require("./routes/api");
+const userRouter = require("./routes/user");
+const reviewsRouter = require("./routes/reviews");
+const propertyRouter = require("./routes/properties");
+const landlordRouter = require("./routes/landlords");
+
 //need for parsing the body of the request data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,7 +19,10 @@ app.use(cookieParser());
  */
 app.use(express.static(path.resolve(__dirname, "../frontend")));
 
-app.use("/api", apiRouter);
+app.use("/user", userRouter);
+app.use("/reviews", reviewsRouter);
+app.use("/properties", propertyRouter);
+app.use("/landlords", landlordRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>

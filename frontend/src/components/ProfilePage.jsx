@@ -9,7 +9,7 @@ const ProfilePage = () => {
   const userID = localStorage.getItem("userID");
 
   useEffect(() => {
-    fetch("/api/getuser/reviews/" + userID)
+    fetch("/reviews/" + userID)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

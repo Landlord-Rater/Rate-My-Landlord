@@ -28,7 +28,7 @@ const EditProfile = ({ props }) => {
       email,
       userID,
     };
-    fetch("/api/editprofile", {
+    fetch("/user/editprofile", {
       method: "PUT",
       headers: {
         "Content-Type": "Application/JSON",
@@ -45,33 +45,35 @@ const EditProfile = ({ props }) => {
 
   return (
     <div className="flex flex-col items-center py-2">
-      <div className="itemscontainer w-80 bg-primary text-white grid grid-cols-2"> 
-      <div className="editFields col-span-2">
-        <FormTitle>Edit Profile</FormTitle>
-      </div>
-      <form onSubmit={EditProfile}
-        className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}>
-        <FormInput
-          label="Username"
-          name="Username"        
-          defaultValue={localStorage.getItem("user")}
-          onChange={usernameOnChange}>
-        </FormInput>
-        <FormInput
-          label="City"
-          name="City"   
-          defaultValue={localStorage.getItem("city")}
-          onChange={cityOnChange}>
-        </FormInput>
-        <FormInput
-          label="Email"
-          name="Email"       
-          defaultValue={localStorage.getItem("email")}
-          onChange={emailOnChange}>
-        </FormInput>
-        <FormSubmit value="Save"/>
-      </form>
-      {/* <div>{props}</div>
+      <div className="itemscontainer w-80 bg-primary text-white grid grid-cols-2">
+        <div className="editFields col-span-2">
+          <FormTitle>Edit Profile</FormTitle>
+        </div>
+        <form
+          onSubmit={EditProfile}
+          className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}
+        >
+          <FormInput
+            label="Username"
+            name="Username"
+            defaultValue={localStorage.getItem("user")}
+            onChange={usernameOnChange}
+          ></FormInput>
+          <FormInput
+            label="City"
+            name="City"
+            defaultValue={localStorage.getItem("city")}
+            onChange={cityOnChange}
+          ></FormInput>
+          <FormInput
+            label="Email"
+            name="Email"
+            defaultValue={localStorage.getItem("email")}
+            onChange={emailOnChange}
+          ></FormInput>
+          <FormSubmit value="Save" />
+        </form>
+        {/* <div>{props}</div>
       <button type="button" className="navButtons col-span-2" onClick={EditProfile}>
         Save
       </button> */}
