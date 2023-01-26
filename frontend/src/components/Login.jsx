@@ -5,6 +5,7 @@ import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
 import { useLocation } from "react-router-dom";
+import Goauth from "../assets/google.svg"
 
 async function loginUser(credentials, navigate, updateLoginStatus, from) {
   return fetch("/user/login", {
@@ -108,8 +109,7 @@ export default function Login({ updateLoginStatus }) {
           </Link>
         </button>
         <a href="/oauth/google">
-          google oauth link
-          {/* <img src={goath}/> */}
+          <Goauth className='svg'></Goauth>
         </a>
       </Container>
     </div>
