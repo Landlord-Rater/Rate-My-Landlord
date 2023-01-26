@@ -18,12 +18,12 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/oauth/protected",
+    successRedirect: "/",
     failureRedirect: "/oauth/google/failure",
   })
 );
 
-//localhost8080/oauth/protected 
+//localhost8080/oauth/protected FETCH THIS ROUTE FOR REQ.USER OAUTH USER INFO
 router.get("/protected", (req, res) => {
   res.json(req.user);
 });
@@ -33,7 +33,7 @@ router.get("/google/failure", (req, res) => {
   res.send("Failed to authenticate..");
 });
 
-//oauth logout
+//localhost8080/oauth/logout ROUTE FOR OAUTH USER SESSION LOG OUT
 router.get("/logout", (req, res) => {
   req.logout();
   req.session.destroy();
