@@ -45,6 +45,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.6.1",
     "sweetalert2": "^11.6.15",
+    "tw-elements": "^1.0.0-alpha13",
     "webpack": "^5.57.1"
   },
   "devDependencies": {

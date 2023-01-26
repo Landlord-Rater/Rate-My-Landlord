@@ -7,7 +7,7 @@ import FormInput from "./FormInput.jsx";
 import { useLocation } from "react-router-dom";
 
 async function loginUser(credentials, navigate, updateLoginStatus, from) {
-  return fetch("api/login", {
+  return fetch("/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

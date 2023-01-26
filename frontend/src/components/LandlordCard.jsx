@@ -40,7 +40,7 @@ const LandlordCard = ({ landlord }) => {
             type="button"
             className=""
           >
-            See Landlord Reviews
+            See Landlord Details
           </button>
         </Link>
       </div>

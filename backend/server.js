@@ -6,8 +6,11 @@ const session = require("express-session");
 const passport = require("passport");
 require("./auth");
 const app = express();
-const apiRouter = require("./routes/api");
-//need for parsing the body of the request data
+const userRouter = require("./routes/user");
+const reviewsRouter = require("./routes/reviews");
+const propertyRouter = require("./routes/properties");
+const landlordRouter = require("./routes/landlords");
+///need for parsing the body of the request data
 app.use(
   session({
     secret: "cats",
@@ -28,53 +31,7 @@ app.use(cookieParser());
  */
 app.use(express.static(path.resolve(__dirname, "../frontend")));
 
-app.get(
-  "/api/auth/google", (req,res,next)=>{
-    console.log('first authentication');
-    next();
-  },
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
 
-app.get(
-  "/api/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "http://localhost:8080/",
-    failureRedirect: "/auth/google/failure",
-  })
-);
-
-app.get('/auth/google/render', (req, res) => {
-  if (req.user) {
-    res.status(200).json({
-      success: true,
-      message: 'successful!',
-      user: req.user,
-    });
-  } else {
-    res.sendStatus(401);
-  }
-});
-
-//check oauth user info
-app.get("/api/protected", (req, res) => {
-  console.log('req.user: ', req.user)
-  res.json(req.user);
-});
-
-//log out of oauth user
-app.get("/api/logout", (req, res) => {
-  req.logout();
-  req.session.destroy();
-  res.send("OAUTH LOGGED OUT!");
-});
-
-app.get("/auth/google/failure", (req, res) => {
-  res.send("Failed to authenticate..");
-});
-//
-
-app.use("/api", apiRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req, res) =>
