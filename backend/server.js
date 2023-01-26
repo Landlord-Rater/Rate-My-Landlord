@@ -6,6 +6,7 @@ const session = require("express-session");
 const passport = require("passport");
 require("./auth");
 const app = express();
+const oauthRouter = require("./routes/oauth");
 const userRouter = require("./routes/user");
 const reviewsRouter = require("./routes/reviews");
 const propertyRouter = require("./routes/properties");
@@ -31,6 +32,12 @@ app.use(cookieParser());
  */
 app.use(express.static(path.resolve(__dirname, "../frontend")));
 
+
+app.use("/oauth", oauthRouter);
+app.use("/user", userRouter);
+app.use("/reviews", reviewsRouter);
+app.use("/properties", propertyRouter);
+app.use("/landlords", landlordRouter);
 
 
 // catch-all route handler for any requests to an unknown route

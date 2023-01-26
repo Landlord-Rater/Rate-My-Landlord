@@ -107,7 +107,7 @@ export default function Login({ updateLoginStatus }) {
             <p>Sign up</p>
           </Link>
         </button>
-        <a href="/api/auth/google">
+        <a href="/oauth/google">
           google oauth link
           {/* <img src={goath}/> */}
         </a>
