@@ -29,6 +29,8 @@ async function loginUser(credentials, navigate, updateLoginStatus, from) {
     });
 }
 
+
+
 export default function Login({ updateLoginStatus }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -57,6 +59,16 @@ export default function Login({ updateLoginStatus }) {
       from
     );
   };
+
+  // const handleoath = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:8080/api/auth/google');
+  //       const data = await response.json();
+  //     // Do something with the data
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  //     }
+  // }
 
   return (
     <div className="inset-0 flex justify-center items-center mt-6 ">
@@ -95,7 +107,10 @@ export default function Login({ updateLoginStatus }) {
             <p>Sign up</p>
           </Link>
         </button>
-        <a href="/api/auth/google">Authenticate with Google</a>
+        <a href="/api/auth/google">
+          google oauth link
+          {/* <img src={goath}/> */}
+        </a>
       </Container>
     </div>
   );

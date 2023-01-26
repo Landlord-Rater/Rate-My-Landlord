@@ -17,8 +17,9 @@ passport.use(
       passReqToCallback: true,
     },
     async (request, accessToken, refreshToken, profile, done) => {
-      const queryString = 'SELECT google_id, email, username FROM users WHERE google_id = $1'
-      const values = [profile.id]
+      const queryString = 'SELECT google_id, email, username FROM users WHERE google_id = $1';
+      const values = [profile.id];
+      console.log('values: ', values);
       const user = await db.query(queryString, values);
       console.log('user: ', user)
       let providerData = profile._json;
@@ -29,30 +30,33 @@ passport.use(
       if (user.rows.length > 0) {
         console.log("SCENARIO 1: Existing user row 0: ", user.rows[0]);
         done(null, user.rows[0]);
+        return;
       } 
 
-      // const emailqueryString =
-      //   "SELECT google_id, email, username FROM users WHERE email = $1";
-      // const emailvalues = [profile.email]
-      // const emailuser = await db.query(emailqueryString, emailvalues);
-      // console.log("emailuser: ", emailuser);
+      const emailqueryString =
+        "SELECT google_id, email, username FROM users WHERE email = $1";
+      const emailvalues = [profile.email]
+      const emailuser = await db.query(emailqueryString, emailvalues);
+      console.log('PRE SCENARIO 2')
+      console.log("emailuser rows: ", emailuser.rows);
       // console.log("profile.email: ", profile.email);
       // console.log('emailuser.email: ', emailuser.rows[0].email)
       // console.log('emailuser google id: ', emailuser.rows[0].google_id)
       
       //SCENARIO 2: GOOGLE ID DOES NOT EXIST BUT EMAIL EXISTS
-
-      // if (emailuser.email && !emailuser.google_id) {
-      //   const newqueryString =
-      //     "UPDATE users SET google_id = $1 WHERE email = $2 RETURNING google_id, email, username";
-      //   const newValues = [profile.id, profile.email];
-      //   //UPDATE mytable
-      //   //SET google_id = 'new_value'
-      //   //WHERE google_id IS NULL;
-      //   const newUser = await db.query(newqueryString, newValues);
-      //   console.log("SCENARIO 2: newUser row 0: ", newUser.rows[0]);
-      //   done(null, newUser.rows[0]);
-      // }
+      if (emailuser.rows.length > 0 && !emailuser.rows[0].google_id) {
+        const newqueryString =
+          "UPDATE users SET google_id = $1 WHERE email = $2";
+        const newValues = [profile.id, profile.email];
+        //UPDATE mytable
+        //SET google_id = 'new_value'
+        //WHERE google_id IS NULL;
+        await db.query(newqueryString, newValues);
+        const newemailuser = await db.query(emailqueryString, emailvalues);
+        console.log("SCENARIO 2: newUser row 0: ", newemailuser.rows[0]);
+        done(null, newemailuser.rows[0]);
+        return;
+      }
 
       //SCENARIO 3: BOTH DOES NOT EXIST
       else {

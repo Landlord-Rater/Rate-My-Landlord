@@ -71,7 +71,8 @@ router.post(
   cookieController.setSSIDCookie,
   (req, res) =>
     res.status(200).json({
-      message: "user authenicated!",
+      message: "user authenticated!",
+      token_id: res.locals.id,
       user: res.locals.user,
       email: res.locals.email,
       userID: res.locals.userID,
@@ -83,6 +84,7 @@ router.post("/logout", (req, res) => {
   res.clearCookie("ssid");
   res.status(200).json("logged out!");
 });
+
 router.post("/signup", userController.createUsers);
 
 router.post("/postReviews", reviewController.postReviews, (req, res) =>

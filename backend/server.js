@@ -56,15 +56,17 @@ app.get('/auth/google/render', (req, res) => {
   }
 });
 
+//check oauth user info
 app.get("/api/protected", (req, res) => {
   console.log('req.user: ', req.user)
   res.json(req.user);
 });
 
-app.get("/logout", (req, res) => {
+//log out of oauth user
+app.get("/api/logout", (req, res) => {
   req.logout();
   req.session.destroy();
-  res.send("Goodbye!");
+  res.send("OAUTH LOGGED OUT!");
 });
 
 app.get("/auth/google/failure", (req, res) => {

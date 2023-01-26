@@ -7,7 +7,6 @@ landlordController.createLandlord = (req, res, next) => {
   const { location, name } = req.body;
   const text =
     'INSERT INTO landlords(name, location) VALUES ($1,$2) RETURNING _id, name, location';
-
   const value = [name, location];
   db.query(text, value)
     .then((data) => res.json(data.rows[0]))
