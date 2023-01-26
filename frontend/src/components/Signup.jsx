@@ -6,7 +6,7 @@ import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
 
 async function signUp(credentials, navigate) {
-  return fetch("api/signup", {
+  return fetch("/user/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

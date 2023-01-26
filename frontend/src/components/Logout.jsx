@@ -1,19 +1,19 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 async function logoutUser(navigate, updateLoginStatus) {
-  return fetch('api/logout', {
-    method: 'POST',
+  return fetch("/user/logout", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   })
     .then((res) => res.json())
     .then((data) => {
-      if (data === 'logged out!') {
+      if (data === "logged out!") {
         localStorage.clear();
         updateLoginStatus(false);
-        navigate('/');
+        navigate("/");
       }
     });
 }
@@ -29,10 +29,10 @@ export default function Logout({ updateLoginStatus }) {
   }
 
   return (
-    <div className='logout-wrapper'>
+    <div className="logout-wrapper">
       <p>Logged out!</p>
-      <Link to='/'>
-        <button type='button'>Go to home page</button>
+      <Link to="/">
+        <button type="button">Go to home page</button>
       </Link>
     </div>
   );
