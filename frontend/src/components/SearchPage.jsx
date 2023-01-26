@@ -36,9 +36,6 @@ const SearchPage = () => {
     );
   }, [searchBar, landlords]);
 
-  console.log("render", landlordsToRender);
-  console.log("search", searchBar);
-
   /* NEED TO HANDLE IF THERE ARE NO LANDLORDS WITH THAT NAME OR CITY AND ALSO EMPTY SEARCH BAR*/
 
   // if (isLoading) {
