@@ -14,7 +14,7 @@ const SearchPage = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/getall")
+    fetch("/reviews/")
       .then((res) => res.json())
       .then((json) => setLandlords(json))
       .then(() => {
