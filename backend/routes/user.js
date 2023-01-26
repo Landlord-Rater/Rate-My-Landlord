@@ -25,6 +25,8 @@ router.post(
 
 // logout user
 router.post("/logout", (req, res) => {
+  req.logout();
+  req.session.destroy();
   res.clearCookie("ssid");
   res.status(200).json("logged out!");
 });

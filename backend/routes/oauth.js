@@ -25,7 +25,8 @@ router.get(
 
 //localhost8080/oauth/protected FETCH THIS ROUTE FOR REQ.USER OAUTH USER INFO
 router.get("/protected", (req, res) => {
-  res.json(req.user);
+    if (req.user) res.json(req.user);
+    else res.json("oath user already logged out")
 });
 
 ////localhost8080/oauth/google/failure
