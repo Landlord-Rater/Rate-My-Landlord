@@ -56,13 +56,13 @@ export default function AddProperty() {
   };
 
   return (
-    <div className="inset-0  flex justify-center items-center ">
+    <div className="inset-0 flex justify-center items-center ">
       <Container>
         <form
           onSubmit={handleSubmit}
           className={" bg-primary drop-shadow rounded p-6 space-y-6 w-80 mt-5"}
         >
-          <FormTitle>Add New Landlord</FormTitle>
+          <FormTitle>Add New Property</FormTitle>
           <FormInput
             value={streetNumber}
             onChange={(e) => setStreetNumber(e.target.value)}

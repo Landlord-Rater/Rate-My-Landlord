@@ -5,14 +5,19 @@ import AddReview from "./AddReview.jsx";
 export default function ModalReview() {
     return (
 <>
-    <button type="button" className="px-6
+    <button type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#review-modal"
+        id="modal-review-button"
+        className="
+        modal-button
+        px-6
         py-2.5
-
+        m-1
         bg-primary
         hover:bg-blue-700 hover:shadow-lg
         focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
         active:bg-blue-800 active:shadow-lg
-
         text-white
         font-medium
         text-xs
@@ -20,19 +25,22 @@ export default function ModalReview() {
         uppercase
         rounded
         shadow-md
-
         transition
         duration-150
-        ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        ease-in-out" >
     Add a Review
     </button>
 
-    <div className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-    id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+        id="review-modal"
+        className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div className="modal-dialog relative w-auto pointer-events-none">
             <div
             className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-            
+
                 <div
                     className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
 
@@ -44,7 +52,9 @@ export default function ModalReview() {
                 </div>
 
                 <div className="modal-body relative p-4">
+
                     <AddReview />
+
                 </div>
 
             </div>
