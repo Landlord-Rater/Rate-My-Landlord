@@ -4,13 +4,13 @@ const propertyController = {};
 
 propertyController.createProperty = (req, res, next) => {
   //req.params for specific landlord
-  const { streetNumber, streetName, city, state, zip, landlord_id } = req.body;
+  const { streetAddress, city, state, zip, landlord_id, lat, lng } = req.body;
   // "INSERT INTO properties (street_number, street_name, city, state, zipcode) VALUES ($1,$2,$3,$4,$5) WHERE landlord_id = $6 RETURNING street_number, street_name, city, state, zipcode";
   const text =
-    "INSERT INTO properties (street_number, street_name, city, state, zip, landlord_id) VALUES ($1,$2,$3,$4,$5,$6) RETURNING street_number, street_name, city, state, zip";
+    "INSERT INTO properties (street_address, city, state, zip, landlord_id, lat, lng) VALUES ($1,$2,$3,$4,$5,$6, $7) RETURNING street_address, city, state, zip, lat, lng";
   //talk to jeff about this stuff
   // const value = [streetNumber, streetName, city, state, zipcode, req.params.id];
-  const value = [streetNumber, streetName, city, state, zip, landlord_id];
+  const value = [streetAddress, city, state, zip, landlord_id, lat, lng];
   console.log(value);
   db.query(text, value)
     .then((data) => res.json(data.rows[0]))
@@ -23,23 +23,17 @@ propertyController.createProperty = (req, res, next) => {
     );
 };
 
-// SELECT *
-//   FROM table1
-//   INNER JOIN table2
-//   ON table1.id = table2.id
-//   INNER JOIN table3
-//   ON table2.id = table3.id;
-
 propertyController.getProperties = (req, res, next) => {
-  const text = "SELECT * FROM properties WHERE landlord_id = $1";
+  const text =
+    "SELECT properties.lat, properties.lng FROM properties WHERE landlord_id = $1";
   // "SELECT landlords.name, reviews.rating, reviews.would_rent_again, reviews.landlord_id AS _id FROM landlords LEFT JOIN reviews ON landlords._id =  reviews.landlord_id WHERE landlords._id = $1";
 
   const value = [req.params.id];
   db.query(text, value)
     .then((data) => {
-      console.log(data.rows);
       if (!data.rows[0]) return res.json("properties not in database");
-      res.locals.properties = data.rows[0];
+      res.locals.properties = data.rows;
+      // console.log(res.locals.properties);
       next();
     })
     .catch((err) =>

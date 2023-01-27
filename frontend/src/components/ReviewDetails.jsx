@@ -20,6 +20,10 @@ so making it pretty and readable will be a whole other task in itself
       <p>Date: {review.date}</p>
       <p className="label mr-1">Comments:</p>
       <p>{review.text}</p>
+      <br />
+      <button className="w-full bg-primary rounded text-white hover:text-dark-purple transition text-lg cursor-pointer py-2">
+        Delete Review
+      </button>
     </div>
   );
 };
