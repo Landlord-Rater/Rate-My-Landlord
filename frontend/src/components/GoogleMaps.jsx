@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 //see https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse for documentation
+//https://developers.google.com/maps/documentation/javascript/marker-clustering for marker eventlistener
 
 const GMap = (props) => {
   const googleMapRef = useRef(null);
@@ -13,13 +14,25 @@ const GMap = (props) => {
   useEffect(() => {
     googleMap = initGoogleMap();
     var bounds = new window.google.maps.LatLngBounds();
+    const infoWindow = new google.maps.InfoWindow({
+      content: "",
+      disableAutoPan: true,
+    });
+
     for (let property in propObj) {
       console.log(propObj[property]);
       const marker = createMarker(propObj[property]);
       bounds.extend(marker.position);
+      marker.addListener("click", () => {
+        infoWindow.setContent(
+          `${propObj[property].street_address}, ${propObj[property].city}, ${propObj[property].state} ${propObj[property].zip}`
+        );
+        infoWindow.open(googleMap, marker);
+      });
     }
+
     googleMap.fitBounds(bounds); // the map to contain all markers
-  }, [propObj]);
+  }, [propObj, props]);
 
   // initialize the google map
   const initGoogleMap = () => {
@@ -28,6 +41,7 @@ const GMap = (props) => {
       zoom: 6,
     });
   };
+
   // create marker on google map
   const createMarker = (markerObj) =>
     new window.google.maps.Marker({
