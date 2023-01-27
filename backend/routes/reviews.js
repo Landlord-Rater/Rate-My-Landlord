@@ -7,6 +7,10 @@ const router = express.Router();
 // get reviews by landlord name or city or zip
 router.get("/", reviewController.getQueriedReviews);
 
+router.get("/bycity/:city", reviewController.getReviewsByCity, (req, res) => {
+  res.status(200).json(res.locals.landlords);
+});
+
 // get user reviews
 router.get("/:id", reviewController.getUserReviews, (req, res) => {
   res.status(200).json(res.locals.reviews);

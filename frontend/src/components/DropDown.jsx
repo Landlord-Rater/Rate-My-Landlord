@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const DropDown = () => {
   const [cities, setCities] = useState([]);
   useEffect(() => {
     const fetchCities = async () => {
-      const res = await fetch("/cities/");
+      const res = await fetch("/landlords/cities");
       const data = await res.json();
+      console.log("cities", data);
       setCities(data);
     };
     fetchCities();
@@ -24,17 +26,17 @@ const DropDown = () => {
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />{" "}
           </svg>
         </button>
-        <ul class="dropdown-menu absolute hidden text-gray-700 pt-1 w-40">
+        <ul class="dropdown-menu absolute hidden pt-1 text-gray-700 w-33 max-h-52 overflow-y-auto">
           {cities.map((city) => {
             return (
-              <li class="">
-                <a
-                  class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                  href="#"
+              <Link to={`/landlord/reviews/${city}`}>
+                <li
+                  class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block
+                  whitespace-no-wrap"
                 >
-                  Two
-                </a>
-              </li>
+                  {city}
+                </li>
+              </Link>
             );
           })}
         </ul>

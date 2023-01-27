@@ -130,12 +130,24 @@ input[type="file"]::-webkit-file-upload-button {
   text-align: center;
 }
 
+<<<<<<< HEAD
+=======
 .bg-page {
   background-image: url("./src/assets/images/homepage-background.jpg");
 }
 
 
+>>>>>>> dev
 /* DROPDOWN FOR CITY SEARCH */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.search-page-container {
+  background-image: url("./src/assets/homepage-background.jpg");
+}
+
+/* .test {
+  max-height: 200px;
+  overflow-y: scroll;
+} */

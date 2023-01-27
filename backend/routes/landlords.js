@@ -7,6 +7,11 @@ const auth = require("../middleware/auth");
 const { ErrorResponse } = require("@remix-run/router");
 const router = express.Router();
 
+// get all cities of landlords posted in db to populate search by city
+router.get("/cities", landlordController.getCities, (req, res) => {
+  res.status(200).json(res.locals.locations);
+});
+
 // get landlord and associated reviews
 router.get(
   "/:id",
