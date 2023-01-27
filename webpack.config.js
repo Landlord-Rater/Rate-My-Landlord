@@ -24,6 +24,10 @@ module.exports = {
         },
       },
       {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+      {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
@@ -44,6 +48,7 @@ module.exports = {
       directory: path.resolve(__dirname, "build"),
     },
     proxy: {
+      "/oauth": "http://localhost:3000/",
       "/user": "http://localhost:3000/",
       "/reviews": "http://localhost:3000/",
       "/properties": "http://localhost:3000/",
