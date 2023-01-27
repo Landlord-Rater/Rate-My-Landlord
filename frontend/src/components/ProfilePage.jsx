@@ -12,8 +12,10 @@ const ProfilePage = () => {
     fetch("/reviews/" + userID)
       .then((res) => res.json())
       .then((data) => {
-        setReviews(data);
         console.log(data);
+
+        setReviews(data);
+        // console.log(data);
       });
     // console.log(users).then(console.log('data in fetch', users));
   }, []);
