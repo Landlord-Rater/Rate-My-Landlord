@@ -25,11 +25,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
+        type: "asset/resource",
       },
     ],
   },
@@ -41,7 +37,7 @@ module.exports = {
   devServer: {
     static: {
       publicPath: "/",
-      directory: path.resolve(__dirname, "build"),
+      directory: path.join(__dirname, "./frontend/src"),
     },
     proxy: {
       "/user": "http://localhost:3000/",

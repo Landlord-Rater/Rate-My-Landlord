@@ -5,79 +5,78 @@ import { Link } from "react-router-dom";
 import LandlordCard from "./LandlordCard.jsx";
 import AddLandlord from "./AddLandlord.jsx";
 import Container from "./Container.jsx";
+import DropDownSearchBar from "./DropDownSearchBar.jsx";
+import useDebounce from "../hooks/useDebounce.jsx";
 
 const SearchPage = () => {
   const [landlords, setLandlords] = useState([]);
-  const [searchBar, setSearchBar] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [landlordsToRender, setLandlordsToRender] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+
+  // // custom debounce search hook to handle dynamic search input query
+  const debouncedSearch = useDebounce(searchQuery, 500);
 
   useEffect(() => {
-    fetch("/reviews/")
-      .then((res) => res.json())
-      .then((json) => setLandlords(json))
-      .then(() => {
-        const loaderElement = document.querySelector(".loader-container");
-        if (loaderElement) {
-          loaderElement.remove();
-          setLoading(!isLoading);
-        }
-      });
-  }, []);
+    const fetchData = async () => {
+      setLoading(true);
+      setLandlords([]);
+      const results = await fetch(
+        `/reviews/?search=${debouncedSearch.toLowerCase()}`
+      );
+      const data = await results.json();
+      setLandlords(data);
+      setLoading(false);
+    };
+    if (debouncedSearch) fetchData();
+  }, [debouncedSearch]);
 
-  useEffect(() => {
-    setLandlordsToRender(
-      landlords.filter(
-        (landlord) =>
-          landlord.name.toLowerCase().includes(searchBar.toLowerCase()) ||
-          landlord.location.toLowerCase().includes(searchBar.toLowerCase())
-      )
-    );
-  }, [searchBar, landlords]);
-
-  /* NEED TO HANDLE IF THERE ARE NO LANDLORDS WITH THAT NAME OR CITY AND ALSO EMPTY SEARCH BAR*/
-
-  // if (isLoading) {
-  //   return null;
-  // }
+  const handleSearchQuery = (e) => {
+    setSearchQuery(e.target.value);
+    setLandlords([]);
+  };
 
   return (
-    <section>
+    <section class="search-page h-full p-4 bg-cover">
+      <h4 className="text-center mb-40 text-3xl text-light-subtle">
+        Rate My Landlord
+      </h4>
       <Container>
-        <div className="flex flex-row items-center justify-center mt-4">
-          <input
-            type="text"
-            onChange={(e) => setSearchBar(e.target.value)}
-            value={searchBar}
-            className="bg-transparent rounded border-2 border-slate-300 focus:border-dark-purple w-full text-lg outline-none p-1 dark:text-black peer transition basis-1/2"
-            placeholder="Search"
+        <div className="flex flex-row items-center justify-center">
+          <DropDownSearchBar
+            handleSearchQuery={handleSearchQuery}
+            searchQuery={searchQuery}
+            landlords={landlords}
           />
         </div>
-
         <div id="search-status">
-          <div className="loader-container">
-            <div className="loader"></div>
-          </div>
+          {/* {isLoading && (
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
+          )} */}
 
           <div className="results-status">
-            {landlordsToRender.length == 0 && isLoading == false ? (
+            {/* {landlords.length == 0 && searchQuery.length > 0 ? (
               <h2>Nothing Found!</h2>
-            ) : null}
+            ) : null} */}
           </div>
         </div>
 
         <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
-          {landlordsToRender.map((landlord) => (
-            <LandlordCard key={landlord.id} landlord={landlord} />
-          ))}
+          {/* {debouncedSearch.length > 0 &&
+            landlords.map((landlord) => (
+              <LandlordCard key={landlord.id} landlord={landlord} />
+            ))} */}
         </div>
 
         <div className="flex flex-col items-center ">
           <Link to="/addlandlord" className="text-primary text-lg   ">
             <button
               type="button"
-              className="w-full rounded bg-secondary p-3 px-6 text-primary hover:text-dark-purple"
+              // className="w-full rounded bg-secondary p-3 px-6 text-primary hover:text-dark-purple"
+              className="w-full rounded bg-primary p-3 px-6 text-light"
             >
               Add New Landlord
             </button>
