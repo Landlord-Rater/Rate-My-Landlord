@@ -47,6 +47,7 @@ CREATE TABLE "users" (
 );
 
 
+
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_user_id_foreign" FOREIGN KEY ("user_id") REFERENCES "users" ("_id");
 
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_landlord_id_foreign" FOREIGN KEY ("landlord_id") REFERENCES "landlords" ("_id");

@@ -55,7 +55,6 @@ userController.getUsers = async (req, res, next) => {
       res.locals.userID = user._id;
       res.locals.city = user.city;
       console.log(res.locals.city);
-
       res.locals.id = generateToken({ id: user._id, username: user.username });
       next();
     } else {
@@ -97,4 +96,5 @@ function generateToken(id) {
     expiresIn: "30d",
   });
 }
+
 module.exports = userController;

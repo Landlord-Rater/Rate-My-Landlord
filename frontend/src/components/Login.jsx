@@ -5,6 +5,7 @@ import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
 import { useLocation } from "react-router-dom";
+import Goauth from "../assets/google.svg"
 
 async function loginUser(credentials, navigate, updateLoginStatus, from) {
   return fetch("/user/login", {
@@ -28,6 +29,8 @@ async function loginUser(credentials, navigate, updateLoginStatus, from) {
       }
     });
 }
+
+
 
 export default function Login({ updateLoginStatus }) {
   const [email, setEmail] = useState();
@@ -57,6 +60,16 @@ export default function Login({ updateLoginStatus }) {
       from
     );
   };
+
+  // const handleoath = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:8080/api/auth/google');
+  //       const data = await response.json();
+  //     // Do something with the data
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  //     }
+  // }
 
   return (
     <div className="inset-0 flex justify-center items-center mt-6 ">
@@ -95,6 +108,9 @@ export default function Login({ updateLoginStatus }) {
             <p>Sign up</p>
           </Link>
         </button>
+        <a href="/oauth/google">
+          <Goauth className='svg'></Goauth>
+        </a>
       </Container>
     </div>
   );
