@@ -159,7 +159,7 @@ reviewController.deleteReview = async(req, res, next) => {
     
     console.log(review);
     
-    res.locals.reviewId = user_id;
+    res.locals.user_id = user_id;
     
     return next();
   } catch (err){

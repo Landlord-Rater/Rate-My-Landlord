@@ -45,7 +45,7 @@ const Navbar = ({ isLoggedIn }) => {
               >
                 <button
                   type="button"
-                  className=" bg-secondary text-primary p-2 rounded sm:text-1xl  hover:text-dark-purple font-semibold"
+                  className=" bg-secondary text-primary p-2 rounded sm:text-1xl  hover:text-dark-purple font-semibold w-20"
                 >{`${authBtnProps.text}`}</button>
               </Link>
             </div>
