@@ -4,16 +4,16 @@ import Container from './Container.jsx';
 
 const PageNotFound = () => {
 return (
-    <section>
-        <Container>
+  <div className="page-layout">
+    <Container>
 
-<h1>Page Not Found</h1>
+    <h1>Page Not Found</h1>
 
-<p>Helpful advice of some kind. Perhaps an image.</p>
+      <p>Helpful advice of some kind. Perhaps an image.</p>
 
-        </Container>
-      </section>
-    );
+    </Container>
+  </div>
+  );
 };
 
 export default PageNotFound;

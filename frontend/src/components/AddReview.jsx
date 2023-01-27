@@ -68,7 +68,7 @@ const AddReview = () => {
             " bg-primary text-white drop-shadow rounded p-6 space-y-6 w-80"
           }
         >
-          <FormTitle>Add Review</FormTitle>
+          {/* <FormTitle>Add Review</FormTitle> */}
           <FormInput
             value={date}
             onChange={(e) => setDate(e.target.value)}

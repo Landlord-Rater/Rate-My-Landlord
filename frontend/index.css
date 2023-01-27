@@ -2,12 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  primary: 'rgb(30 41 59)',
+  secondary: '#F7D1CD',
+  'dark-subtle': 'rgba(255,255,255,0.5)',
+  'light-subtle': 'rgba(39,39,39,0.5)',
+  'dark-purple': '#EC4067'
+*/
+
+
 /* google font */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+
 body {
-  /* background: theme('colors.light-subtle'); */
-  /* font-family: "Poppins", Arial, Helvetica, sans-serif; */
+    /* background: theme('colors.light-subtle'); */
+    /* font-family: "Poppins", Arial, Helvetica, sans-serif; */
+  }
+
+
+.visuallyhidden {
+  display: none;
+}
+
+/* chrome layout bugfix */
+input[type="file"]::-webkit-file-upload-button {
+  margin-right: 2em;
+}
+
+.page-layout{
+  margin: 1em 2em;
+}
+
+  .page-layout h1 {
+    font-family: "Rubik", Arial, Helvetica, sans-serif;
+    font-size: 48px;
+    color: theme('colors.secondary');
+    background-color: theme('colors.primary');
+    text-align: center;
+  }
+  .page-layout h2 {
+    font-family: "Rubik", Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #894740;
+  }
+
+
+.button-container{
+  margin: 1em 0;
 }
 
 /* loading spinner for search page */
