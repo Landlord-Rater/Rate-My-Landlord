@@ -5,7 +5,7 @@ import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
 import { useLocation } from "react-router-dom";
-import Goauth from "../assets/google.svg"
+import Goauth from "../assets/google.svg";
 
 async function loginUser(credentials, navigate, updateLoginStatus, from) {
   return fetch("/user/login", {
@@ -29,8 +29,6 @@ async function loginUser(credentials, navigate, updateLoginStatus, from) {
       }
     });
 }
-
-
 
 export default function Login({ updateLoginStatus }) {
   const [email, setEmail] = useState();
@@ -75,7 +73,6 @@ export default function Login({ updateLoginStatus }) {
     <div className="inset-0 flex justify-center items-center mt-6 ">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
-
         <form
           onSubmit={handleSubmit}
           className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}
@@ -109,7 +106,7 @@ export default function Login({ updateLoginStatus }) {
           </Link>
         </button>
         <a href="/oauth/google">
-          <Goauth className='svg'></Goauth>
+          <Goauth className="svg"></Goauth>
         </a>
       </Container>
     </div>

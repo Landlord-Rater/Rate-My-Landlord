@@ -38,7 +38,7 @@ const SearchPage = () => {
   };
 
   return (
-    <section class="search-page h-full p-4 bg-cover">
+    <section class="search-page-container h-full p-4 bg-no-repeat bg-cover">
       <h4 className="text-center mb-40 text-3xl text-light-subtle">
         Rate My Landlord
       </h4>
@@ -51,25 +51,10 @@ const SearchPage = () => {
           />
         </div>
         <div id="search-status">
-          {/* {isLoading && (
-            <div className="loader-container">
-              <div className="loader"></div>
-            </div>
-          )} */}
-
-          <div className="results-status">
-            {/* {landlords.length == 0 && searchQuery.length > 0 ? (
-              <h2>Nothing Found!</h2>
-            ) : null} */}
-          </div>
+          <div className="results-status"></div>
         </div>
 
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5">
-          {/* {debouncedSearch.length > 0 &&
-            landlords.map((landlord) => (
-              <LandlordCard key={landlord.id} landlord={landlord} />
-            ))} */}
-        </div>
+        <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-10 p-5"></div>
 
         <div className="flex flex-col items-center ">
           <Link to="/addlandlord" className="text-primary text-lg   ">

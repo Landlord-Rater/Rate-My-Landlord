@@ -38,6 +38,35 @@ reviewController.getQueriedReviews = (req, res, next) => {
     );
 };
 
+reviewController.getReviewsByCity = (req, res, next) => {
+  const values = [req.params.city];
+  const text = "SELECT * FROM landlords WHERE location = $1;";
+  db.query(text, values)
+    .then(async (data) => {
+      const queryText =
+        "SELECT AVG(rating) FROM reviews where landlord_id = $1;";
+      const landLords = data.rows;
+      //this loop is to query each landlord's review and find the average of all their ratings
+      for (const person of landLords) {
+        const value = [person._id];
+        const average = (await db.query(queryText, value)).rows[0].avg;
+        //delcare a new property name averageRating in each landlord object and assign the average found
+        average === null
+          ? (person.averageRating = null)
+          : (person.averageRating = Number.parseFloat(average).toFixed(1));
+      }
+      res.locals.landlords = landLords;
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: "error caught in getAll middleware!",
+        status: 400,
+        message: { err: err },
+      })
+    );
+};
+
 reviewController.postReviews = async (req, res, next) => {
   try {
     const { landlord_id, text, rating, would_rent_again, date } = req.body;
@@ -110,7 +139,7 @@ reviewController.getReviews = (req, res, next) => {
     );
 };
 
-reviewController.updateReview = async (req, res, next) =>{
+reviewController.updateReview = async (req, res, next) => {
   try {
     const { landlord_id, user_id, rating, text, would_rent_again } = req.body;
     const queryText =
@@ -118,59 +147,49 @@ reviewController.updateReview = async (req, res, next) =>{
       SET rating = $3, text = $4, would_rent_again = $5 \
       WHERE landlord_id = $1 AND user_id = $2 RETURNING *;";
 
-      const value = [
-        landlord_id,
-        user_id,
-        rating,
-        text,
-        would_rent_again
-      ];
+    const value = [landlord_id, user_id, rating, text, would_rent_again];
 
-      console.log(value);
+    console.log(value);
 
-      const review = await (db.query(queryText, value)).rows[0];
+    const review = await db.query(queryText, value).rows[0];
 
-      console.log(review);
+    console.log(review);
 
-      res.locals.review = review;
-      return next();
+    res.locals.review = review;
+    return next();
   } catch (err) {
     next({
       log: "error caught in updateReviews middleware!",
       status: 400,
-      message: { err: err + "ahh"},
+      message: { err: err + "ahh" },
     });
   }
+};
 
-}
-
-reviewController.deleteReview = async(req, res, next) => {
+reviewController.deleteReview = async (req, res, next) => {
   try {
     const { landlord_id, user_id } = req.body;
 
-    const queryText = 
+    const queryText =
       "DELETE FROM reviews \
-      WHERE landlord_id = $1 AND user_id = $2;"
+      WHERE landlord_id = $1 AND user_id = $2;";
 
-    const value = [
-      landlord_id,
-      user_id
-    ];
-    
-    const review = await (db.query(queryText, value)).rows[0];
-    
+    const value = [landlord_id, user_id];
+
+    const review = await db.query(queryText, value).rows[0];
+
     console.log(review);
-    
+
     res.locals.user_id = user_id;
-    
+
     return next();
-  } catch (err){
+  } catch (err) {
     next({
       log: "error caught in deleteReview middleware!",
       status: 400,
-      message: { err: err + "ahh"},
+      message: { err: err + "ahh" },
     });
   }
-}
+};
 
 module.exports = reviewController;
