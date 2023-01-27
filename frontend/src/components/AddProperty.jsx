@@ -62,7 +62,7 @@ export default function AddProperty() {
           onSubmit={handleSubmit}
           className={" bg-primary drop-shadow rounded p-6 space-y-6 w-80 mt-5"}
         >
-          <FormTitle>Add New Property</FormTitle>
+          {/* <FormTitle>Add New Property</FormTitle> */}
           <FormInput
             value={streetNumber}
             onChange={(e) => setStreetNumber(e.target.value)}
