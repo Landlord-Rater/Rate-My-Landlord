@@ -27,8 +27,8 @@ router.put("/:id", reviewController.updateReview, (req, res) => {
 });
 
 // delete user review
-// router.delete("/:id", reviewController.deleteReview, (req, res) => {
-//   res.status(200).json({ reviewId: res.locals.userId });
-// });
+router.delete("/:id", reviewController.deleteReview, (req, res) => {
+  res.status(200).json({ reviewId: res.locals.userId });
+});
 
 module.exports = router;

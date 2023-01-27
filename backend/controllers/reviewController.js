@@ -114,7 +114,7 @@ reviewController.updateReview = async (req, res, next) =>{
     const queryText =
       "UPDATE reviews \
       SET rating = $3, text = $4, would_rent_again = $5 \
-      WHERE landlord_id = $1, user_id = $2";
+      WHERE landlord_id = $1 AND user_id = $2 RETURNING *;";
 
       const value = [
         landlord_id,
@@ -124,7 +124,11 @@ reviewController.updateReview = async (req, res, next) =>{
         would_rent_again
       ];
 
-      review = await (db.query(queryText, value)).rows[0];
+      console.log(value);
+
+      const review = await (db.query(queryText, value)).rows[0];
+
+      console.log(review);
 
       res.locals.review = review;
       return next();
@@ -139,8 +143,31 @@ reviewController.updateReview = async (req, res, next) =>{
 }
 
 reviewController.deleteReview = async(req, res, next) => {
-  try{
-    const values = {}
+  try {
+    const { landlord_id, user_id } = req.body;
+
+    const queryText = 
+      "DELETE FROM reviews \
+      WHERE landlord_id = $1 AND user_id = $2;"
+
+    const value = [
+      landlord_id,
+      user_id
+    ];
+    
+    const review = await (db.query(queryText, value)).rows[0];
+    
+    console.log(review);
+    
+    res.locals.reviewId = user_id;
+    
+    return next();
+  } catch (err){
+    next({
+      log: "error caught in deleteReview middleware!",
+      status: 400,
+      message: { err: err + "ahh"},
+    });
   }
 }
 
