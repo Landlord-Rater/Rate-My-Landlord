@@ -35,7 +35,7 @@ const LandlordPage = () => {
   }); // data.landlord, data.reviews
 
   useEffect(() => {
-    if (from === "LandlordCard") {
+    if (from === "LandlordCard" || from === "SearchPage") {
       fetch("/landlords/" + landlord._id)
         .then((res) => res.json())
         .then((data) => setData(data));

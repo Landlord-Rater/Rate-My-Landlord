@@ -7,12 +7,14 @@ require("dotenv").config();
 const reviewController = {};
 
 reviewController.getQueriedReviews = (req, res, next) => {
-  // const values = [req.query.searchParams + "%"];
-  const text = "SELECT * FROM landlords";
-  // const text = "SELECT * FROM landlords WHERE name LIKE $1 OR location LIKE $1";
-
-  db.query(text)
+  const values = [`%${req.query.search}%`];
+  console.log("search query", values[0]);
+  // const text = "SELECT * FROM landlords";
+  const text =
+    "SELECT * FROM landlords WHERE LOWER(name) LIKE $1 OR LOWER(location) LIKE $1;";
+  db.query(text, values)
     .then(async (data) => {
+      console.log("this is landlord", data.rows);
       const queryText =
         "SELECT AVG(rating) FROM reviews where landlord_id = $1;";
       const landLords = data.rows;
@@ -107,5 +109,68 @@ reviewController.getReviews = (req, res, next) => {
       })
     );
 };
+
+reviewController.updateReview = async (req, res, next) =>{
+  try {
+    const { landlord_id, user_id, rating, text, would_rent_again } = req.body;
+    const queryText =
+      "UPDATE reviews \
+      SET rating = $3, text = $4, would_rent_again = $5 \
+      WHERE landlord_id = $1 AND user_id = $2 RETURNING *;";
+
+      const value = [
+        landlord_id,
+        user_id,
+        rating,
+        text,
+        would_rent_again
+      ];
+
+      console.log(value);
+
+      const review = await (db.query(queryText, value)).rows[0];
+
+      console.log(review);
+
+      res.locals.review = review;
+      return next();
+  } catch (err) {
+    next({
+      log: "error caught in updateReviews middleware!",
+      status: 400,
+      message: { err: err + "ahh"},
+    });
+  }
+
+}
+
+reviewController.deleteReview = async(req, res, next) => {
+  try {
+    const { landlord_id, user_id } = req.body;
+
+    const queryText = 
+      "DELETE FROM reviews \
+      WHERE landlord_id = $1 AND user_id = $2;"
+
+    const value = [
+      landlord_id,
+      user_id
+    ];
+    
+    const review = await (db.query(queryText, value)).rows[0];
+    
+    console.log(review);
+    
+    res.locals.user_id = user_id;
+    
+    return next();
+  } catch (err){
+    next({
+      log: "error caught in deleteReview middleware!",
+      status: 400,
+      message: { err: err + "ahh"},
+    });
+  }
+}
 
 module.exports = reviewController;
