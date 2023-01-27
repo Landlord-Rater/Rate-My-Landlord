@@ -1,6 +1,8 @@
 const express = require("express");
 const landlordController = require("../controllers/landlordController");
 const reviewController = require("../controllers/reviewController");
+const propertyController = require("../controllers/propertyController");
+
 const auth = require("../middleware/auth");
 const { ErrorResponse } = require("@remix-run/router");
 const router = express.Router();
@@ -10,10 +12,12 @@ router.get(
   "/:id",
   landlordController.getLandLord,
   reviewController.getReviews,
+  propertyController.getProperties,
   (req, res) => {
     res.status(200).json({
       landlord: res.locals.landLord,
       reviews: res.locals.reviews,
+      properties: res.locals.properties,
     });
   }
 );

@@ -28,7 +28,11 @@ const LandlordPage = () => {
   const location = useLocation();
   const { landlord, from } = location.state;
 
-  const [data, setData] = useState({ landlord: {}, reviews: [] }); // data.landlord, data.reviews
+  const [data, setData] = useState({
+    landlord: {},
+    reviews: [],
+    properties: {},
+  }); // data.landlord, data.reviews
 
   useEffect(() => {
     if (from === "LandlordCard" || from === "SearchPage") {
@@ -37,9 +41,12 @@ const LandlordPage = () => {
         .then((data) => setData(data));
       // .then(console.log("data in fetch", data));
     } else {
-      setData({ landlord });
+      setData({ landlord, properties });
     }
   }, []);
+
+  // const [lat, setLat] = useState("");
+  // const [lng, setLng] = useState("");
 
   const [loadMap, setLoadMap] = useState(false);
 
@@ -92,7 +99,7 @@ const LandlordPage = () => {
       <div className="App">
         <br />
         <br />
-        {!loadMap ? <div>Loading...</div> : <GMap />}
+        {!loadMap ? <div>Loading...</div> : <GMap props={data} />}
       </div>
     </div>
   );
