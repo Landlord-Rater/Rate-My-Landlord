@@ -7,12 +7,14 @@ require("dotenv").config();
 const reviewController = {};
 
 reviewController.getQueriedReviews = (req, res, next) => {
-  // const values = [req.query.searchParams + "%"];
-  const text = "SELECT * FROM landlords";
-  // const text = "SELECT * FROM landlords WHERE name LIKE $1 OR location LIKE $1";
-
-  db.query(text)
+  const values = [`%${req.query.search}%`];
+  console.log("search query", values[0]);
+  // const text = "SELECT * FROM landlords";
+  const text =
+    "SELECT * FROM landlords WHERE LOWER(name) LIKE $1 OR LOWER(location) LIKE $1;";
+  db.query(text, values)
     .then(async (data) => {
+      console.log("this is landlord", data.rows);
       const queryText =
         "SELECT AVG(rating) FROM reviews where landlord_id = $1;";
       const landLords = data.rows;
