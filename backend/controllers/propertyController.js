@@ -64,17 +64,10 @@ propertyController.deleteProperty = async (req, res, next) => {
 
 propertyController.updateProperty = async (req, res, next) => {
   try {
-    const { streetNumber, streetName, city, state, zipcode } = req.body;
+    const { streetAddress, city, state, zipcode } = req.body;
     const queryString =
-      "UPDATE properties SET street_number = $1, street_name = $2, city = $3, state = $4, zipcode = $5 WHERE reviewername = $6";
-    const values = [
-      streetNumber,
-      streetName,
-      city,
-      state,
-      zipcode,
-      req.params.id,
-    ];
+      "UPDATE properties SET street_address = $1, city = $2, state = $3, zipcode = $4 WHERE reviewername = $5";
+    const values = [streetAddress, city, state, zipcode, req.params.id];
     const query = await db.query(queryString, values);
     res.locals.property = query.rows;
     next();

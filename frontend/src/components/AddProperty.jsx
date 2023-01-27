@@ -8,7 +8,6 @@ import FormInput from "./FormInput.jsx";
 import axios from "axios";
 
 export default function AddProperty() {
-  let coordinates;
   const location = useLocation();
   const { landlord, from } = location.state;
   const [landlord_id, setId] = useState(landlord._id);
@@ -26,20 +25,6 @@ export default function AddProperty() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const property = {
-    //   streetAddress,
-    //   city,
-    //   state,
-    //   zip,
-    //   landlord_id,
-    //   data.lat,
-    //   data.lng,
-    // };
-
-    // const spacesReplaced = str.replaceAll(" ", "^");
-
-    // const GetGeocode = async (location) => {
-    // let streetNumberGeo = streetNumber.replaceAll(" ", "+");
     let streetGeo = streetAddress.replaceAll(" ", "+");
     let cityGeo = city.replaceAll(" ", "+");
     let stateGeo = state.replaceAll(" ", "+");
@@ -50,7 +35,6 @@ export default function AddProperty() {
     const data = response.data.results[0].geometry.location;
     const lat = data.lat;
     const lng = data.lng;
-    // console.log("lat and lng: ", data);
 
     const property = {
       streetAddress,
@@ -61,18 +45,6 @@ export default function AddProperty() {
       lat,
       lng,
     };
-
-    const coords = {
-      name: response.data.results[0].formatted_address,
-      position: {
-        lat: data.lat,
-        lng: data.lng,
-      },
-    };
-    setLat(data.lat);
-    setLng(data.lng);
-    // };
-    // const coords = GetGeocode();
 
     const responseProp = await fetch("/properties/", {
       method: "POST",
@@ -114,14 +86,6 @@ export default function AddProperty() {
             placeholder="Enter Street Address"
             name="streetAddress"
           />
-          {/* <FormInput
-            value={streetName}
-            onChange={(e) => setStreetName(e.target.value)}
-            label="Street Name"
-            placeholder="Enter Street Name"
-            name="streetName"
-            type="text"
-          /> */}
           <FormInput
             value={city}
             onChange={(e) => setCity(e.target.value)}

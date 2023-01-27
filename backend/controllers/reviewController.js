@@ -40,20 +40,14 @@ reviewController.getQueriedReviews = (req, res, next) => {
 
 reviewController.postReviews = async (req, res, next) => {
   try {
-    const { landlord_id, text, rating, would_rent_again, date } = req.body;
+    const { landlord_id, text, rating, would_rent_again, date, userID } =
+      req.body;
     const queryText =
       "INSERT INTO reviews (landlord_id, text, rating, would_rent_again, date, user_id) values($1,$2,$3,$4,$5,$6) RETURNING landlord_id, text, rating, would_rent_again, date, user_id";
-    const value = [
-      landlord_id,
-      text,
-      rating,
-      would_rent_again,
-      date,
-      req.user._id,
-    ];
-    const review = (await db.query(queryText, value)).rows[0];
-
-    res.locals.reviews = review;
+    const value = [landlord_id, text, rating, would_rent_again, date, userID];
+    const review = await db.query(queryText, value);
+    res.locals.reviews = review.rows;
+    console.log(res.locals.reviews);
     return next();
   } catch (err) {
     next({
@@ -64,12 +58,9 @@ reviewController.postReviews = async (req, res, next) => {
   }
 };
 
-//  'SELECT AVG(rating) FROM reviews where landlord_id = $1;';
-
 //make another getReview function specific to user
 reviewController.getUserReviews = (req, res, next) => {
   const user = req.params.id;
-  console.log(user);
   const text =
     //'SELECT reviews.* FROM reviews INNER JOIN users ON reviews.user_id = users._id AND reviews.user_id = $1'; working PERFECTLY FINE
     "SELECT reviews.*, landlords.* FROM reviews INNER JOIN users ON reviews.user_id = users._id AND reviews.user_id = $1 INNER JOIN landlords ON reviews.landlord_id = landlords._id";
@@ -110,67 +101,54 @@ reviewController.getReviews = (req, res, next) => {
     );
 };
 
-reviewController.updateReview = async (req, res, next) =>{
+reviewController.updateReview = async (req, res, next) => {
   try {
-    const { landlord_id, user_id, rating, text, would_rent_again } = req.body;
+    const { landlord_id, userID, rating, text, would_rent_again, date } =
+      req.body;
     const queryText =
       "UPDATE reviews \
-      SET rating = $3, text = $4, would_rent_again = $5 \
+      SET rating = $3, text = $4, would_rent_again = $5, date = $6 \
       WHERE landlord_id = $1 AND user_id = $2 RETURNING *;";
 
-      const value = [
-        landlord_id,
-        user_id,
-        rating,
-        text,
-        would_rent_again
-      ];
+    const value = [landlord_id, userID, rating, text, would_rent_again, date];
 
-      console.log(value);
+    const review = await db.query(queryText, value);
 
-      const review = await (db.query(queryText, value)).rows[0];
+    console.log(review.rows);
 
-      console.log(review);
-
-      res.locals.review = review;
-      return next();
+    res.locals.review = review.rows;
+    return next();
   } catch (err) {
     next({
       log: "error caught in updateReviews middleware!",
       status: 400,
-      message: { err: err + "ahh"},
+      message: { err: err + "ahh" },
     });
   }
+};
 
-}
-
-reviewController.deleteReview = async(req, res, next) => {
+reviewController.deleteReview = async (req, res, next) => {
   try {
-    const { landlord_id, user_id } = req.body;
+    const queryText =
+      // "DELETE FROM reviews \
+      // WHERE landlord_id = $1 AND user_id = $2;";
+      "DELETE FROM reviews WHERE user_id = $1 AND text = $2";
 
-    const queryText = 
-      "DELETE FROM reviews \
-      WHERE landlord_id = $1 AND user_id = $2;"
+    // const value = [landlord_id, user_id];
+    const value = [req.params.id, req.body.review];
 
-    const value = [
-      landlord_id,
-      user_id
-    ];
-    
-    const review = await (db.query(queryText, value)).rows[0];
-    
-    console.log(review);
-    
-    res.locals.user_id = user_id;
-    
+    const deletedReview = await db.query(queryText, value);
+    console.log(deletedReview);
+    res.locals.deletedReview = req.body.review;
+
     return next();
-  } catch (err){
+  } catch (err) {
     next({
       log: "error caught in deleteReview middleware!",
       status: 400,
-      message: { err: err + "ahh"},
+      message: { err: err + "ahh" },
     });
   }
-}
+};
 
 module.exports = reviewController;
