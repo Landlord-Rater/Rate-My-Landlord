@@ -77,7 +77,15 @@ const LandlordPage = () => {
           </div>
         </div>
       </div>
+
+      <div className="button-container">
+        
       <ModalProperty />
+
+      <ModalReview />
+
+      </div>
+
 
       <div className="reviews">
         {data.reviews &&
@@ -86,7 +94,7 @@ const LandlordPage = () => {
           ))}
         {/* <AddReview landlord={data.landlord} /> */}
       </div>
-      <ModalReview />
+
       {/* <GetGeocode /> */}
       <div className="App">
         <br />
