@@ -5,17 +5,20 @@ import Container from "./Container.jsx";
 import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
+import axios from "axios";
 
 export default function AddProperty() {
+  let coordinates;
   const location = useLocation();
   const { landlord, from } = location.state;
   const [landlord_id, setId] = useState(landlord._id);
 
-  const [streetNumber, setStreetNumber] = useState("");
-  const [streetName, setStreetName] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
 
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -23,15 +26,55 @@ export default function AddProperty() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // const property = {
+    //   streetAddress,
+    //   city,
+    //   state,
+    //   zip,
+    //   landlord_id,
+    //   data.lat,
+    //   data.lng,
+    // };
+
+    // const spacesReplaced = str.replaceAll(" ", "^");
+
+    // const GetGeocode = async (location) => {
+    // let streetNumberGeo = streetNumber.replaceAll(" ", "+");
+    let streetGeo = streetAddress.replaceAll(" ", "+");
+    let cityGeo = city.replaceAll(" ", "+");
+    let stateGeo = state.replaceAll(" ", "+");
+
+    // let url =https://maps.googleapis.com/maps/api/geocode/json?address=4555+Strohm+Ave+Toluca+Lake+CA&key=AIzaSyCkw38xDOVL1HphHAlzLUAqQL1lSqMQ3bU `https://maps.googleapis.com/maps/api/geocode/json?address=${address},+${city},+${state}&key=${"AIzaSyCkw38xDOVL1HphHAlzLUAqQL1lSqMQ3bU"}`;
+    let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${streetGeo}+${cityGeo}+${stateGeo}&key=AIzaSyCkw38xDOVL1HphHAlzLUAqQL1lSqMQ3bU`;
+    const response = await axios.get(url);
+    const data = response.data.results[0].geometry.location;
+    const lat = data.lat;
+    const lng = data.lng;
+    // console.log("lat and lng: ", data);
+
     const property = {
-      streetNumber,
-      streetName,
+      streetAddress,
       city,
       state,
       zip,
       landlord_id,
+      lat,
+      lng,
     };
-    const response = await fetch("/properties/", {
+
+    const coords = {
+      name: response.data.results[0].formatted_address,
+      position: {
+        lat: data.lat,
+        lng: data.lng,
+      },
+    };
+    setLat(data.lat);
+    setLng(data.lng);
+    // };
+    // const coords = GetGeocode();
+
+    const responseProp = await fetch("/properties/", {
       method: "POST",
       body: JSON.stringify(property), // { location: str, name: str }
       headers: {
@@ -39,19 +82,20 @@ export default function AddProperty() {
       },
     });
 
-    const json = await response.json();
+    const json = await responseProp.json();
 
     if (!response.ok) {
       setError(json.error);
     }
     if (response.ok) {
-      setStreetNumber("");
-      setStreetName("");
+      setStreetAddress("");
       setCity("");
       setState("");
       setZip("");
       setError(null);
-      navigate("/landlord", { state: { landlord: json, from: "AddLandlord" } });
+      navigate("/landlord", {
+        state: { landlord: json, from: "AddLandlord" },
+      });
     }
   };
 
@@ -64,20 +108,20 @@ export default function AddProperty() {
         >
           <FormTitle>Add New Landlord</FormTitle>
           <FormInput
-            value={streetNumber}
-            onChange={(e) => setStreetNumber(e.target.value)}
-            label="Street Number"
-            placeholder="Enter Street Number"
-            name="streetNumber"
+            value={streetAddress}
+            onChange={(e) => setStreetAddress(e.target.value)}
+            label="Street Address"
+            placeholder="Enter Street Address"
+            name="streetAddress"
           />
-          <FormInput
+          {/* <FormInput
             value={streetName}
             onChange={(e) => setStreetName(e.target.value)}
             label="Street Name"
             placeholder="Enter Street Name"
             name="streetName"
             type="text"
-          />
+          /> */}
           <FormInput
             value={city}
             onChange={(e) => setCity(e.target.value)}
