@@ -4,6 +4,7 @@ const userController = require("../controllers/userController");
 const cookieController = require("../controllers/cookieController");
 const landlordController = require("../controllers/landlordController");
 const propertyController = require("../controllers/propertyController");
+const session = require("express-session");
 const auth = require("../middleware/auth");
 const { ErrorResponse } = require("@remix-run/router");
 const router = express.Router();
@@ -24,7 +25,17 @@ router.post(
 );
 
 // logout user
+// router.get("/logout", (req, res) => {
+//   req.logout();
+//   req.session.destroy();
+//   res.clearCookie("ssid");
+//   res.status(200).json("logged out!");
+// });
+
+// logout user
 router.post("/logout", (req, res) => {
+  req.logout();
+  req.session.destroy();
   res.clearCookie("ssid");
   res.status(200).json("logged out!");
 });
