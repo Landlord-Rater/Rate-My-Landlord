@@ -23,7 +23,10 @@ const SearchPage = () => {
           loaderElement.remove();
           setLoading(!isLoading);
         }
-      });
+      }).catch((err)=>{
+        console.log({err: err.message})
+      })
+      ;
   }, []);
 
   useEffect(() => {

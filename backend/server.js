@@ -11,6 +11,7 @@ const userRouter = require("./routes/user");
 const reviewsRouter = require("./routes/reviews");
 const propertyRouter = require("./routes/properties");
 const landlordRouter = require("./routes/landlords");
+const auth = require("./middleware/auth.js");
 ///need for parsing the body of the request data
 app.use(
   session({
@@ -31,7 +32,6 @@ app.use(cookieParser());
  * handle requests for static files
  */
 app.use(express.static(path.resolve(__dirname, "../frontend")));
-
 
 app.use("/oauth", oauthRouter);
 app.use("/user", userRouter);
