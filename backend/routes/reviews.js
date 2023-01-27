@@ -20,15 +20,15 @@ router.post("/", reviewController.postReviews, (req, res) =>
 );
 
 // update user review
-// router.put("/:id", reviewController.updateReview, (req, res) => {
-//   res.status(200).json({
-//     review: res.locals.review,
-//   });
-// });
+router.put("/:id", reviewController.updateReview, (req, res) => {
+  res.status(200).json({
+    review: res.locals.review,
+  });
+});
 
 // delete user review
-// router.delete("/:id", reviewController.deleteReview, (req, res) => {
-//   res.status(200).json({ reviewId: res.locals.userId });
-// });
+router.delete("/:id", reviewController.deleteReview, (req, res) => {
+  res.status(200).json({ reviewId: res.locals.userId });
+});
 
 module.exports = router;
