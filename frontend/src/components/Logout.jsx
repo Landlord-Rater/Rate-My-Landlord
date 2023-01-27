@@ -29,11 +29,15 @@ export default function Logout({ updateLoginStatus }) {
   }
 
   return (
+    <section class="bg-page logout-page h-full p-4 bg-cover">
+
     <div className="logout-wrapper">
       <p>Logged out!</p>
       <Link to="/">
         <button type="button">Go to home page</button>
       </Link>
     </div>
+
+    </section>
   );
 }
