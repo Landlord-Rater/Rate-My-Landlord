@@ -51,7 +51,9 @@ export default function Login() {
   };
 
   return (
-    <div className="inset-0 bg-white flex justify-center items-center mt-6">
+    <section class="bg-page signup-page h-full p-4 bg-cover">
+
+    <div className="inset-0 flex justify-center items-center mt-6">
       <Container>
         {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 
@@ -59,7 +61,7 @@ export default function Login() {
           onSubmit={handleSubmit}
           className={"bg-primary drop-shadow rounded p-6 space-y-6 w-80"}
         >
-          <FormTitle>Sign up</FormTitle>
+          <FormTitle>Sign Up with Email</FormTitle>
           <FormInput
             value={username}
             onChange={handleChange}
@@ -93,5 +95,7 @@ export default function Login() {
         </form>
       </Container>
     </div>
+
+    </section>
   );
 }

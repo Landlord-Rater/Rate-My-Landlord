@@ -51,8 +51,52 @@ input[type="file"]::-webkit-file-upload-button {
   }
 
 
+.reviews-container{
+}
+
+.review-table {
+  width: 100%;
+}
+
+.review-table tr {
+  border-bottom: 1px solid #fabab3;
+}
+.review-table tr.comments-label-row {
+  border-bottom: none;
+}
+.review-table td.comments p{
+  padding-left: 1em;
+}
+
+.review-label {
+  padding: .5em 1em;
+  color: theme('colors.light-subtle');
+  font-weight: bold;
+  font-size:.8em;
+  text-transform: uppercase ;
+}
+.review-data {
+
+  color: theme('colors.primary');
+}
+
+.wra-y, .wra-n {
+  margin-left: 6px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.wra-y{
+  color: green;
+}
+.wra-n{
+  color: red;
+}
+
 .button-container{
   margin: 1em 0;
+}
+
+#google-oauth-container {
 }
 
 /* loading spinner for search page */
@@ -86,6 +130,14 @@ input[type="file"]::-webkit-file-upload-button {
   text-align: center;
 }
 
+<<<<<<< HEAD
+=======
+.bg-page {
+  background-image: url("./src/assets/images/homepage-background.jpg");
+}
+
+
+>>>>>>> dev
 /* DROPDOWN FOR CITY SEARCH */
 .dropdown:hover .dropdown-menu {
   display: block;
