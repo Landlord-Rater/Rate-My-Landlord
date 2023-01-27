@@ -8,10 +8,6 @@ const GMap = (props) => {
 
   let googleMap = null;
 
-  const location = useLocation();
-  const { landlord, from } = location.state;
-  const [propsData, setPropsData] = useState();
-
   const propObj = props.props.properties;
 
   useEffect(() => {

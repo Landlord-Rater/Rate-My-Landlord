@@ -72,9 +72,16 @@ landlordController.getCities = (req, res, next) => {
     );
 };
 
+function roundNumber(number, decimal_digit) {
+  const powerOften = Math.pow(10, decimal_digit);
+  const result = Math.round(number * powerOften) / powerOften;
+  return result;
+}
+
 function average(arr) {
   const sum = arr.reduce((acc, cur) => acc + cur, 0);
-  return sum / arr.length;
+  const num = sum / arr.length;
+  return roundNumber(num, 2);
 }
 
 module.exports = landlordController;

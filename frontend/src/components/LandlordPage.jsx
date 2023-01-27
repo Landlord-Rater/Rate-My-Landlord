@@ -77,16 +77,23 @@ const LandlordPage = () => {
           </div>
         </div>
       </div>
-      <ModalProperty />
+
+      <div className="button-container">
+        <ModalProperty />
+
+        <ModalReview />
+      </div>
 
       <div className="reviews">
         {data.reviews &&
           data.reviews.map((review) => (
             <ReviewDetails key={review._id} review={review} />
           ))}
+        {console.log(data.reviews)}
+
         {/* <AddReview landlord={data.landlord} /> */}
       </div>
-      <ModalReview />
+
       {/* <GetGeocode /> */}
       <div className="App">
         <br />
