@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AddProperty from "./AddProperty.jsx";
+import AddLandlord from "./AddLandlord.jsx";
 
-export default function ModalProperty() {
+export default function ModalLandlord() {
   return (
     <>
       <button
         type="button"
         data-bs-toggle="modal"
-        data-bs-target="#property-model"
+        data-bs-target="#landlord-model"
         className="
         px-6
         py-2.5
@@ -28,13 +28,13 @@ export default function ModalProperty() {
         transition
         duration-150
         ease-in-out" >
-      Add Property
+      Add New Landlord
       </button>
 
       <div
         className="modal
         fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="property-model"
+        id="landlord-model"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true" >
@@ -45,8 +45,8 @@ export default function ModalProperty() {
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h2
                 className="text-xl font-bold leading-normal text-primary"
-                id="ModalLabel-AddProperty" >
-              Add New Property
+                id="ModalLabel-AddLandlord" >
+              Add New Landlord
               </h2>
 
               <button
@@ -59,7 +59,7 @@ export default function ModalProperty() {
 
             <div className="modal-body relative p-4">
 
-              <AddProperty />
+              <AddLandlord />
 
             </div>
           </div>

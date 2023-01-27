@@ -10,25 +10,25 @@ export default function ModalReview() {
         data-bs-target="#review-modal"
         id="modal-review-button"
         className="
-        modal-button
         px-6
         py-2.5
         m-1
         bg-primary
-        hover:bg-blue-700 hover:shadow-lg
-        focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+        hover:bg-secondary hover:shadow-lg
+        hover:text-primary
+        focus:bg-secondary focus:shadow-lg focus:outline-none focus:ring-0
+        focus:text-primary
         active:bg-blue-800 active:shadow-lg
         text-white
-        font-medium
-        text-xs
+        font-bold
+        text-l
         leading-tight
-        uppercase
         rounded
         shadow-md
         transition
         duration-150
         ease-in-out" >
-    Add a Review
+    Add Review
     </button>
 
     <div

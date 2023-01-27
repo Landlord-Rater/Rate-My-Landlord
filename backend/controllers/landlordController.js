@@ -50,9 +50,31 @@ landlordController.getLandLord = (req, res, next) => {
     );
 };
 
+landlordController.getCities = (req, res, next) => {
+  console.log("inside cities");
+  const text = "SELECT location FROM landlords ORDER BY location";
+  db.query(text)
+    .then((data) => {
+      const filteredData = new Set();
+      for (const l of data.rows) {
+        filteredData.add(l.location);
+      }
+      console.log(filteredData);
+      res.locals.locations = [...filteredData];
+      next();
+    })
+    .catch((err) =>
+      next({
+        log: "error caught in getCities middleware!",
+        status: 400,
+        message: { err: err },
+      })
+    );
+};
+
 function roundNumber(number, decimal_digit) {
-  let powerOften = Math.pow(10, decimal_digit);
-  let result = Math.round(number * powerOften) / powerOften;
+  const powerOften = Math.pow(10, decimal_digit);
+  const result = Math.round(number * powerOften) / powerOften;
   return result;
 }
 

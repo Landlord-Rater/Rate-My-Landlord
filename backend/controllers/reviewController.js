@@ -38,6 +38,35 @@ reviewController.getQueriedReviews = (req, res, next) => {
     );
 };
 
+reviewController.getReviewsByCity = (req, res, next) => {
+  const values = [req.params.city];
+  const text = "SELECT * FROM landlords WHERE location = $1;";
+  db.query(text, values)
+    .then(async (data) => {
+      const queryText =
+        "SELECT AVG(rating) FROM reviews where landlord_id = $1;";
+      const landLords = data.rows;
+      //this loop is to query each landlord's review and find the average of all their ratings
+      for (const person of landLords) {
+        const value = [person._id];
+        const average = (await db.query(queryText, value)).rows[0].avg;
+        //delcare a new property name averageRating in each landlord object and assign the average found
+        average === null
+          ? (person.averageRating = null)
+          : (person.averageRating = Number.parseFloat(average).toFixed(1));
+      }
+      res.locals.landlords = landLords;
+      return next();
+    })
+    .catch((err) =>
+      next({
+        log: "error caught in getAll middleware!",
+        status: 400,
+        message: { err: err },
+      })
+    );
+};
+
 reviewController.postReviews = async (req, res, next) => {
   try {
     const { landlord_id, text, rating, would_rent_again, date, userID } =
