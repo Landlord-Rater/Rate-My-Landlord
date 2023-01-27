@@ -24,6 +24,10 @@ module.exports = {
         },
       },
       {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+      {
         test: /\.(png|jpe?g|gif)$/i,
         type: "asset/resource",
       },
@@ -40,6 +44,7 @@ module.exports = {
       directory: path.join(__dirname, "./frontend/src"),
     },
     proxy: {
+      "/oauth": "http://localhost:3000/",
       "/user": "http://localhost:3000/",
       "/reviews": "http://localhost:3000/",
       "/properties": "http://localhost:3000/",
