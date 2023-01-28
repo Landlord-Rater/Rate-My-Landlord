@@ -3,7 +3,7 @@ import axios from "axios";
 import ModalEditReview from "./ModalEditReview.jsx";
 import { useNavigate } from "react-router-dom";
 
-const UserReviewDetails = ({ review }) => {
+const UserReviewDetails = ({ review, fetchReviews }) => {
   let reviewID = review.user_id;
   const navigate = useNavigate();
 
@@ -12,7 +12,11 @@ const UserReviewDetails = ({ review }) => {
     alert(`Are you sure you want to delete this rating?`);
     axios
       .delete(`/reviews/${reviewID}`, { data: { review: review.text } }) // <-- remove ;
-      .then(console.log(reviewID), navigate("/profile"))
+      .then(() => {
+        console.log(reviewID);
+        navigate("/profile");
+        fetchReviews();
+      })
       .catch((err) => {
         console.error(err);
       });
