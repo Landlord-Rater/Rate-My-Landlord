@@ -57,6 +57,7 @@ input[type="file"]::-webkit-file-upload-button {
 .review-table tr {
   border-bottom: 1px solid #fabab3;
 }
+
 .review-table tr.comments-label-row {
   border-bottom: none;
 }
@@ -71,6 +72,7 @@ input[type="file"]::-webkit-file-upload-button {
   font-size: 0.8em;
   text-transform: uppercase;
 }
+
 .review-data {
   color: theme("colors.primary");
 }
@@ -92,8 +94,7 @@ input[type="file"]::-webkit-file-upload-button {
   margin: 1em 0;
 }
 
-#google-oauth-container {
-}
+#google-oauth-container {}
 
 /* loading spinner for search page */
 .loader-container {
@@ -115,6 +116,7 @@ input[type="file"]::-webkit-file-upload-button {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

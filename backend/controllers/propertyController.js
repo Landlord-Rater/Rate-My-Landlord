@@ -25,7 +25,7 @@ propertyController.createProperty = (req, res, next) => {
 
 propertyController.getProperties = (req, res, next) => {
   const text =
-    "SELECT properties.lat, properties.lng FROM properties WHERE landlord_id = $1";
+    "SELECT properties.lat, properties.lng, properties.street_address, properties.city, properties.zip, properties.state FROM properties WHERE landlord_id = $1";
   // "SELECT landlords.name, reviews.rating, reviews.would_rent_again, reviews.landlord_id AS _id FROM landlords LEFT JOIN reviews ON landlords._id =  reviews.landlord_id WHERE landlords._id = $1";
 
   const value = [req.params.id];
