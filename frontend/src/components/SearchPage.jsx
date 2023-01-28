@@ -39,17 +39,10 @@ const SearchPage = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <section class="search-page-container h-full p-4 bg-no-repeat bg-cover">
-      <h4 className="text-center mb-40 text-3xl text-light-subtle">
-=======
     <section class="bg-page search-page h-full p-4 bg-cover">
-
       <h1 className="text-center mb-40 text-3xl text-light-subtle">
->>>>>>> dev
         Rate My Landlord
       </h1>
-      
       <Container>
         <div className="flex flex-row items-center justify-center">
           <DropDownSearchBar
