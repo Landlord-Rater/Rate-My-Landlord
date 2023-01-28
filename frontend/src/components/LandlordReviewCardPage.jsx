@@ -22,7 +22,7 @@ const LandlordReviewCardPage = () => {
   }, []);
 
   return (
-    <section class="search-page h-full p-4 bg-cover">
+    <section class="search-page bg-page h-full p-4 bg-cover">
       <h4 className="text-center mb-40 text-3xl text-light-subtle">
         Rate My Landlord
       </h4>

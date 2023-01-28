@@ -47,6 +47,24 @@ input[type="file"]::-webkit-file-upload-button {
   color: #894740;
 }
 
+
+h1.landlord-name{
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  color: theme("colors.primary");
+  /* background-color: theme("colors.primary"); */
+  text-align: center;
+  text-shadow:
+    1px 0 0 theme("colors.secondary"),
+    0 1px 0 theme("colors.secondary"),
+    -1px 0 0 theme("colors.secondary"),
+    0 -1px 0 theme("colors.secondary");
+}
+
+.demoInfogrid{
+  border: 1px solid theme("colors.dark-subtle");
+}
+
 .reviews-container {
 }
 
@@ -92,6 +110,7 @@ input[type="file"]::-webkit-file-upload-button {
 
 .button-container {
   margin: 1em 0;
+  text-align: center;
 }
 
 #google-oauth-container {}
@@ -128,6 +147,7 @@ input[type="file"]::-webkit-file-upload-button {
   text-align: center;
 }
 
+/* for main background image */
 .bg-page {
   background-image: url("./src/assets/homepage-background.jpg");
 }
@@ -143,4 +163,12 @@ input[type="file"]::-webkit-file-upload-button {
 
 .review-page-container {
   background-image: url("./src/assets/review-page.jpg");
+}
+
+.google-map{
+    border: 1px solid theme("colors.dark-subtle");
+    border-radius: 10px;
+    overflow: hidden;
+    /* margin: 2em 0 0 0 */
+    padding: 0;
 }
