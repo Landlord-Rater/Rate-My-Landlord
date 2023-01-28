@@ -13,7 +13,7 @@ import EditProfile from "./src/components/EditProfile.jsx";
 import PageNotFound from "./src/components/PageNotFound.jsx";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.user);
   const navigate = useNavigate();
   const loginUser = async (credentials, navigate, updateLoginStatus, from) => {
     return fetch("api/login", {
