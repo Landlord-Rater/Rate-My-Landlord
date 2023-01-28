@@ -38,6 +38,7 @@
     "express": "^4.12.3",
     "express-session": "^1.17.1",
     "file-loader": "^6.2.0",
+    "js-cookie": "^3.0.1",
     "jsonwebtoken": "^9.0.0",
     "passport": "^0.4.1",
     "passport-google-oauth2": "^0.2.0",

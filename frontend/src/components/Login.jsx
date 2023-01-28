@@ -92,7 +92,7 @@ export default function Login({ updateLoginStatus }) {
           transition
           self-start"
           >
-            <a onClick={updateLoginStatus} href="/oauth/google" className="w-full h-full ">
+            <a href="/oauth/google" className="w-full h-full ">
               <GoogleLogo className="svg float-left h-fit" />
               <p className="clearfix mt-2">Sign In with Google</p>
             </a>
