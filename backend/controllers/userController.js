@@ -1,6 +1,7 @@
 const db = require("../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cookieController = require("./cookieController.js");
 const saltRounds = 10;
 require("dotenv").config();
 
@@ -48,14 +49,20 @@ userController.getUsers = async (req, res, next) => {
   try {
     if (user && (await bcrypt.compare(password, user.password))) {
       //pass the web token to the next middleware to set it as a cookie for session control
-      console.log(user.username);
+      console.log('user username: ', user.username);
 
       res.locals.email = email;
       res.locals.user = user.username;
       res.locals.userID = user._id;
       res.locals.city = user.city;
-      console.log(res.locals.city);
-      res.locals.id = generateToken({ id: user._id, username: user.username });
+      console.log('res.local.city: ', res.locals.city);
+      res.locals.id = cookieController.createJWToken({
+        id: user._id,
+        username: user.username,
+      });
+      console.log("before JWT");
+      console.log('res.local.id or JWT: ', res.locals.id);
+      console.log('after JWT');
       next();
     } else {
       res.json("email or password incorrect");
@@ -91,10 +98,6 @@ userController.editProfile = async (req, res, next) => {
   }
 };
 
-function generateToken(id) {
-  return jwt.sign(id, process.env.JWT_SECRET, {
-    expiresIn: "30d",
-  });
-}
+
 
 module.exports = userController;

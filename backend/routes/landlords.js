@@ -15,9 +15,15 @@ router.get("/cities", landlordController.getCities, (req, res) => {
 // get landlord and associated reviews
 router.get(
   "/:id",
+  auth.verifyToken,
   landlordController.getLandLord,
   reviewController.getReviews,
   propertyController.getProperties,
+  (req, res, next) => {
+    console.log("req.cookies: ", req.cookies);
+    console.log('req.user: ', req.user)
+    next();
+  },
   (req, res) => {
     res.status(200).json({
       landlord: res.locals.landLord,
@@ -28,9 +34,13 @@ router.get(
 );
 
 // create new landlord
-router.post("/", landlordController.createLandlord, (req, res) => {
-  res.status(200).json({ landlord: res.locals.landLord });
-});
+router.post(
+  "/",
+  landlordController.createLandlord,
+  (req, res) => {
+    res.status(200).json({ landlord: res.locals.landLord });
+  }
+);
 
 // update landlord
 // router.put("/:id", landlordController.updateProfile, (req, res) => {
