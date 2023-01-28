@@ -6,9 +6,9 @@ const router = express.Router();
 
 // get property associated with landlord
 router.get("/:id", propertyController.getProperties, (req, res) => {
-  res.status(200).json({
-    property: res.locals.properties,
-  });
+  console.log(res.locals.properties);
+
+  res.status(200).json({ properties: res.locals.properties });
 });
 
 // create property associated with landlord

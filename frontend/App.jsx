@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./src/components/Navbar.jsx";
 import SearchPage from "./src/components/SearchPage.jsx"; // characters
 import LandlordPage from "./src/components/LandlordPage.jsx"; // customize character
+import LandlordReviewCardPage from "./src/components/LandlordReviewCardPage.jsx";
 import Login from "./src/components/Login.jsx";
 import Logout from "./src/components/Logout.jsx";
 import Signup from "./src/components/Signup.jsx";
@@ -47,6 +48,11 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<SearchPage />} />
           <Route exact path="/landlord" element={<LandlordPage />} />
+          <Route
+            exact
+            path="/landlord/reviews/:city"
+            element={<LandlordReviewCardPage />}
+          />
           <Route exact path="/profile" element={<ProfilePage />} />
           <Route exact path="/editprofile" element={<EditProfile />} />
           <Route

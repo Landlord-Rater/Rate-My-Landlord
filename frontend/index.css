@@ -2,8 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  primary: 'rgb(30 41 59)',
+  secondary: '#F7D1CD',
+  'dark-subtle': 'rgba(255,255,255,0.5)',
+  'light-subtle': 'rgba(39,39,39,0.5)',
+  'dark-purple': '#EC4067'
+*/
+
+
 /* google font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
 
 body {
     /* background: theme('colors.light-subtle'); */
@@ -11,11 +23,84 @@ body {
   }
 
 
+.visuallyhidden {
+  display: none;
+}
+
+/* chrome layout bugfix */
+input[type="file"]::-webkit-file-upload-button {
+  margin-right: 2em;
+}
+
+.page-layout{
+  margin: 1em 2em;
+}
+
+  .page-layout h1 {
+    font-family: "Rubik", Arial, Helvetica, sans-serif;
+    font-size: 48px;
+    color: theme('colors.secondary');
+    background-color: theme('colors.primary');
+    text-align: center;
+  }
+  .page-layout h2 {
+    font-family: "Rubik", Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #894740;
+  }
 
 
+.reviews-container{
+}
 
-  /* loading spinner for search page */
-.loader-container{
+.review-table {
+  width: 100%;
+}
+
+.review-table tr {
+  border-bottom: 1px solid #fabab3;
+}
+.review-table tr.comments-label-row {
+  border-bottom: none;
+}
+.review-table td.comments p{
+  padding-left: 1em;
+}
+
+.review-label {
+  padding: .5em 1em;
+  color: theme('colors.light-subtle');
+  font-weight: bold;
+  font-size:.8em;
+  text-transform: uppercase ;
+}
+.review-data {
+
+  color: theme('colors.primary');
+}
+
+.wra-y, .wra-n {
+  margin-left: 6px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.wra-y{
+  color: green;
+}
+.wra-n{
+  color: red;
+}
+
+.button-container{
+  margin: 1em 0;
+}
+
+#google-oauth-container {
+}
+
+/* loading spinner for search page */
+.loader-container {
   width: 100%;
   margin: 80px 0 500px 0;
 }
@@ -31,8 +116,12 @@ body {
 }
 
 @keyframes spin {
-  0%  { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .results-status h2 {
@@ -40,3 +129,25 @@ body {
   width: 100%;
   text-align: center;
 }
+
+<<<<<<< HEAD
+=======
+.bg-page {
+  background-image: url("./src/assets/images/homepage-background.jpg");
+}
+
+
+>>>>>>> dev
+/* DROPDOWN FOR CITY SEARCH */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.search-page-container {
+  background-image: url("./src/assets/homepage-background.jpg");
+}
+
+/* .test {
+  max-height: 200px;
+  overflow-y: scroll;
+} */

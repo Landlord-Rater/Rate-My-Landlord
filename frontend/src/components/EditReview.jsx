@@ -1,18 +1,13 @@
-//if logged in, renders form to submit new review to relevant landlord and updates review components
-//if not logged in, prompt user in some way to log in/disallow entry of a new review
+//if logged in, renders form to edit review to relevant landlord and updates review components
+//if not logged in, prompt user in some way to log in/disallow edit
 
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
 import Container from "./Container.jsx";
 import FormSubmit from "./FormSubmit.jsx";
-import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
-// const AddReview = ({ landlord }) => {
-const AddReview = () => {
-  const location = useLocation();
-  const { landlord, from } = location.state;
 
-  const [landlord_id, setId] = useState(landlord._id);
+const EditReview = ({ review }) => {
+  const landlord_id = review.landlord_id;
   const [rating, setRating] = useState(""); //should be out of 5 (don't accept a value higher in submit, so throw error)
   const [would_rent_again, setRentAgain] = useState(0); //should be yes/no boolean
   const [text, setText] = useState(""); // bigger text box
@@ -20,10 +15,9 @@ const AddReview = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
   const userID = localStorage.getItem("userID");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // would_rent_again === true ? setRentAgain(1) : setRentAgain(0);
+    would_rent_again === true ? setRentAgain(1) : setRentAgain(0);
     const review = {
       userID,
       landlord_id,
@@ -32,9 +26,8 @@ const AddReview = () => {
       date,
       would_rent_again,
     };
-
     const response = await fetch("/reviews/", {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(review),
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +36,6 @@ const AddReview = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-
         // if (!response.ok) {
         //   setError(json.error);
         // }
@@ -68,7 +60,7 @@ const AddReview = () => {
             " bg-primary text-white drop-shadow rounded p-6 space-y-6 w-80"
           }
         >
-          {/* <FormTitle>Add Review</FormTitle> */}
+          {/* <FormTitle>Edit Review</FormTitle> */}
           <FormInput
             value={date}
             onChange={(e) => setDate(e.target.value)}
@@ -114,4 +106,4 @@ const AddReview = () => {
   );
 };
 
-export default AddReview;
+export default EditReview;

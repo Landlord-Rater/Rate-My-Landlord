@@ -1,9 +1,16 @@
 const express = require("express");
 const landlordController = require("../controllers/landlordController");
 const reviewController = require("../controllers/reviewController");
+const propertyController = require("../controllers/propertyController");
+
 const auth = require("../middleware/auth");
 const { ErrorResponse } = require("@remix-run/router");
 const router = express.Router();
+
+// get all cities of landlords posted in db to populate search by city
+router.get("/cities", landlordController.getCities, (req, res) => {
+  res.status(200).json(res.locals.locations);
+});
 
 // get landlord and associated reviews
 router.get(
@@ -11,6 +18,7 @@ router.get(
   auth.verifyToken,
   landlordController.getLandLord,
   reviewController.getReviews,
+  propertyController.getProperties,
   (req, res, next) => {
     console.log("req.cookies: ", req.cookies);
     console.log('req.user: ', req.user)
@@ -20,6 +28,7 @@ router.get(
     res.status(200).json({
       landlord: res.locals.landLord,
       reviews: res.locals.reviews,
+      properties: res.locals.properties,
     });
   }
 );

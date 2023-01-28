@@ -6,6 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
     publicPath: "/",
+    clean: true,
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -29,11 +30,15 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024, //10KB limit for inline
           },
-        ],
+        },
+        generator: {
+          filename: "images/[name]-[hash][ext]",
+        },
       },
     ],
   },
@@ -45,7 +50,7 @@ module.exports = {
   devServer: {
     static: {
       publicPath: "/",
-      directory: path.resolve(__dirname, "build"),
+      directory: path.join(__dirname, "./frontend"),
     },
     proxy: {
       "/oauth": "http://localhost:3000/",

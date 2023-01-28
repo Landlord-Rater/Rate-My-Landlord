@@ -11,7 +11,7 @@ const Navbar = ({ isLoggedIn }) => {
   };
 
   return (
-    <header>
+    <header className="">
       <div className="bg-primary">
         <div className="max-w-screen-xl mx-auto p-4">
           <div className="flex justify-between items-center">
@@ -19,7 +19,7 @@ const Navbar = ({ isLoggedIn }) => {
               <img className="h-12" src={Logo} alt="Logo" />
 
               <Link to="/">
-                <h1 className="site-title text-white py-2 hover:text-dark-purple font-semibold">
+                <h1 className="site-title text-white py-2 hover:text-secondary font-semibold">
                   Rate My Landlord
                 </h1>
               </Link>
@@ -27,7 +27,7 @@ const Navbar = ({ isLoggedIn }) => {
             <div className="flex items-center sm:space-x-10 space-x-2">
               {isLoggedIn ? (
                 <Link to="/profile">
-                  <h3 className="text-gray-600 py-2 hover:text-dark-purple font-semibold">
+                  <h3 className="text-gray-600 py-2 hover:text-secondary font-semibold">
                     <Person2Icon />
                   </h3>
                 </Link>
@@ -35,17 +35,17 @@ const Navbar = ({ isLoggedIn }) => {
                 ""
               )}
               <Link to="/">
-                <div className="nav-link text-white py-2 hover:text-dark-purple font-semibold">
+                <div className="nav-link text-white py-2 hover:text-secondary font-semibold">
                   Home
                 </div>
               </Link>
               <Link
                 to={`${authBtnProps.route}`}
-                className="text-gray-600  hover:text-dark-purple font-semibold "
+                className="text-gray-600  hover:text-dark-purple font-semibold"
               >
                 <button
                   type="button"
-                  className=" bg-secondary text-primary p-2 rounded sm:text-1xl  hover:text-dark-purple font-semibold"
+                  className=" bg-grey-subtle text-primary p-2 rounded sm:text-1xl font-semibold hover:bg-secondary w-20"
                 >{`${authBtnProps.text}`}</button>
               </Link>
             </div>
