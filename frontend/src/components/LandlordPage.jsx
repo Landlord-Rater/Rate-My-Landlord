@@ -57,49 +57,65 @@ const LandlordPage = () => {
   }, []);
 
   return (
-    <div className=" review-page-container bg-no-repeat bg-cover flex flex-col items-center py-3">
-      <div className="demoInfogrid grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
-        <h2 className="page-title py-4 col-span-2 text-center text-xl ">
+    <div className=" review-page-container bg-no-repeat h-full bg-cover flex flex-col items-center py-3">
+
+        <h1 className="page-title landlord-name py-4 col-span-2 text-center text-xl mt-8">
           {data.landlord.name}
-        </h2>
-        <div className="labelsColumn pl-6 p-6 col-span-1">
-          <div className="label">Main City:</div>
-          <div className="label">Rating:</div>
-          <div className="label label-rent-again mb-2">Would Rent Again:</div>
-        </div>
-        <div className="valuesColumn p-6 col-span-1">
-          <div>{data.landlord.location}</div>
-          <div>{data.landlord.rating ? data.landlord.rating : "N/A"}</div>
-          <div>
-            {data.landlord.would_rent_again
-              ? data.landlord.would_rent_again
-              : "N/A"}
+        </h1>
+
+      <div className="landlord-details-cols flex  flex-cols-2 w-11/12 -mx-2">
+
+      <div className="page-column-1 w-1/2 px-2">
+
+        <div className="demoInfogrid grid grid-cols-2 w-120 bg-primary text-white rounded text-l font-semibold ">
+
+          <div className="labelsColumn pl-6 p-6 col-span-1">
+            <div className="label">Main City:</div>
+            <div className="label">Rating:</div>
+            <div className="label label-rent-again mb-2">Would Rent Again:</div>
+          </div>
+
+          <div className="valuesColumn p-6 col-span-1">
+            <div>{data.landlord.location}</div>
+            <div>{data.landlord.rating ? data.landlord.rating : "N/A"}</div>
+            <div>
+              {data.landlord.would_rent_again
+                ? data.landlord.would_rent_again
+                : "N/A"}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="button-container">
-        <ModalProperty />
+        <div className="button-container">
+          <ModalProperty />
 
-        <ModalReview />
-      </div>
+          <ModalReview />
+        </div>
 
-      <div className="reviews-container">
-        {data.reviews &&
-          data.reviews.map((review) => (
-            <ReviewDetails key={review._id} review={review} />
-          ))}
-        {console.log(data.reviews)}
+        <div className="reviews-container">
+          {data.reviews &&
+            data.reviews.map((review) => (
+              <ReviewDetails key={review._id} review={review} />
+            ))}
+          {console.log(data.reviews)}
 
-        {/* <AddReview landlord={data.landlord} /> */}
-      </div>
+          {/* <AddReview landlord={data.landlord} /> */}
+        </div>
 
-      {/* <GetGeocode /> */}
-      <div className="App">
-        <br />
-        <br />
-        {!loadMap ? <div>Loading...</div> : <GMap props={data} />}
-      </div>
+      </div>{/* <-- end col 1 */}
+
+
+      <div className="page-column-2 w-1/2 flex sm:block md:block">
+
+        <div className="App google-map">
+          {!loadMap ? <div>Loading...</div> : <GMap props={data} />}
+        </div>
+
+      </div>{/* <-- end col 2 */}
+
+    </div>{/* <-- end columns */}
+
+
     </div>
   );
 };
