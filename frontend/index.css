@@ -40,7 +40,6 @@ input[type="file"]::-webkit-file-upload-button {
   background-color: theme("colors.primary");
   text-align: center;
 }
-
 .page-layout h2 {
   font-family: "Rubik", Arial, Helvetica, sans-serif;
   font-size: 36px;
@@ -48,7 +47,8 @@ input[type="file"]::-webkit-file-upload-button {
   color: #894740;
 }
 
-.reviews-container {}
+.reviews-container {
+}
 
 .review-table {
   width: 100%;
@@ -61,7 +61,6 @@ input[type="file"]::-webkit-file-upload-button {
 .review-table tr.comments-label-row {
   border-bottom: none;
 }
-
 .review-table td.comments p {
   padding-left: 1em;
 }
@@ -84,11 +83,9 @@ input[type="file"]::-webkit-file-upload-button {
   font-weight: bold;
   font-size: 1.2em;
 }
-
 .wra-y {
   color: green;
 }
-
 .wra-n {
   color: red;
 }

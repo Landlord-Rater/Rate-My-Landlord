@@ -27,6 +27,7 @@ const SearchPage = () => {
         `/reviews/?search=${debouncedSearch.toLowerCase()}`
       );
       const data = await results.json();
+      console.log("data", data);
       setLandlords(data);
       setLoading(false);
     };
@@ -39,10 +40,10 @@ const SearchPage = () => {
   };
 
   return (
-    <section class="bg-page search-page h-full p-4 bg-cover">
-      <h1 className="text-center mb-40 text-3xl text-light-subtle">
+    <section class="search-page-container h-full p-4 bg-no-repeat bg-cover">
+      <h4 className="text-center mb-40 text-3xl text-light-subtle">
         Rate My Landlord
-      </h1>
+      </h4>
 
       <Container>
         <div className="flex flex-row items-center justify-center">
