@@ -68,11 +68,20 @@ const LandlordPage = () => {
 
   return (
     <LandlordPageContext.Provider value={{ handleAddressSubmit }}>
-      <div className=" review-page-container bg-no-repeat bg-cover flex flex-col items-center py-3">
-        <div className="demoInfogrid grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
-          <h2 className="page-title py-4 col-span-2 text-center text-xl ">
+
+      <div className=" review-page-container bg-repeat-y  bg-cover flex flex-col items-center py-3 h-full">
+
+        <h1 className="landlord-name page-title py-4 col-span-2 text-center text-xl ">
             {data.landlord.name}
-          </h2>
+        </h1>
+
+
+    <div className="column-container mx-4 ">
+
+      <div className="column-1">
+
+        <div className="demoInfogrid grid grid-cols-2 w-full bg-primary text-white rounded text-l font-semibold ">
+
           <div className="labelsColumn pl-6 p-6 col-span-1">
             <div className="label">Main City:</div>
             <div className="label">Rating:</div>
@@ -105,13 +114,20 @@ const LandlordPage = () => {
           {/* <AddReview landlord={data.landlord} /> */}
         </div>
 
-        {/* <GetGeocode /> */}
-        <div className="App">
-          <br />
-          <br />
-          {!loadMap ? <div>Loading...</div> : <GMap props={data} />}
-        </div>
       </div>
+
+      <div className="column-2 mx-4">
+
+          <div className="App google-map-container">
+            {!loadMap ? <div>Loading...</div> : <GMap props={data} />}
+          </div>
+
+      </div>
+
+    </div>
+
+    </div>
+
     </LandlordPageContext.Provider>
   );
 };
