@@ -21,6 +21,8 @@ const ProfilePage = () => {
   }, []);
 
   return (
+    <section class="search-page bg-page h-full p-4 bg-cover">
+
     <div className="centeringBox inset-0 flex flex-col justify-center items-center mt-6 w-160">
       <div className="profileContainer grid grid-cols-2 bg-primary text-white rounded text-l font-semibold w-160">
         <Link to="/editProfile" className="col-span-2">
@@ -54,6 +56,8 @@ const ProfilePage = () => {
           ))}
       </div>
     </div>
+    
+  </section>
   );
 };
 

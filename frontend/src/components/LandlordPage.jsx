@@ -57,16 +57,22 @@ const LandlordPage = () => {
   }, []);
 
   return (
-    <div className=" review-page-container bg-no-repeat bg-cover flex flex-col items-center py-3">
+    <div className=" review-page-container bg-no-repeat h-full bg-cover flex flex-col items-center py-3">
+
+{/* <section class="search-page bg-page h-full p-4 bg-cover"> */}
+
       <div className="demoInfogrid grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
+
         <h2 className="page-title py-4 col-span-2 text-center text-xl ">
           {data.landlord.name}
         </h2>
+
         <div className="labelsColumn pl-6 p-6 col-span-1">
           <div className="label">Main City:</div>
           <div className="label">Rating:</div>
           <div className="label label-rent-again mb-2">Would Rent Again:</div>
         </div>
+
         <div className="valuesColumn p-6 col-span-1">
           <div>{data.landlord.location}</div>
           <div>{data.landlord.rating ? data.landlord.rating : "N/A"}</div>
@@ -95,11 +101,12 @@ const LandlordPage = () => {
       </div>
 
       {/* <GetGeocode /> */}
-      <div className="App">
-        <br />
-        <br />
+
+      <div className="App google-map rounded">
         {!loadMap ? <div>Loading...</div> : <GMap props={data} />}
       </div>
+
+
     </div>
   );
 };

@@ -128,6 +128,7 @@ input[type="file"]::-webkit-file-upload-button {
   text-align: center;
 }
 
+/* for main background image */
 .bg-page {
   background-image: url("./src/assets/homepage-background.jpg");
 }
@@ -143,4 +144,11 @@ input[type="file"]::-webkit-file-upload-button {
 
 .review-page-container {
   background-image: url("./src/assets/review-page.jpg");
+}
+
+.google-map{
+    border: 1px solid theme("colors.secondary");
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 2em 0 0 0
 }
