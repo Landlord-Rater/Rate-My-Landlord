@@ -34,7 +34,7 @@ passport.use(
       } 
 
       const emailqueryString =
-        "SELECT google_id, email, username FROM users WHERE email = $1";
+        "SELECT _id, google_id, email, username FROM users WHERE email = $1";
       const emailvalues = [profile.email]
       const emailuser = await db.query(emailqueryString, emailvalues);
       console.log('PRE SCENARIO 2')
@@ -61,7 +61,7 @@ passport.use(
       //SCENARIO 3: BOTH DOES NOT EXIST
       else {
         const newqueryString =
-          "INSERT INTO users (google_id, email, username) VALUES ($1,$2,$3) RETURNING google_id, email, username";
+          "INSERT INTO users (google_id, email, username) VALUES ($1,$2,$3) RETURNING _id, google_id, email, username";
         const newValues = [profile.id, profile.email, profile.given_name];
         const newUser = await db.query(newqueryString, newValues);
         console.log("SCENARIO 3: newUser row 0: ", newUser.rows[0]);

@@ -11,9 +11,11 @@ import AddLandlord from "./src/components/AddLandlord.jsx";
 import ProfilePage from "./src/components/ProfilePage.jsx";
 import EditProfile from "./src/components/EditProfile.jsx";
 import PageNotFound from "./src/components/PageNotFound.jsx";
+import Cookies from 'js-cookie';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const ssidCookie = Cookies.get('ssid');
+  const [isLoggedIn, setIsLoggedIn] = useState(ssidCookie);
   const navigate = useNavigate();
   const loginUser = async (credentials, navigate, updateLoginStatus, from) => {
     return fetch("api/login", {
