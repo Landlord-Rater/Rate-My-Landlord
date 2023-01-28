@@ -27,8 +27,9 @@ export default function ModalProperty() {
         shadow-md
         transition
         duration-150
-        ease-in-out" >
-      Add Property
+        ease-in-out"
+      >
+        Add Property
       </button>
 
       <div
@@ -37,30 +38,34 @@ export default function ModalProperty() {
         id="property-model"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true" >
-        <div className="modal-dialog
-        relative w-auto pointer-events-none" >
-          <div className="modal-content
-          border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current" >
+        aria-hidden="true"
+      >
+        <div
+          className="modal-dialog
+        relative w-auto pointer-events-none"
+        >
+          <div
+            className="modal-content
+          border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current"
+          >
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h2
                 className="text-xl font-bold leading-normal text-primary"
-                id="ModalLabel-AddProperty" >
-              Add New Property
+                id="ModalLabel-AddProperty"
+              >
+                Add New Property
               </h2>
 
               <button
                 type="button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-                className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline">
-              </button>
+                className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+              ></button>
             </div>
 
             <div className="modal-body relative p-4">
-
               <AddProperty />
-
             </div>
           </div>
         </div>

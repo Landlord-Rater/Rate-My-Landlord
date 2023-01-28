@@ -1,9 +1,10 @@
 //if logged in, renders form to submit new review to relevant landlord and updates review components
 //if not logged in, prompt user in some way to log in/disallow entry of a new review
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "./Container.jsx";
+import { LandlordPageContext } from "./LandlordPage.jsx";
 import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
@@ -11,7 +12,7 @@ import FormInput from "./FormInput.jsx";
 const AddReview = () => {
   const location = useLocation();
   const { landlord, from } = location.state;
-
+  const { handleAddressSubmit } = useContext(LandlordPageContext);
   const [landlord_id, setId] = useState(landlord._id);
   const [rating, setRating] = useState(""); //should be out of 5 (don't accept a value higher in submit, so throw error)
   const [would_rent_again, setRentAgain] = useState(0); //should be yes/no boolean
@@ -43,7 +44,7 @@ const AddReview = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-
+        handleAddressSubmit();
         // if (!response.ok) {
         //   setError(json.error);
         // }

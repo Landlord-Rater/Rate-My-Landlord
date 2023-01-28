@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
+import { LandlordPageContext } from "./LandlordPage.jsx";
 import Container from "./Container.jsx";
 import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
@@ -11,7 +12,7 @@ export default function AddProperty() {
   const location = useLocation();
   const { landlord, from } = location.state;
   const [landlord_id, setId] = useState(landlord._id);
-
+  const { handleAddressSubmit } = useContext(LandlordPageContext);
   const [streetAddress, setStreetAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -55,7 +56,7 @@ export default function AddProperty() {
     });
 
     const json = await responseProp.json();
-
+    handleAddressSubmit();
     if (!response.ok) {
       setError(json.error);
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { useLocation } from "react-router-dom";
 import AddReview from "./AddReview.jsx";
 import ReviewDetails from "./ReviewDetails.jsx";
@@ -6,6 +6,9 @@ import ModalReview from "./ModalReview.jsx";
 import ModalProperty from "./ModalProperty.jsx";
 import GMap from "./GoogleMaps.jsx";
 import GetGeocode from "./Geocoder.jsx";
+
+// create context for submission handler
+export const LandlordPageContext = createContext(null);
 
 const loadGoogleMapScript = (callback) => {
   if (
@@ -45,6 +48,13 @@ const LandlordPage = () => {
     }
   }, []);
 
+  // create a handler to update data on submission
+  const handleAddressSubmit = () => {
+    fetch("/landlords/" + landlord._id)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  };
+
   // const [lat, setLat] = useState("");
   // const [lng, setLng] = useState("");
 
@@ -57,24 +67,17 @@ const LandlordPage = () => {
   }, []);
 
   return (
-    <div className=" review-page-container bg-no-repeat h-full bg-cover flex flex-col items-center py-3">
-
-        <h1 className="page-title landlord-name py-4 col-span-2 text-center text-xl mt-8">
-          {data.landlord.name}
-        </h1>
-
-      <div className="landlord-details-cols flex  flex-cols-2 w-11/12 -mx-2">
-
-      <div className="page-column-1 w-1/2 px-2">
-
-        <div className="demoInfogrid grid grid-cols-2 w-120 bg-primary text-white rounded text-l font-semibold ">
-
+    <LandlordPageContext.Provider value={{ handleAddressSubmit }}>
+      <div className=" review-page-container bg-no-repeat bg-cover flex flex-col items-center py-3">
+        <div className="demoInfogrid grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
+          <h2 className="page-title py-4 col-span-2 text-center text-xl ">
+            {data.landlord.name}
+          </h2>
           <div className="labelsColumn pl-6 p-6 col-span-1">
             <div className="label">Main City:</div>
             <div className="label">Rating:</div>
             <div className="label label-rent-again mb-2">Would Rent Again:</div>
           </div>
-
           <div className="valuesColumn p-6 col-span-1">
             <div>{data.landlord.location}</div>
             <div>{data.landlord.rating ? data.landlord.rating : "N/A"}</div>
@@ -102,21 +105,14 @@ const LandlordPage = () => {
           {/* <AddReview landlord={data.landlord} /> */}
         </div>
 
-      </div>{/* <-- end col 1 */}
-
-
-      <div className="page-column-2 w-1/2 flex sm:block md:block">
-
-        <div className="App google-map">
+        {/* <GetGeocode /> */}
+        <div className="App">
+          <br />
+          <br />
           {!loadMap ? <div>Loading...</div> : <GMap props={data} />}
         </div>
-
-      </div>{/* <-- end col 2 */}
-
-    </div>{/* <-- end columns */}
-
-
-    </div>
+      </div>
+    </LandlordPageContext.Provider>
   );
 };
 
