@@ -46,7 +46,13 @@ so making it pretty and readable will be a whole other task in itself
         </tr>
         <tr>
           <td className="review-label">Would Rent Again:</td>
-          <td className="review-data would-rent">{review.would_rent_again > 0 ? <span className="wra-y">✓</span> : <span className="wra-n">𐄂</span>}{" "}</td>
+          <td className="review-data would-rent">
+            {review.would_rent_again > 0 ? (
+              <span className="wra-y">✓</span>
+            ) : (
+              <span className="wra-n">𐄂</span>
+            )}{" "}
+          </td>
         </tr>
         <tr>
           <td className="review-label">Date:</td>
@@ -56,16 +62,15 @@ so making it pretty and readable will be a whole other task in itself
           <td className="review-label">Comments:</td>
         </tr>
         <tr>
-          <td className="review-data comments" colspan="2"><p>{review.text}</p></td>
+          <td className="review-data comments" colspan="2">
+            <p>{review.text}</p>
+          </td>
         </tr>
       </table>
 
-
-
-      <button className="w-fit bg-primary/50 rounded text-white hover:bg-primary hover:text-dark-purple transition text-sm cursor-pointer py-1 p-2 mt-4 mx-auto block">
+      {/* <button className="w-fit bg-primary/50 rounded text-white hover:bg-primary hover:text-dark-purple transition text-sm cursor-pointer py-1 p-2 mt-4 mx-auto block">
         Delete Review
-      </button>
-
+      </button> */}
     </div>
   );
 };
