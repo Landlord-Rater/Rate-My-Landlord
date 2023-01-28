@@ -163,12 +163,25 @@ h1.landlord-name{
 
 .review-page-container {
   background-image: url("./src/assets/review-page.jpg");
+  text-align: center;
 }
 
-.google-map{
-    border: 1px solid theme("colors.dark-subtle");
-    border-radius: 10px;
+.google-map-container{
+    border: 2px solid theme("colors.dark-subtle");
+    border-radius: 15px;
     overflow: hidden;
     /* margin: 2em 0 0 0 */
     padding: 0;
+    max-width: 500px;
+}
+
+.column-container{
+  border: 2px soid red !important;
+  text-align: center;
+
+}
+.column-1, .column-2{
+  /* float: left; */
+  min-width: 500px;
+  text-align: center;
 }
