@@ -130,14 +130,11 @@ input[type="file"]::-webkit-file-upload-button {
   text-align: center;
 }
 
-<<<<<<< HEAD
-=======
 .bg-page {
   background-image: url("./src/assets/images/homepage-background.jpg");
 }
 
 
->>>>>>> dev
 /* DROPDOWN FOR CITY SEARCH */
 .dropdown:hover .dropdown-menu {
   display: block;
