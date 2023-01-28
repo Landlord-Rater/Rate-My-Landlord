@@ -57,7 +57,7 @@ const LandlordPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center py-2 mt-5">
+    <div className=" review-page-container bg-no-repeat bg-cover flex flex-col items-center py-3">
       <div className="demoInfogrid grid grid-cols-2 w-80 bg-primary text-white rounded text-l font-semibold ">
         <h2 className="page-title py-4 col-span-2 text-center text-xl ">
           {data.landlord.name}
@@ -79,8 +79,7 @@ const LandlordPage = () => {
       </div>
 
       <div className="button-container">
-
-      <ModalProperty />
+        <ModalProperty />
 
         <ModalReview />
       </div>

@@ -31,7 +31,7 @@ propertyController.getProperties = (req, res, next) => {
   const value = [req.params.id];
   db.query(text, value)
     .then((data) => {
-      if (!data.rows[0]) return res.json("properties not in database");
+      // if (!data.rows[0]) return res.json("properties not in database");
       res.locals.properties = data.rows;
       // console.log(res.locals.properties);
       next();
