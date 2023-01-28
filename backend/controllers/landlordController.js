@@ -39,6 +39,7 @@ landlordController.getLandLord = (req, res, next) => {
       data.rows[0]["would_rent_again"] = `${rentAgain * 100}%`;
       //pass the landlord card with name of landlord and the average ratings
       res.locals.landLord = data.rows[0];
+      console.log("this is landlord", data.rows[0]);
       next();
     })
     .catch((err) =>
