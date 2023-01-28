@@ -69,16 +69,16 @@ const LandlordPage = () => {
   return (
     <LandlordPageContext.Provider value={{ handleAddressSubmit }}>
 
-      <div className=" review-page-container bg-no-repeat bg-cover flex flex-col items-center py-3 h-full">
+      <div className=" review-page-container bg-repeat-y  bg-cover flex flex-col items-center py-3 h-full">
 
         <h1 className="landlord-name page-title py-4 col-span-2 text-center text-xl ">
             {data.landlord.name}
         </h1>
 
 
-    <div className="column-container mx-4">
+    <div className="column-container mx-4 ">
 
-      <div className="column-1 ">
+      <div className="column-1">
 
         <div className="demoInfogrid grid grid-cols-2 w-full bg-primary text-white rounded text-l font-semibold ">
 

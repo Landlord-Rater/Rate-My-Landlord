@@ -163,7 +163,9 @@ h1.landlord-name{
 
 .review-page-container {
   background-image: url("./src/assets/review-page.jpg");
+  background-repeat: repeat-y;
   text-align: center;
+  background-attachment: fixed;
 }
 
 .google-map-container{
