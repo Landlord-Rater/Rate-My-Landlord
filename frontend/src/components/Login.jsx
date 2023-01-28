@@ -5,11 +5,7 @@ import FormSubmit from "./FormSubmit.jsx";
 import FormTitle from "./FormTitle.jsx";
 import FormInput from "./FormInput.jsx";
 import { useLocation } from "react-router-dom";
-<<<<<<< HEAD
-import Goauth from "../assets/google.svg";
-=======
-import GoogleLogo from "../assets/google.svg"
->>>>>>> dev
+import GoogleLogo from "../assets/google.svg";
 
 async function loginUser(credentials, navigate, updateLoginStatus, from) {
   return fetch("/user/login", {
@@ -75,15 +71,13 @@ export default function Login({ updateLoginStatus }) {
 
   return (
     <section class="bg-page login-page h-full p-4 bg-cover">
+      <div className="inset-0 flex justify-center items-center mt-6 ">
+        <Container>
+          {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
 
-    <div className="inset-0 flex justify-center items-center mt-6 ">
-      <Container>
-        {/* <div className=" bg-primary flex justify-center items-center h-screen -z-10 "> */}
-<<<<<<< HEAD
-=======
-
-        <div id="google-oauth-container"
-        className="
+          <div
+            id="google-oauth-container"
+            className="
           bg-primary
           drop-shadow
           rounded
@@ -96,58 +90,50 @@ export default function Login({ updateLoginStatus }) {
           text-xl
           text-center
           transition
-          self-start">
-        <a href="/oauth/google"
-        className="w-full h-full ">
-          <GoogleLogo className="svg float-left h-fit" />
-          <p className="clearfix mt-2">Sign In with Google</p>
-        </a>
-        </div>
+          self-start"
+          >
+            <a href="/oauth/google" className="w-full h-full ">
+              <GoogleLogo className="svg float-left h-fit" />
+              <p className="clearfix mt-2">Sign In with Google</p>
+            </a>
+          </div>
 
+          <form
+            onSubmit={handleSubmit}
+            className={
+              "bg-primary drop-shadow rounded p-6 space-y-6 mt-10 w-80"
+            }
+          >
+            <FormTitle>Log In with Email</FormTitle>
+            <FormInput
+              value={email}
+              onChange={handleChange}
+              label="Email"
+              placeholder="email@email.com"
+              name="email"
+            />
+            <FormInput
+              value={password}
+              onChange={handleChange}
+              label="Password"
+              placeholder="********"
+              name="password"
+              type="password"
+            />
+            <FormSubmit value="Submit" />
+          </form>
 
->>>>>>> dev
-        <form
-          onSubmit={handleSubmit}
-          className={"bg-primary drop-shadow rounded p-6 space-y-6 mt-10 w-80"}
-        >
-          <FormTitle>Log In with Email</FormTitle>
-          <FormInput
-            value={email}
-            onChange={handleChange}
-            label="Email"
-            placeholder="email@email.com"
-            name="email"
-          />
-          <FormInput
-            value={password}
-            onChange={handleChange}
-            label="Password"
-            placeholder="********"
-            name="password"
-            type="password"
-          />
-          <FormSubmit value="Submit" />
-        </form>
-
-        <button
-          data-testid="signup-button"
-          type="submit"
-          className="w-full bg-primary rounded text-white hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
-        >
-          <Link to="/signup">
-            <p>Sign Up with Email</p>
-          </Link>
-        </button>
-<<<<<<< HEAD
-        <a href="/oauth/google">
-          <Goauth className="svg"></Goauth>
-        </a>
-=======
-
->>>>>>> dev
-      </Container>
-    </div>
-
+          <button
+            data-testid="signup-button"
+            type="submit"
+            className="w-full bg-primary rounded text-white hover:text-dark-purple transition font-semibold text-lg cursor-pointer py-2"
+          >
+            <Link to="/signup">
+              <p>Sign Up with Email</p>
+            </Link>
+          </button>
+        </Container>
+      </div>
     </section>
   );
 }
